@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewBag.Title = "Petitioner_Cum_Respondent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    span.fooicon.fooicon-sort-asc {
+        display: none;
+    }
+
+    span.fooicon.fooicon-sort-desc {
+        display: none;
+    }
+
+    span.fooicon.fooicon-sort {
+        display: none;
+    }
+
+    label.form-control-label {
+        font-weight: 600;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
+</style>
+<div class="pcoded-content" ng-app="myApp" ng-controller="myCtrl" ng-init="LoadPetitioner_Cum_Respondent();">
+    <div class="pcoded-inner-content">
+        @Html.Hidden("Petitioner_Cum_RespondentID_")
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-header">
+                    <div class="page-header-title">
+                        <h4 ng-model="t2">{{t2}}</h4>
+                    </div>
+                    <div class="page-header-breadcrumb">
+                        <ul class="breadcrumb-title">
+                            <li class="breadcrumb-item">
+                                <a href="#">
+                                    <i class="icofont icofont-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0);" ng-model="t3">{{t3}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="page-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <a ng-click="ShowPetitioner_Cum_Respondent_ShowDiv();" style="color:white;" class="btn btn-sm btn-primary waves-effect waves-light f-left"><i class="icofont icofont-plus"></i>Add New</a>
+                            <toaster-container toaster-options="{'close-button':true, 'time-out':{ 'toast-success': 2000, 'toast-error': 0 } }">
+                            </toaster-container>
+                        </div>
+                        <div class="card-block" style="overflow:auto;">
+                            <div class="table-responsive">
+                                <div class="dt-responsive table-responsive">
+                                    <table id="user_table" class="table table-bordered table-striped" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:center; width:10%;">Edit</th>
+                                                <th style="text-align: center; width: 10%;">Delete</th>
+                                                <th style="width:8%;">Sr. No.</th>
+                                                <th>Full Name</th>
+                                                <th>Relation</th>
+                                                <th>Empid</th>
+                                                <th>Address</th>
+                                                <th>Contact no</th>
+                                                <th>Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="com in Petitioner_Cum_RespondentlIst">
+                                                <td><a class="btn btn-primary btn-icon" title="Edit" ng-click="UpdatePetitioner_Cum_Respondent(com)" href="javascript:void(0);"><i class="icofont icofont-ui-edit"></i></a></td>
+                                                <td><a class="btn btn-danger btn-icon" title="Delete" ng-click="deletePetitioner_Cum_Respondent(com)" href="javascript:void(0);"><i class="icofont icofont-ui-delete"></i></a></td>
+                                                <td>{{com.ID}}</td>
+                                                <td>{{com.Fullname}}</td>
+                                                <td>{{com.Relation}}</td>
+                                                <td>{{com.Empid}}</td>
+                                                <td>{{com.Address}}</td>
+                                                <td>{{com.contactno}}</td>
+                                                <td>{{com.emailid}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="styleSelector">
+            </div>
+            <div id="divgy" style="position: absolute; padding-left: 0%; padding-top: 10%; height: 200%; margin-left: 0%; z-index: 9999; display:none; background-color: #23282e7a; width: 100%; margin-top: -70%;">
+            </div>
+
+            <div class="modal fade modal-flex show" id="signinmodal" tabindex="-1" style="display: block; padding-left: 17px; overflow-x: hidden; overflow-y: auto; display:none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body model-container">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title" ng-model="t1">{{t1}}</h5>
+                                <a class="close" data-dismiss="modal" aria-label="Close" onclick="hidediv();"><span aria-hidden="true">&times;</span></a>
+                            </div>
+                            <form novalidate name="form" class="css-form_Dist">
+                                <div class="modal-body p-b-0">
+                                    <div class="overflow-container">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Full  Name
+                                                    </label>
+                                                    <input type="text" class="form-control" id="txtfullname" required ng-model="FullName" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4" ng-show="IsRelVisible" >
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Relation
+                                                    </label>
+                                                    <input type="text" class="form-control" id="txtRelation" required ng-model="Relation" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Empid(if have)
+                                                    </label>
+                                                    <input type="text" class="form-control" id="txtEmpid" required ng-model="Empid" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Address
+                                                    </label>
+                                                    <input type="text" class="form-control" id="txtAddress" required ng-model="Address" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Contact No.
+                                                    </label>
+                                                    <input type="text" class="form-control" id="txtcontactno" maxlength="500" required ng-model="contactno" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Email ID
+                                                    </label>
+                                                    <input type="email" class="form-control" name="txtemailid" maxlength="500" required ng-model="emailid" />
+                                                    @* ng-pattern="word" /> <div ng-show="form.txtemailid.$dirty && form.txtemailid.$invalid">Invalid: <span ng-show="form.txtemailid.$error.email">This is not a valid email.</span></div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="button" id="btnSave" ng-disabled="form.$invalid" ng-click="InsertPetitioner_Cum_Respondent()" class="btn btn-primary" value="Submit" />
+                                    <input type="button" class="btn btn-default" onclick="hidediv();" value="Cancel" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function hidediv() {
+        $("#divgy").hide();
+        $("#signinmodal").hide();
+        document.getElementById("btnSave").setAttribute("value", "Submit");
+        document.getElementById("btnSave").className = "btn btn-primary";
+    }
+    function GetParam(name) {
+        const results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (!results) {
+            return 0;
+        }
+        return results[1] || 0;
+    }
+</script>
+
+
+
+
+

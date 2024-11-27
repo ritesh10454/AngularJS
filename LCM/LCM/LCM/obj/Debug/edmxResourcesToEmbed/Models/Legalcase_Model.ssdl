@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LegalCaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPL_Legal_Cases.dbo.Vw_DashboardUndatedCase' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Vw_DashboardUndatedCase">
+    <Key>
+      <PropertyRef Name="TextUp" />
+    </Key>
+    <Property Name="TotalUndated" Type="int" />
+    <Property Name="TextUp" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPL_Legal_Cases.dbo.Vw_DashboardUndatedCase_Details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Vw_DashboardUndatedCase_Details">
+    <Key>
+      <PropertyRef Name="Nature_of_Case" />
+      <PropertyRef Name="TextUp" />
+    </Key>
+    <Property Name="sr_no" Type="bigint" />
+    <Property Name="Petitioner" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Respondent" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Case_no" Type="nvarchar" MaxLength="500" />
+    <Property Name="Court" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Nature_of_Case" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Amount" Type="nvarchar" MaxLength="30" />
+    <Property Name="Last_Date" Type="varchar" MaxLength="30" />
+    <Property Name="Next_Date" Type="varchar" MaxLength="30" />
+    <Property Name="Status" Type="nvarchar" MaxLength="1000" />
+    <Property Name="TextUp" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="LegalCaseModelStoreContainer">
+    <EntitySet Name="Vw_DashboardUndatedCase" EntityType="Self.Vw_DashboardUndatedCase" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Vw_DashboardUndatedCase].[TotalUndated] AS [TotalUndated], 
+    [Vw_DashboardUndatedCase].[TextUp] AS [TextUp]
+    FROM [dbo].[Vw_DashboardUndatedCase] AS [Vw_DashboardUndatedCase]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Vw_DashboardUndatedCase_Details" EntityType="Self.Vw_DashboardUndatedCase_Details" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Vw_DashboardUndatedCase_Details].[sr_no] AS [sr_no], 
+    [Vw_DashboardUndatedCase_Details].[Petitioner] AS [Petitioner], 
+    [Vw_DashboardUndatedCase_Details].[Respondent] AS [Respondent], 
+    [Vw_DashboardUndatedCase_Details].[Case_no] AS [Case_no], 
+    [Vw_DashboardUndatedCase_Details].[Court] AS [Court], 
+    [Vw_DashboardUndatedCase_Details].[Nature_of_Case] AS [Nature_of_Case], 
+    [Vw_DashboardUndatedCase_Details].[Amount] AS [Amount], 
+    [Vw_DashboardUndatedCase_Details].[Last_Date] AS [Last_Date], 
+    [Vw_DashboardUndatedCase_Details].[Next_Date] AS [Next_Date], 
+    [Vw_DashboardUndatedCase_Details].[Status] AS [Status], 
+    [Vw_DashboardUndatedCase_Details].[TextUp] AS [TextUp]
+    FROM [dbo].[Vw_DashboardUndatedCase_Details] AS [Vw_DashboardUndatedCase_Details]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

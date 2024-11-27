@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "Case_Document";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .thumb {
+        width: 24px;
+        height: 24px;
+        float: none;
+        position: relative;
+        top: 7px;
+    }
+
+    form .progress {
+        line-height: 15px;
+    }
+
+    .progress {
+        display: inline-block;
+        width: 100px;
+        border: 3px groove #ccc;
+    }
+
+    .progress > div {
+        font-size: smaller;
+        background-color: red;
+        width: 0%;
+    }
+</style>
+<div class="pcoded-content" ng-app="myApp" ng-controller="myCtrl" ng-init="LoadCaseDocument();">
+    <div class="pcoded-inner-content">
+        @Html.Hidden("did_")
+        @Html.Hidden("image_")
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-header">
+                    <div class="page-header-title">
+                        <h4>Case Document</h4>
+                    </div>
+                    <div class="page-header-breadcrumb">
+                        <ul class="breadcrumb-title">
+                            <li class="breadcrumb-item">
+                                <a id="casedetail" runat="server">
+                                    Back To Detail
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0);">Case Document</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="page-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <a ng-click="showCaseDocumentDiv();" style="color:white;" class="btn btn-sm btn-primary waves-effect waves-light f-left"><i class="icofont icofont-plus"></i>New Case Document</a>
+                            <toaster-container toaster-options="{'close-button':true, 'time-out':{ 'toast-success': 2000, 'toast-error': 0 } }">
+                            </toaster-container>
+                        </div>
+                        <div class="card-block" style="overflow:auto;">
+                            <div class="table-responsive">
+                                <div class="dt-responsive table-responsive">
+                                    <table id="user_table" class="table table-bordered table-striped" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:10%;">Sr No.</th>
+                                                <th>Type</th>
+                                                <th>Uploading date</th>
+                                                <th>Document</th>
+                                                <th style="text-align: center; width: 15%;">Edit</th>
+                                                <th style="text-align: center; width: 15%;">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="com in casedocList">
+                                                <td>{{com.ID}}</td>
+                                                <td>{{com.TypeName}}</td>
+                                                <td>{{com.Udate}}</td>
+                                                <td><a href='{{com.document}}' target="_blank">View Document </a></td>
+                                                <td><a class="btn btn-primary btn-icon" title="Edit" ng-click="EditCaseDocument(com)" href="javascript:void(0);"><i class="icofont icofont-ui-edit"></i></a></td>
+                                                <td><a class="btn btn-danger btn-icon" title="Delete" ng-click="deleteCaseDocument(com)" href="javascript:void(0);"><i class="icofont icofont-ui-delete"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="styleSelector">
+        </div>
+        <div id="divgy" style="position: absolute; padding-left: 0%; padding-top: 10%; height: 200%; margin-left: 0%; z-index: 9999; display:none; background-color: #23282e7a; width: 100%; margin-top: -70%;">
+        </div>
+
+        <div class="modal fade modal-flex show" id="signinmodal" tabindex="-1" style="display: block; padding-left: 17px; overflow-x: hidden; overflow-y: auto; display:none;">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body model-container">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title">Case Document</h5>
+                            <a class="close" data-dismiss="modal" aria-label="Close" onclick="hidediv();"><span aria-hidden="true">&times;</span></a>
+                        </div>
+                        <form novalidate name="form" class="css-form_Dist">
+                            <div class="modal-body p-b-0">
+                                <div class="overflow-container">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Document Type
+                                                </label>
+                                                <select ng-model="ddldtype" class="form-control" required ng-options="docList.UnderActID as docList.UnderActName for docList in doctypeList">
+                                                    <option value="">Select Document Type</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Uploading Date
+                                                </label>
+                                                <input type="text" id="txtudate" class="form-control" required readonly datepicker ng-model="Udate" placeholder="dd/MM/yyyy" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Upload Documents
+                                                </label>
+                                                <input id="upfile" type="file" />
+                                                <a href='{{existfile}}' target="_blank"><span id="existfile" ng-model="existfile">{{existfile}}</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" id="btnSave" ng-disabled="form.$invalid" ng-click="InsertCaseDocument()" class="btn btn-primary" value="Submit" />
+                                <input type="button" class="btn btn-default" onclick="hidediv();" value="Cancel" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function hidediv() {
+        $("#divgy").hide();
+        $("#signinmodal").hide();
+        document.getElementById("btnSave").setAttribute("value", "Submit");
+        document.getElementById("btnSave").className = "btn btn-primary";
+    }
+    function GetParam(name) {
+        const results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (!results) {
+            return 0;
+        }
+        return results[1] || 0;
+    }
+</script>

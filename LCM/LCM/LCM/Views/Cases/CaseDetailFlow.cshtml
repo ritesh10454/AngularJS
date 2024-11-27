@@ -1,0 +1,823 @@
+﻿
+@{
+    ViewBag.Title = "CaseDetailFlow";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    span.fooicon.fooicon-sort-asc {
+        display: none;
+    }
+
+    span.fooicon.fooicon-sort-desc {
+        display: none;
+    }
+
+    span.fooicon.fooicon-sort {
+        display: none;
+    }
+
+    div#cardst {
+        border-top: 4px solid #FF5722;
+    }
+
+    div#history {
+        border-top: 4px solid #4CAF50;
+    }
+
+    div#orderdiv {
+        border-top: 4px solid #FFC107;
+    }
+
+    div#transfercrt {
+        border-top: 4px solid #795548;
+    }
+</style>
+
+<style>
+    #tbl1 {
+        width: 9in;
+        /* to centre page on screen*/
+        margin-left: auto;
+        margin-right: auto;
+        font-family: sans-serif;
+    }
+
+        #tbl1 dd, #tbl1 dt {
+            line-height: 2.428571;
+            font-family: sans-serif;
+        }
+
+        #tbl1 dt {
+            font-weight: 700;
+        }
+
+        #tbl1 ul li ul li > #tbl1 dt {
+            padding: 4px;
+            background-color: #cac0c0;
+            padding-left: 10px;
+            margin: 10px 0px 10px 0px;
+        }
+
+        #tbl1 ul li ul li > #tbl1 ul {
+            list-style-type: lower-alpha;
+        }
+
+        #tbl1 ul {
+            list-style-type: decimal;
+        }
+
+            #tbl1 ul li > #tbl1 ul {
+                list-style-type: lower-roman;
+            }
+
+            #tbl1 ul li ul li ul li > #tbl1 dt {
+                background: none;
+                padding-left: 0px;
+            }
+
+        #tbl1 tr.tdtr td {
+            padding-left: 10px;
+        }
+
+        #tbl1 .tdtr th {
+            text-align: left;
+            padding: 5px;
+            padding-left: 10px;
+        }
+
+        #tbl1 dt, #tbl1 dd {
+            line-height: 22px;
+        }
+
+        #tbl1 ul {
+            line-height: 20px;
+        }
+
+        #tbl1 table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #tbl1 tr th {
+            line-height: 31px;
+            text-align: center !important;
+        }
+
+        #tbl1 td {
+            padding: 3px;
+        }
+</style>
+
+<div class="pcoded-content" ng-app="myApp" ng-controller="myCtrl" ng-init="CaseDetailFlowLoad();">
+    <div class="pcoded-inner-content" ng-repeat="com in CaseHeaderl">
+        @Html.Hidden("CaseID")
+        @Html.Hidden("type")
+        @Html.Hidden("Case_Hearing_HistoryID_")
+        @Html.Hidden("Case_Hearing_Orderid_")
+        <input type="hidden" id="userID" value="@ViewBag.UserID" />
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-header">
+                    <div class="page-header-title">
+                        <h4 id="casename1" ng-model="casename1">{{casename1}}</h4>
+                        <span id="casesummary" ng-model="casesummary">{{casesummary}}</span>
+                    </div>
+                    <div class="page-header-breadcrumb">
+                        <ul class="breadcrumb-title">
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0);">
+                                    <i class="icofont icofont-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0);">Cases</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0);"><span id="casename2" ng-model="casename2">{{casename2}}</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="page-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-header-text">Case Details</h5>
+                            @*<a style="color:white;" class="btn btn-sm btn-warning waves-effect waves-light f-right" ng-href="/Cases/PrintCase?CaseID=@ViewBag.CaseID"><i class="icofont icofont-printer"></i>Print Details</a>*@
+                            <div ng-model="userAccess">
+                                <a id="lnkdocument" ng-show="userAccess" style="color:white;" class="btn btn-sm btn-warning waves-effect waves-light f-right" ng-href="/Cases/Case_Document?CaseID=@ViewBag.CaseID"><i class="icofont icofont-folder"></i>Case Document</a>
+                                <a id="LinkButton2" style="color:white;" class="btn btn-sm btn-warning waves-effect waves-light f-right" onclick="showPrintDiv();"><i class="icofont icofont-printer"></i>Print Details</a>
+                                <a id="lnkclosecase" ng-show="userAccess" style="color:white;" class="btn btn-sm btn-warning waves-effect waves-light f-right" ng-click="closecase();"><i class="icofont icofont-close"></i>Close Case</a>
+                            </div>
+                            <toaster-container toaster-options="{'close-button':true, 'time-out':{ 'toast-success': 2000, 'toast-error': 0 } }">
+                            </toaster-container>
+                        </div>
+                        <div class="card-block">
+                            <div class="view-info">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="row" ng-repeat="com in CaseHeaderl">
+                                            <div class="col-lg-12 col-xl-6">
+                                                <div class="table-responsive">
+                                                    <table class="table m-0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row">Case Type:</th>
+                                                                <td>{{com.CaseTypeName}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Filing Number:</th>
+                                                                <td>{{com.FilingNumber}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Filing Date:</th>
+                                                                <td>{{com.FilingDate|date:'shortDate'}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Registration Number</th>
+                                                                <td>{{com.RegistrationNumber}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Registration Date:</th>
+                                                                <td>{{com.RegistrationDate|date:'shortDate'}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">CNR Number</th>
+                                                                <td>{{com.CNRNumber}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Court City</th>
+                                                                <td>{{com.City}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Judge</th>
+                                                                <td>{{com.JudgeName}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-xl-6">
+                                                <div class="table-responsive">
+                                                    <table class="table m-0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row">Petitioner:</th>
+                                                                <td>{{com.Petitioner_NAME}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Petitioner's Advocate:</th>
+                                                                <td>{{com.Petitioner_Advocate_name}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Respondent</th>
+                                                                <td>{{com.Respondent_name}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Respondent's Advocate</th>
+                                                                <td>{{com.Respondent_Advocate_name}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Under Act(s)</th>
+                                                                <td>{{com.UnderActName}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Under Section(s)</th>
+                                                                <td>{{com.UnderSectionName}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Stage of Case</th>
+                                                                <td>{{com.StageofCaseName}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="cardst">
+                        <div class="card-header">
+                            <h5 class="card-header-text">Case Status</h5>
+                        </div>
+                        <div class="card-block">
+                            <div class="view-info">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-xl-6">
+                                                <div class="table-responsive">
+                                                    <table class="table m-0">
+                                                        <tbody ng-repeat="cstat in repcasestatus">
+                                                            <tr>
+                                                                <th scope="row">First Hearing Date:</th>
+                                                                <td>
+                                                                    {{cstat.RegistrationDate}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Next Hearing Date :</th>
+                                                                <td>{{cstat.HearingDate|date:'shortDate' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Stage of Case :</th>
+                                                                <td>{{cstat.StageofCaseName}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Court Number and Judge</th>
+                                                                <td>{{cstat.CourtNumber}}-{{cstat.JudgeName}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="history">
+                        <div class="card-header">
+                            <h5 class="card-header-text">History of Case</h5>
+                            <a id="bteditbtnmeeting" ng-show="userAccess" style="color:white;" ng-click="showdiv();" class="btn btn-sm btn-warning waves-effect waves-light f-right"><i class="icofont icofont-printer"></i>Add Case History</a>
+                        </div>
+                        <div class="card-block" style="overflow: auto;">
+                            <div class="table-responsive">
+                                <div class="dt-responsive table-responsive">
+                                    @*id="user_table"*@
+                                    <table id="tblcaseHistory" class="table table-bordered table-striped" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>Registration Number</th>
+                                                <th>Judge</th>
+                                                <th>Court</th>
+                                                <th>Business On Date</th>
+                                                <th>Business Purpose</th>
+                                                <th>Hearing Date</th>
+                                                <th>Purpose of hearing</th>
+                                                <th>Responsible Person</th>
+                                                <th style="text-align:center;">Edit</th>
+                                                <th style="text-align:center;">Delete</th>
+                                                <th style="text-align:center;">Add Order</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="rep in repHistoryofcase">
+                                                <td>{{rep.RegistrationNumber}}</td>
+                                                <td>{{rep.JudgeName}}</td>
+                                                <td>{{rep.City}}</td>
+                                                <td>{{rep.BusinesDate}}</td>
+                                                <td id="lblBP">{{rep.BP}}</td>
+                                                <td id="lblhear">{{rep.HearingDate}}</td>
+                                                <td>{{rep.HP}}</td>
+                                                <td>{{rep.name}}</td>
+                                                <td ng-show="userAccess"><a class="btn btn-primary btn-icon" id="LinkButton1" title="Edit" ng-click="UpdateCaseHistory(rep)" href="javascript:void(0);"><i class="icofont icofont-ui-edit"></i></a></td>
+                                                <td ng-show="userAccess"><a class="btn btn-danger btn-icon" id="lnkdel" title="Delete" ng-click="DeleteCaseHistory(rep)" href="javascript:void(0);"><i class="icofont icofont-ui-delete"></i></a></td>
+                                                <td ng-show="addDetail"><a class="btn btn-warning btn-icon" id="lnkaddDetail" title="Add Order Detail" ng-click="AddOrderDetail(rep)" href="javascript:void(0);"><i class="icofont icofont-ui-add"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="orderdiv">
+                        <div class="card-header">
+                            <h5>Orders</h5>
+                        </div>
+                        <div class="card-block" style="overflow: auto;">
+                            <div class="table-responsive">
+                                <div class="dt-responsive table-responsive">
+                                    <table id="tblorder" class="table table-bordered table-striped" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th> Order Number</th>
+                                                <th> Order Date</th>
+                                                <th>Document</th>
+                                                <th>Order Details</th>
+                                                <th style="text-align: center; ">Edit</th>
+                                                <th style="text-align: center; ">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="cord in caseOrderlist">
+                                                <td>{{cord.ID}}</td>
+                                                <td>{{cord.BusinesDate}}</td>
+                                                <td><a href='{{cord.fileO}}' target="_blank">Document</a></td>
+                                                <td><p>{{cord.OrderDetail}}</p></td>
+                                                <td><a class="btn btn-primary btn-icon" title="Edit" ng-click="UpdateCaseOrder(cord)" href="javascript:void(0);"><i class="icofont icofont-ui-edit"></i></a></td>
+                                                <td><a class="btn btn-danger btn-icon" title="Delete" ng-click="DeleteCaseOrder(cord)" href="javascript:void(0);"><i class="icofont icofont-ui-delete"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="transfercrt">
+                        <div class="card-header">
+                            <h5>Case Transfer Details Between The Courts</h5>
+                        </div>
+                        <div class="card-block" style="overflow: auto;">
+                            <div class="table-responsive">
+                                <div class="dt-responsive table-responsive">
+                                    <table id="tblCaseTransfer" class="table table-bordered table-striped" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>Regn. Number</th>
+                                                <th>Transfer Date </th>
+                                                <th>From Court Number and Judge</th>
+                                                <th>To Court Number and Judge</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="clog in reptransfer">
+                                                <td>{{clog.RegistrationNumber}}</td>
+                                                <td>{{clog.BusinesDate}}</td>
+                                                <td><p>{{clog.TypeID}} - {{clog.JudgeName}} </p></td>
+                                                <td><p>{{clog.TypeName}} - {{clog.Judge_name}} </p></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="styleSelector">
+        </div>
+        <div id="divgy" style="position: absolute; padding-left: 0%; padding-top: 10%; height: 200%; margin-left: 0%; z-index: 9999; display:none; background-color: #23282e7a; width: 100%; margin-top: -70%;">
+        </div>
+        @*<div class="buttons loader">
+            <span class="icon" loader="isLoading()"></span>
+        </div>*@
+
+
+        <div class="modal fade modal-flex show" id="signinmodal" tabindex="-1" style="display: block; padding-left: 17px; overflow-x: hidden; overflow-y: auto; display:none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body model-container">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title">Case History</h5>
+                            <a class="close" data-dismiss="modal" aria-label="Close" onclick="hidediv();"><span aria-hidden="true">&times;</span></a>
+                        </div>
+                        <form novalidate name="form" class="css-form_Dist">
+                            <div class="modal-body p-b-0">
+                                <div class="overflow-container">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Select Judge
+                                                </label>
+                                                <select ng-model="ddlJudge" class="form-control" required
+                                                        ng-options="jm.JudgeId as jm.JudgeName for jm in JudgeMasterList">
+                                                    <option value="">Select Company</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Business Date
+                                                </label>
+                                                <input type="text" class="form-control" required readonly ng-model="data.businessdate" placeholder="dd-MM-yyyy" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Business Purpose
+                                                </label>
+                                                <select ng-model="data.ddlBusinesspurpose" class="form-control" required
+                                                        ng-options="dep.CaseId as dep.BusinessPurpose for dep in PurposeMasterlist">
+                                                    <option value="">Select Business Purpose</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Next Hearing Date
+                                                </label>
+                                                <input type="text" class="form-control" required datepicker readonly ng-model="data.nexthearingdate" placeholder="dd-MM-yyyy" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Hearing Purpose
+                                                </label>
+                                                <select ng-model="data.ddlHearingpurpose" class="form-control" required
+                                                        ng-options="dep.CaseId as dep.BusinessPurpose for dep in PurposeMasterlist">
+                                                    <option value="">Select Hearing Purpose</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    StageofCase
+                                                </label>
+                                                <select ng-model="ddlStageofCase" class="form-control" required
+                                                        ng-options="dep.StageofCaseID as dep.StageofCaseName for dep in StageofCasemasterlIst">
+                                                    <option value="">Select Hearing Purpose</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Court City
+                                                </label>
+                                                <select ng-model="ddlcourtcity" class="form-control" required
+                                                        ng-options="dep.CityID as dep.City for dep in CourtCityList">
+                                                    <option value="">Select Hearing Purpose</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Remarks
+                                                </label>
+                                                <input type="text" class="form-control" required ng-model="data.Remarks" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Responsible Person
+                                                </label>
+                                                <select ng-model="ddlresponsibleperson" class="form-control"
+                                                        ng-options="dep.Empid as dep.fullname2 for dep in resEmpList" required>
+                                                    <option value="">Select Responsible Person</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" id="btnSave" ng-disabled="form.$invalid" ng-click="InsertCaseHistory()" class="btn btn-primary" value="Save" />
+                                <input type="button" class="btn btn-default" onclick="hidediv();" value="Cancel" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade modal-flex show" id="printmodal" tabindex="-1" style="display: block; padding-left: 17px; overflow-x: hidden; overflow-y: auto; display:none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body model-container" ng-repeat="com in CaseHeaderl">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title">Print</h5>
+                            <a class="close" data-dismiss="modal" aria-label="Close" onclick="hidePrintDiv();"><span aria-hidden="true">&times;</span></a>
+                        </div>
+                        <form novalidate name="form" class="css-form_Dist">
+                            <div class="modal-body p-b-0">
+                                <div class="overflow-container">
+                                    <div class="row">
+                                        <div class="col-sm-12" id="dvContents">
+                                            <table style="width: 100%;" id="tbl1">
+                                                <tr>
+                                                    <th>
+                                                        <h4>{{com.JudgeName}}</h4>
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Case Detail</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table border="1" style="border-collapse: collapse">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Case Type:</td>
+                                                                    <td>{{com.CaseTypeName}}</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Filing Number:</td>
+                                                                    <td>{{com.FilingNumber}}</td>
+                                                                    <td>Filing Date: {{com.FilingDate}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Registration Number</td>
+                                                                    <td>{{com.RegistrationNumber}}</td>
+                                                                    <td>Registration Date: {{com.RegistrationDate}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>CNR Number</td>
+                                                                    <td>{{com.CNRNumber}}</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Case Staus</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table border="1">
+                                                            <tbody ng-repeat="chist in repcasestatus">
+                                                                <tr>
+
+                                                                    <th scope="row" style="text-align:left;">First Hearing Date</th>
+                                                                    <td>:{{chist.RegistrationDate}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" style="text-align:left;">Next Hearing Date</th>
+                                                                    <td>:{{chist.HearingDate}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" style="text-align:left;">Stage of Case</th>
+                                                                    <td>:{{chist.StageofCaseName}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" style="text-align:left;">Court Number and Judge</th>
+                                                                    <td>:{{chist.CourtNumber}}-{{chist.JudgeName}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Petitioner and Advocate</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table border="1">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        1){{com.Petitioner_NAME}}<br />
+                                                                        Advocate- {{com.Petitioner_Advocate_name}}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Respondent and Advocate</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table border="1">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        1){{com.Respondent_name}}<br />
+                                                                        Advocate- {{com.Respondent_Advocate_name}}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Acts</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table border="1">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>Under Act(s)</th>
+                                                                    <th>Under Section(s)</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>{{com.UnderActName}}</td>
+                                                                    <td>{{com.UnderSectionName}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>History of Case</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table border="1">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Registration Number</th>
+                                                                    <th>Judge</th>
+                                                                    <th>Business On Date</th>
+                                                                    <th>Business Purpose</th>
+                                                                    <th>Hearing Date</th>
+                                                                    <th>Purpose of hearing</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="chist in repHistoryofcase">
+                                                                    <td>{{chist.RegistrationNumber}}</td>
+                                                                    <td>{{chist.JudgeName}}</td>
+                                                                    <td>{{chist.BusinesDate}}</td>
+                                                                    <td>{{chist.BP}}</td>
+                                                                    <td>{{chist.HearingDate}}</td>
+                                                                    <td>{{chist.HP}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Orders</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table border="1">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Order Number</th>
+                                                                    <th>Order Date</th>
+                                                                    <th>Order Details</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="cord in caseOrderlist">
+                                                                    <td>{{cord.ID}}</td>
+                                                                    <td>{{cord.BusinesDate}}</td>
+                                                                    <td><p>{{cord.OrderDetail}}</p></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Case Transfer Details Between The Courts</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table border="1">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Regn. Number</th>
+                                                                    <th>Transfer Date </th>
+                                                                    <th>From Court Number and Judge</th>
+                                                                    <th>To Court Number and Judge</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="rtran in reptransfer">
+                                                                    <td>
+                                                                        {{rtran.RegistrationNumber}}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{rtran.BusinesDate}}
+                                                                    </td>
+                                                                    <td><p>{{rtran.CourtNo}}-{{rtran.JudgeName}}</p></td>
+                                                                    <td><p>{{rtran.CourtNumber}}-{{rtran.Judge_name}}</p></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" id="btnPrint" ng-disabled="form.$invalid" ng-click="PrintDIV();" class="btn btn-primary" value="Print" />
+                                <input type="button" class="btn btn-default" onclick="hidePrintDiv();" value="Back" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade modal-flex show" id="modelorder" runat="server" tabindex="-1" style="display: block; padding-left: 17px; overflow-x: hidden; overflow-y: auto; display:none;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body model-container">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Case History Order</h5>
+                            <a id="lnkorderexit" class="close" data-dismiss="modal" aria-label="Close" ng-click="hideOrderDetailDiv();"><span aria-hidden="true">&times;</span></a>
+                        </div>
+                        <form novalidate name="orderform" class="css-form_Dist">
+                            <div class="modal-body p-b-0">
+                                <div class="overflow-container">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Select Order Document
+                                                </label>
+                                                <input id="uporderfile" type="file" class="form-control" />
+                                                <a href='{{existorderfile}}' target="_blank"><span id="existorderfile" ng-model="existorderfile">{{existorderfile}}</span></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Order Detail
+                                                </label>
+                                                <textarea id="txtorderdetail" class="form-control" rows="5" required ng-model="data.ttxtorderdetail"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" id="btaddorder" ng-disabled="orderform.$invalid" ng-click="InsertOrderDetail();" class="btn btn-primary" value="Save" />
+                                <input type="button" id="btcancelorder" class="btn btn-default" ng-click="hideOrderDetailDiv();" value="Cancel" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    function hidediv() {
+        $("#divgy").hide();
+        $("#signinmodal").hide();
+        document.getElementById("btnSave").setAttribute("value", "Submit");
+        document.getElementById("btnSave").className = "btn btn-primary";
+    }
+
+    function showPrintDiv() {
+        $("#divgy").show();
+        $("#printmodal").show();
+    }
+
+    function hidePrintDiv() {
+        $("#divgy").hide();
+        $("#printmodal").hide();
+    }
+
+    function GetParam(name) {
+        const results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (!results) {
+            return 0;
+        }
+        return results[1] || 0;
+    }
+</script>
+

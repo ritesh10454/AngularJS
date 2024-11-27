@@ -1,0 +1,193 @@
+/* arabic */
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 100%;
+        margin: 30px auto;
+    }
+}
+@font-face {
+  font-family: 'Mada';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Mada Light'), local('Mada-Light'), url(https://fonts.gstatic.com/s/mada/v7/7Au_p_0qnzeSdZnkOCD2z3wM.woff2) format('woff2');
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+}
+/* latin */
+@font-face {
+  font-family: 'Mada';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Mada Light'), local('Mada-Light'), url(https://fonts.gstatic.com/s/mada/v7/7Au_p_0qnzeSdZnkOCX2zw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: 'Mada';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Mada Regular'), local('Mada-Regular'), url(https://fonts.gstatic.com/s/mada/v7/7Auwp_0qnzeSfTfGLRrX.woff2) format('woff2');
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+}
+/* latin */
+@font-face {
+  font-family: 'Mada';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Mada Regular'), local('Mada-Regular'), url(https://fonts.gstatic.com/s/mada/v7/7Auwp_0qnzeSfTLGLQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: 'Mada';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Mada Medium'), local('Mada-Medium'), url(https://fonts.gstatic.com/s/mada/v7/7Au_p_0qnzeSdcHlOCD2z3wM.woff2) format('woff2');
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+}
+/* latin */
+@font-face {
+  font-family: 'Mada';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Mada Medium'), local('Mada-Medium'), url(https://fonts.gstatic.com/s/mada/v7/7Au_p_0qnzeSdcHlOCX2zw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: 'Mada';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Mada SemiBold'), local('Mada-SemiBold'), url(https://fonts.gstatic.com/s/mada/v7/7Au_p_0qnzeSde3iOCD2z3wM.woff2) format('woff2');
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+}
+/* latin */
+@font-face {
+  font-family: 'Mada';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Mada SemiBold'), local('Mada-SemiBold'), url(https://fonts.gstatic.com/s/mada/v7/7Au_p_0qnzeSde3iOCX2zw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* arabic */
+@font-face {
+  font-family: 'Mada';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Mada Bold'), local('Mada-Bold'), url(https://fonts.gstatic.com/s/mada/v7/7Au_p_0qnzeSdYnjOCD2z3wM.woff2) format('woff2');
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+}
+/* latin */
+@font-face {
+  font-family: 'Mada';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Mada Bold'), local('Mada-Bold'), url(https://fonts.gstatic.com/s/mada/v7/7Au_p_0qnzeSdYnjOCX2zw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+#drop-down-user-info img {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
+#drop-down-user-profile, #drop-down-edit-profile, #drop-down-logout {
+    margin-left: 80px;
+}
+
+#drop-down-user-profile {
+    color: #FFF;
+}
+
+    #drop-down-user-profile > a {
+        text-transform: capitalize;
+    }
+
+#menu-bp, #drop-down-user-actions {
+    padding: 6px 0;
+    background: #4c4c4d;
+    min-width: 264px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: #C5C5C5
+}
+
+#drop-down-user-actions {
+    background: #26292c;
+    padding: 20px;
+}
+
+#menu-bp > li {
+    background: #4c4c4d;
+}
+
+    #menu-bp > li > a, #menu-bp > li > ul > li > a {
+        padding-right: 1em;
+        padding-left: 1em;
+        line-height: 26px;
+        height: 26px;
+        white-space: nowrap;
+        min-width: 140px;
+        display: block;
+    }
+
+    #menu-bp > li.menu-parent:hover, #menu-bp > li.menu-parent > a:hover, #menu-bp .sub-menu li a:hover {
+        color: #e14d43;
+    }
+
+#menu-bp .sub-menu li a {
+    color: #C5C5C5 !important;
+}
+
+    #menu-bp .sub-menu li a:hover {
+        color: #e14d43 !important;
+    }
+
+#menu-bp .menu-parent > a:before {
+    color: inherit !important;
+    position: relative !important;
+    font-size: 14px !important;
+    font-family: FontAwesome !important;
+    -webkit-font-smoothing: antialiased !important;
+    right: 5px !important;
+    top: 0px !important;
+    content: "\f0d9" !important;
+}
+
+#menu-bp .menu-parent .sub-menu li > a:before, .dropdown-menu #drop-down-user-actions li > a:before {
+    content: none !important;
+}
+
+#menu-bp > li > ul {
+    display: none;
+    margin-left: 0;
+    left: inherit;
+    right: 100%;
+    padding: 6px 10px;
+    margin-top: -32px;
+    position: absolute;
+    background: #4c4c4d;
+}
+
+#menu-bp .menu-parent:hover > .sub-menu {
+    display: block;
+    transition: all .1s ease;
+}
+
+#menu-bp > li > ul > li a {
+    padding: 0;
+}
+
+#menu-bp li > a > span {
+    display: none;
+}
+
+#menu-bp > li > a {
+    pointer-events: none;
+    cursor: default;
+}  

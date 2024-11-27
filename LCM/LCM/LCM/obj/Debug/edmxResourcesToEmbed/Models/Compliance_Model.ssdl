@@ -1,0 +1,1227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VPLComplianceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="alert_detail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="DD_Freq">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DD" Type="int" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Emp_Id" />
+    </Key>
+    <Property Name="Emp_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Emp_Name" Type="varchar(max)" />
+    <Property Name="Emp_City" Type="varchar(max)" />
+    <Property Name="Emp_Age" Type="int" />
+  </EntityType>
+  <EntityType Name="MM_Freq">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MM" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.tmpVPL_Compliance_Master' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tmpVPL_Compliance_Master">
+    <Key>
+      <PropertyRef Name="CID" />
+    </Key>
+    <Property Name="CID" Type="numeric" Precision="30" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeptID" Type="int" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="UnitID" Type="int" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Regulate_For" Type="nvarchar(max)" />
+    <Property Name="Regulate_Ref" Type="nvarchar(max)" />
+    <Property Name="Frequency" Type="nvarchar" MaxLength="100" />
+    <Property Name="Deadline" Type="datetime" />
+    <Property Name="Alertbefore" Type="int" />
+    <Property Name="CrBy" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrIP" Type="nvarchar" MaxLength="100" />
+    <Property Name="Isactive" Type="int" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_AlertTo">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="numeric" Precision="30" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="StartDate" Type="date" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="EmpID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="Isactive" Type="int" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Frequency">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="400" />
+    <Property Name="Frequency" Type="int" />
+    <Property Name="isactive" Type="int" />
+    <Property Name="Crby" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="Crdate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Frequency_Details">
+    <Key>
+      <PropertyRef Name="FDID" />
+    </Key>
+    <Property Name="FDID" Type="numeric" Precision="30" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ComplianceID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="FrequencyID" Type="int" />
+    <Property Name="DD" Type="int" />
+    <Property Name="MM" Type="int" />
+    <Property Name="YY" Type="int" />
+    <Property Name="fixeddate" Type="datetime" />
+    <Property Name="isactive" Type="int" />
+    <Property Name="CrBy" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrIP" Type="nvarchar" MaxLength="500" />
+    <Property Name="isupdate" Type="int" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_InfoRequired">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="numeric" Precision="30" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="StartDate" Type="date" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="DeptID" Type="int" />
+    <Property Name="EmpID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="Isactive" Type="int" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Master">
+    <Key>
+      <PropertyRef Name="CID" />
+    </Key>
+    <Property Name="CID" Type="numeric" Precision="30" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeptID" Type="int" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="UnitID" Type="int" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Regulate_For" Type="nvarchar(max)" />
+    <Property Name="Regulate_Ref" Type="nvarchar(max)" />
+    <Property Name="Frequency" Type="int" />
+    <Property Name="Deadline" Type="datetime" />
+    <Property Name="Alertbefore" Type="int" />
+    <Property Name="CrBy" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrIP" Type="nvarchar" MaxLength="100" />
+    <Property Name="Isactive" Type="int" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Responsibility">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="numeric" Precision="30" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="StartDate" Type="date" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="EmpID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="Isactive" Type="int" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Scheduling">
+    <Key>
+      <PropertyRef Name="Transid" />
+    </Key>
+    <Property Name="Transid" Type="numeric" Precision="30" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="UpdateFrom" Type="datetime" />
+    <Property Name="Frequency" Type="int" />
+    <Property Name="ComplianceDate" Type="datetime" />
+    <Property Name="GDate" Type="datetime" />
+    <Property Name="Flag" Type="int" />
+    <Property Name="Crby" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="CrIP" Type="nvarchar" MaxLength="200" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="isactive" Type="int" />
+    <Property Name="FDID_SD" Type="numeric" Precision="30" Scale="0" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Status">
+    <Key>
+      <PropertyRef Name="TID" />
+    </Key>
+    <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CID" Type="int" />
+    <Property Name="ScheduledID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="CStatus" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Descript" Type="nvarchar(max)" />
+    <Property Name="FilePath" Type="nvarchar(max)" />
+    <Property Name="CrBy" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="Crdate" Type="datetime" />
+    <Property Name="CRIP" Type="nvarchar" MaxLength="200" />
+    <Property Name="isactive" Type="int" />
+  </EntityType>
+  <EntityType Name="VPL_HR_MenuMaster">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="ParentID" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="MenuID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MenuDesc" Type="varchar" MaxLength="50" />
+    <Property Name="STATUS" Type="varchar" MaxLength="1" />
+    <Property Name="PageIndex" Type="varchar" MaxLength="100" />
+    <Property Name="Selectable" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="100" />
+    <Property Name="Crby" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CrDate" Type="datetime" Nullable="false" />
+    <Property Name="CrIP" Type="varchar" MaxLength="20" />
+    <Property Name="ProcedureName" Type="varchar" MaxLength="100" />
+    <Property Name="ParameterType" Type="varchar" MaxLength="2" />
+    <Property Name="HeaderText" Type="varchar" MaxLength="100" />
+    <Property Name="Order_No" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="CSActiveTag" Type="varchar" MaxLength="1" />
+    <Property Name="FormName" Type="varchar" MaxLength="100" />
+    <Property Name="SubFormName" Type="varchar" MaxLength="100" />
+    <Property Name="MenuOpenTag" Type="varchar" MaxLength="1" />
+    <Property Name="ReportArea" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="VPL_HR_RoleDetail">
+    <Key>
+      <PropertyRef Name="TransID" />
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="TransID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="MenuID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Active" Type="char" MaxLength="1" />
+    <Property Name="Crby" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CrDate" Type="date" />
+  </EntityType>
+  <EntityType Name="VPL_HR_RoleMaster">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleDesc" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="CrBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CrDate" Type="date" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.VPL_HR_SubMenuPages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VPL_HR_SubMenuPages">
+    <Key>
+      <PropertyRef Name="MenuID" />
+      <PropertyRef Name="SubPages" />
+      <PropertyRef Name="Crby" />
+    </Key>
+    <Property Name="MenuID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="SubPages" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Active" Type="char" MaxLength="1" />
+    <Property Name="Crby" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CrDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="VPL_HR_UserDetails">
+    <Key>
+      <PropertyRef Name="TransID" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="TransID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RoleID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Active" Type="char" MaxLength="1" />
+    <Property Name="CrBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CrDate" Type="datetime" Nullable="false" />
+    <Property Name="RoleType" Type="int" />
+  </EntityType>
+  <EntityType Name="VPL_HR_Users">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" />
+    <Property Name="UserPswd" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserEmailID" Type="varchar" MaxLength="200" />
+    <Property Name="UserMobile" Type="varchar" MaxLength="50" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="UserImage" Type="varchar" MaxLength="100" />
+    <Property Name="SuperUser" Type="char" MaxLength="1" />
+    <Property Name="Active" Type="char" MaxLength="1" />
+    <Property Name="UserTheme" Type="varchar" MaxLength="100" />
+    <Property Name="Crby" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="UnitCode" Type="varchar" MaxLength="5000" />
+    <Property Name="DesktopActive" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="VPL_User_App_Auth">
+    <Key>
+      <PropertyRef Name="User_App_Authid" />
+    </Key>
+    <Property Name="User_App_Authid" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AppID" Type="int" />
+    <Property Name="EMPID" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Active" Type="int" />
+    <Property Name="Crby" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Crdate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo._Compliance_Scheduling_detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="_Compliance_Scheduling_detail">
+    <Key>
+      <PropertyRef Name="CID" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="UnitName" />
+      <PropertyRef Name="DeptName" />
+      <PropertyRef Name="FullName" />
+      <PropertyRef Name="responsiblemep" />
+    </Key>
+    <Property Name="ID" Type="bigint" />
+    <Property Name="Deadlinea" Type="varchar" MaxLength="30" />
+    <Property Name="CID" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="DeptID" Type="int" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="UnitID" Type="int" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Regulate_For" Type="nvarchar(max)" />
+    <Property Name="Regulate_Ref" Type="nvarchar(max)" />
+    <Property Name="Frequency" Type="nvarchar" MaxLength="100" />
+    <Property Name="Deadline" Type="datetime" />
+    <Property Name="Alertbefore" Type="int" />
+    <Property Name="CrBy" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrIP" Type="nvarchar" MaxLength="100" />
+    <Property Name="Isactive" Type="int" />
+    <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UnitName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DeptName" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="180" Nullable="false" />
+    <Property Name="responsiblemep" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="ComplianceDate" Type="datetime" />
+    <Property Name="Flag" Type="int" />
+    <Property Name="CFrequency" Type="int" />
+    <Property Name="GDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.Com_Company_Master' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Com_Company_Master">
+    <Key>
+      <PropertyRef Name="CompanyCode" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="StateCode" />
+      <PropertyRef Name="CountryCode" />
+      <PropertyRef Name="Crby" />
+    </Key>
+    <Property Name="ID" Type="bigint" />
+    <Property Name="CompanyCode" Type="numeric" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="City" Type="varchar" MaxLength="80" />
+    <Property Name="StateCode" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="CountryCode" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="GSTNo" Type="varchar" MaxLength="50" />
+    <Property Name="ContactNo" Type="varchar" MaxLength="100" />
+    <Property Name="PFNo" Type="varchar" MaxLength="50" />
+    <Property Name="Logo" Type="image" />
+    <Property Name="Active" Type="char" MaxLength="1" />
+    <Property Name="Crby" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CrIP" Type="varchar" MaxLength="20" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CityCode" Type="numeric" Precision="3" Scale="0" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.Com_Dept_Master' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Com_Dept_Master">
+    <Key>
+      <PropertyRef Name="DeptID" />
+      <PropertyRef Name="DeptName" />
+    </Key>
+    <Property Name="ID" Type="bigint" />
+    <Property Name="DeptID" Type="numeric" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeptName" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="OldCode" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.Com_Emp_Legal_Sec' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Com_Emp_Legal_Sec">
+    <Key>
+      <PropertyRef Name="EmpID" />
+      <PropertyRef Name="FullName" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="EmpID" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="180" Nullable="false" />
+    <Property Name="DeptName" Type="varchar" MaxLength="80" />
+    <Property Name="DeptID" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.Com_Unit_Master' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Com_Unit_Master">
+    <Key>
+      <PropertyRef Name="UnitCode" />
+      <PropertyRef Name="UnitName" />
+      <PropertyRef Name="CompanyCode" />
+      <PropertyRef Name="CompanyName" />
+    </Key>
+    <Property Name="ID" Type="bigint" />
+    <Property Name="UnitCode" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="UnitName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CompanyCode" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.Compliance_Scheduling_detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Compliance_Scheduling_detail">
+    <Key>
+      <PropertyRef Name="RowNumber" />
+      <PropertyRef Name="CID" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="UnitName" />
+      <PropertyRef Name="DeptName" />
+      <PropertyRef Name="FullName" />
+      <PropertyRef Name="responsiblemep" />
+      <PropertyRef Name="Transid" />
+      <PropertyRef Name="color" />
+    </Key>
+    <Property Name="RowNumber" Type="bigint" Nullable="false" />
+    <Property Name="ComplianceDate" Type="varchar" MaxLength="30" />
+    <Property Name="cmp1" Type="datetime" />
+    <Property Name="ID" Type="bigint" />
+    <Property Name="Deadlinea" Type="varchar" MaxLength="30" />
+    <Property Name="CID" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="DeptID" Type="int" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="UnitID" Type="int" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Regulate_For" Type="nvarchar(max)" />
+    <Property Name="Regulate_Ref" Type="nvarchar(max)" />
+    <Property Name="Frequency" Type="nvarchar" MaxLength="100" />
+    <Property Name="Deadline" Type="datetime" />
+    <Property Name="Alertbefore" Type="int" />
+    <Property Name="CrBy" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrIP" Type="nvarchar" MaxLength="100" />
+    <Property Name="Isactive" Type="int" />
+    <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UnitName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DeptName" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="180" Nullable="false" />
+    <Property Name="responsiblemep" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="FrequencyName" Type="nvarchar" MaxLength="400" />
+    <Property Name="Transid" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="Flag" Type="int" />
+    <Property Name="CFrequency" Type="int" />
+    <Property Name="GDate" Type="datetime" />
+    <Property Name="color" Type="varchar" MaxLength="7" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.StaffDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StaffDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.VPL_Compliance_AlertTo_Detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VPL_Compliance_AlertTo_Detail">
+    <Key>
+      <PropertyRef Name="TransID" />
+      <PropertyRef Name="FullName" />
+    </Key>
+    <Property Name="ID" Type="bigint" />
+    <Property Name="TransID" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="CID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="StartDate" Type="date" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="EmpID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="Isactive" Type="int" />
+    <Property Name="FullName" Type="varchar" MaxLength="180" Nullable="false" />
+    <Property Name="DeptName" Type="varchar" MaxLength="80" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.VPL_Compliance_InfoRequired_Detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VPL_Compliance_InfoRequired_Detail">
+    <Key>
+      <PropertyRef Name="TransID" />
+      <PropertyRef Name="FullName" />
+    </Key>
+    <Property Name="TransID" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="CID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="StartDate" Type="date" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="DeptID" Type="int" />
+    <Property Name="EmpID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="Isactive" Type="int" />
+    <Property Name="FullName" Type="varchar" MaxLength="180" Nullable="false" />
+    <Property Name="DeptName" Type="varchar" MaxLength="80" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.VPL_Compliance_Master_Detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VPL_Compliance_Master_Detail">
+    <Key>
+      <PropertyRef Name="CID" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="DeptName" />
+      <PropertyRef Name="FullName" />
+      <PropertyRef Name="responsiblemep" />
+    </Key>
+    <Property Name="ID" Type="bigint" />
+    <Property Name="Deadlinea" Type="varchar" MaxLength="30" />
+    <Property Name="CID" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="DeptID" Type="int" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="UnitID" Type="int" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Regulate_For" Type="nvarchar(max)" />
+    <Property Name="Regulate_Ref" Type="nvarchar(max)" />
+    <Property Name="Frequency" Type="int" />
+    <Property Name="Deadline" Type="datetime" />
+    <Property Name="Alertbefore" Type="int" />
+    <Property Name="CrBy" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrIP" Type="nvarchar" MaxLength="100" />
+    <Property Name="Isactive" Type="int" />
+    <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UnitName" Type="varchar" MaxLength="100" />
+    <Property Name="DeptName" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="180" Nullable="false" />
+    <Property Name="responsiblemep" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="FrequencyName" Type="nvarchar" MaxLength="400" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.VPL_Compliance_Schedule_Report' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VPL_Compliance_Schedule_Report">
+    <Key>
+      <PropertyRef Name="CID" />
+      <PropertyRef Name="Transid" />
+      <PropertyRef Name="CStatus" />
+      <PropertyRef Name="color" />
+    </Key>
+    <Property Name="CID" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="Transid" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="ComplianceDate" Type="varchar" MaxLength="30" />
+    <Property Name="CStatus" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Descript" Type="nvarchar(max)" />
+    <Property Name="FullName" Type="varchar" MaxLength="180" />
+    <Property Name="DeptName" Type="varchar" MaxLength="80" />
+    <Property Name="UnitName" Type="varchar" MaxLength="100" />
+    <Property Name="color" Type="varchar" MaxLength="7" Nullable="false" />
+    <Property Name="dt" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.VPL_Compliance_Schedule_Status' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VPL_Compliance_Schedule_Status">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="TID" />
+    </Key>
+    <Property Name="ID" Type="bigint" Nullable="false" />
+    <Property Name="Udate" Type="varchar" MaxLength="30" />
+    <Property Name="TID" Type="int" Nullable="false" />
+    <Property Name="CID" Type="int" />
+    <Property Name="ScheduledID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="CStatus" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Descript" Type="nvarchar(max)" />
+    <Property Name="FilePath" Type="nvarchar(max)" />
+    <Property Name="CrBy" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="Crdate" Type="datetime" />
+    <Property Name="CRIP" Type="nvarchar" MaxLength="200" />
+    <Property Name="isactive" Type="int" />
+    <Property Name="ComplianceDate" Type="datetime" />
+    <Property Name="FullName" Type="varchar" MaxLength="180" />
+    <Property Name="DeptName" Type="varchar" MaxLength="80" />
+    <Property Name="DesignName" Type="varchar" MaxLength="80" />
+    <Property Name="UnitName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.VPL_Compliance_Schedule_Status_ALL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VPL_Compliance_Schedule_Status_ALL">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="compid" />
+      <PropertyRef Name="Transid" />
+    </Key>
+    <Property Name="ID" Type="bigint" Nullable="false" />
+    <Property Name="Udate" Type="varchar" MaxLength="30" />
+    <Property Name="TID" Type="int" />
+    <Property Name="CID" Type="int" />
+    <Property Name="ScheduledID" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="CStatus" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Descript" Type="nvarchar(max)" />
+    <Property Name="FilePath" Type="nvarchar(max)" />
+    <Property Name="CrBy" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="Crdate" Type="datetime" />
+    <Property Name="CRIP" Type="nvarchar" MaxLength="200" />
+    <Property Name="isactive" Type="int" />
+    <Property Name="ComplianceDate" Type="datetime" />
+    <Property Name="FullName" Type="varchar" MaxLength="180" />
+    <Property Name="DeptName" Type="varchar" MaxLength="80" />
+    <Property Name="DesignName" Type="varchar" MaxLength="80" />
+    <Property Name="UnitName" Type="varchar" MaxLength="100" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="compid" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="Transid" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="Flag" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.VPLCompliance_dashboard' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VPLCompliance_dashboard">
+    <Key>
+      <PropertyRef Name="name" />
+      <PropertyRef Name="color" />
+    </Key>
+    <Property Name="ID" Type="int" />
+    <Property Name="name" Type="varchar" MaxLength="31" Nullable="false" />
+    <Property Name="color" Type="varchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'VPLCompliance.dbo.VPLCompliance_dashboard_Details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VPLCompliance_dashboard_Details">
+    <Key>
+      <PropertyRef Name="CID" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="DeptName" />
+      <PropertyRef Name="FullName" />
+      <PropertyRef Name="responsiblemep" />
+      <PropertyRef Name="color" />
+    </Key>
+    <Property Name="ID" Type="bigint" />
+    <Property Name="Deadlinea" Type="varchar" MaxLength="30" />
+    <Property Name="CID" Type="numeric" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="DeptID" Type="int" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="UnitID" Type="int" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Regulate_For" Type="nvarchar(max)" />
+    <Property Name="Regulate_Ref" Type="nvarchar(max)" />
+    <Property Name="Frequency" Type="int" />
+    <Property Name="Deadline" Type="datetime" />
+    <Property Name="Alertbefore" Type="int" />
+    <Property Name="CrBy" Type="numeric" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="datetime" />
+    <Property Name="CrIP" Type="nvarchar" MaxLength="100" />
+    <Property Name="Isactive" Type="int" />
+    <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UnitName" Type="varchar" MaxLength="100" />
+    <Property Name="DeptName" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="180" Nullable="false" />
+    <Property Name="responsiblemep" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="FrequencyName" Type="nvarchar" MaxLength="400" />
+    <Property Name="color" Type="varchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__VPL_Complia__CID__173876EA">
+    <End Role="VPL_Compliance_Master" Type="Self.VPL_Compliance_Master" Multiplicity="0..1" />
+    <End Role="VPL_Compliance_Responsibility" Type="Self.VPL_Compliance_Responsibility" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VPL_Compliance_Master">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="VPL_Compliance_Responsibility">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VPL_Complia__CID__1A14E395">
+    <End Role="VPL_Compliance_Master" Type="Self.VPL_Compliance_Master" Multiplicity="0..1" />
+    <End Role="VPL_Compliance_InfoRequired" Type="Self.VPL_Compliance_InfoRequired" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VPL_Compliance_Master">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="VPL_Compliance_InfoRequired">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VPL_Complia__CID__1CF15040">
+    <End Role="VPL_Compliance_Master" Type="Self.VPL_Compliance_Master" Multiplicity="0..1" />
+    <End Role="VPL_Compliance_AlertTo" Type="Self.VPL_Compliance_AlertTo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VPL_Compliance_Master">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="VPL_Compliance_AlertTo">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VPL_Complia__CID__440B1D61">
+    <End Role="VPL_Compliance_Master" Type="Self.VPL_Compliance_Master" Multiplicity="0..1" />
+    <End Role="VPL_Compliance_Scheduling" Type="Self.VPL_Compliance_Scheduling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VPL_Compliance_Master">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="VPL_Compliance_Scheduling">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CCr_Role_menuExclude" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Roleid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CCR_UserRoleExclude" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Userid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="Get_UserComm_ByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleId" Type="int" Mode="In" />
+    <Parameter Name="CommID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="VPL_Compliance_Detail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CID" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="VPL_Compliance_Scheduling_Generate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="VPL_HR_DisplayMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MenuID" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_DisplayParentMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MenuID" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_FillMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_FillMenu1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_FillMenu1_Temp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_FillMenu2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_MenuMaster_AssignedList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleID" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_MenuMaster_delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MenuID" Type="numeric" Mode="In" />
+    <Parameter Name="CrBy" Type="varchar" Mode="In" />
+    <Parameter Name="CrIP" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_MenuMaster_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ParentID" Type="numeric" Mode="In" />
+    <Parameter Name="MenuDesc" Type="varchar" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="PageIndex" Type="varchar" Mode="In" />
+    <Parameter Name="Selectable" Type="char" Mode="In" />
+    <Parameter Name="CrBy" Type="varchar" Mode="In" />
+    <Parameter Name="CrIP" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_MenuMaster_PendingList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleID" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_MenuMaster_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MenuID" Type="numeric" Mode="In" />
+    <Parameter Name="ParentID" Type="numeric" Mode="In" />
+    <Parameter Name="MenuDesc" Type="varchar" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="PageIndex" Type="varchar" Mode="In" />
+    <Parameter Name="Selectable" Type="char" Mode="In" />
+    <Parameter Name="CrBy" Type="varchar" Mode="In" />
+    <Parameter Name="CrIP" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_ParentMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="VPL_HR_ParentMenuMaster_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MenuDesc" Type="varchar" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="Selectable" Type="char" Mode="In" />
+    <Parameter Name="CrBy" Type="varchar" Mode="In" />
+    <Parameter Name="CrIP" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_ParentMenuMaster_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MenuID" Type="numeric" Mode="In" />
+    <Parameter Name="MenuDesc" Type="varchar" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="Selectable" Type="char" Mode="In" />
+    <Parameter Name="CrBy" Type="varchar" Mode="In" />
+    <Parameter Name="CrIP" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_RoleDetail_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TransID" Type="numeric" Mode="In" />
+    <Parameter Name="Crby" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_RoleDetail_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleID" Type="numeric" Mode="In" />
+    <Parameter Name="MenuID" Type="numeric" Mode="In" />
+    <Parameter Name="Active" Type="char" Mode="In" />
+    <Parameter Name="Crby" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_RoleMaster_AssignApp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_RoleMaster_AssignRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_RoleMaster_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleID" Type="numeric" Mode="In" />
+    <Parameter Name="CrBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_RoleMaster_DisplayList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SearchName" Type="varchar" Mode="In" />
+    <Parameter Name="RoleID" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_RoleMaster_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleDesc" Type="varchar" Mode="In" />
+    <Parameter Name="Active" Type="char" Mode="In" />
+    <Parameter Name="CrBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_RoleMaster_PendingApp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_RoleMaster_PendingRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_RoleMaster_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleID" Type="numeric" Mode="In" />
+    <Parameter Name="RoleDesc" Type="varchar" Mode="In" />
+    <Parameter Name="Active" Type="char" Mode="In" />
+    <Parameter Name="CrBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_User_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TransID" Type="numeric" Mode="In" />
+    <Parameter Name="CrBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_UserApp_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TransID" Type="numeric" Mode="In" />
+    <Parameter Name="CrBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_UserAppAuth_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+    <Parameter Name="RoleID" Type="numeric" Mode="In" />
+    <Parameter Name="CrBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_UserDetails_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TransID" Type="numeric" Mode="In" />
+    <Parameter Name="CrBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_UserDetails_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+    <Parameter Name="RoleID" Type="numeric" Mode="In" />
+    <Parameter Name="CrBy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_Users_displayList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SearchName" Type="varchar" Mode="In" />
+    <Parameter Name="TransID" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_Users_displayList_new" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SearchName" Type="varchar" Mode="In" />
+    <Parameter Name="TransID" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_Users_INsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="UserPswd" Type="varchar" Mode="In" />
+    <Parameter Name="UserEmailID" Type="varchar" Mode="In" />
+    <Parameter Name="UserMobile" Type="varchar" Mode="In" />
+    <Parameter Name="DOB" Type="date" Mode="In" />
+    <Parameter Name="UserImage" Type="varchar" Mode="In" />
+    <Parameter Name="Crby" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_HR_Users_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TransID" Type="numeric" Mode="In" />
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="UserEMailID" Type="varchar" Mode="In" />
+    <Parameter Name="UserMobile" Type="varchar" Mode="In" />
+    <Parameter Name="DOb" Type="date" Mode="In" />
+    <Parameter Name="UserImage" Type="varchar" Mode="In" />
+    <Parameter Name="Active" Type="char" Mode="In" />
+    <Parameter Name="Crby" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_PM_ParentMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="VPL_PM_Users_displayList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SearchName" Type="varchar" Mode="In" />
+    <Parameter Name="TransID" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="VPL_PM_Users_INsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="UserPswd" Type="varchar" Mode="In" />
+    <Parameter Name="UserEmailID" Type="varchar" Mode="In" />
+    <Parameter Name="UserMobile" Type="varchar" Mode="In" />
+    <Parameter Name="DOB" Type="date" Mode="In" />
+    <Parameter Name="UserImage" Type="varchar" Mode="In" />
+    <Parameter Name="Crby" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="VPL_PM_Users_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TransID" Type="numeric" Mode="In" />
+    <Parameter Name="UserID" Type="varchar" Mode="In" />
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+    <Parameter Name="UserEMailID" Type="varchar" Mode="In" />
+    <Parameter Name="UserMobile" Type="varchar" Mode="In" />
+    <Parameter Name="DOb" Type="date" Mode="In" />
+    <Parameter Name="UserImage" Type="varchar" Mode="In" />
+    <Parameter Name="Active" Type="char" Mode="In" />
+    <Parameter Name="Crby" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="VPLComplianceModelStoreContainer">
+    <EntitySet Name="alert_detail" EntityType="Self.alert_detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DD_Freq" EntityType="Self.DD_Freq" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MM_Freq" EntityType="Self.MM_Freq" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_Compliance_AlertTo" EntityType="Self.VPL_Compliance_AlertTo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_Compliance_Frequency" EntityType="Self.VPL_Compliance_Frequency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_Compliance_Frequency_Details" EntityType="Self.VPL_Compliance_Frequency_Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_Compliance_InfoRequired" EntityType="Self.VPL_Compliance_InfoRequired" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_Compliance_Master" EntityType="Self.VPL_Compliance_Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_Compliance_Responsibility" EntityType="Self.VPL_Compliance_Responsibility" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_Compliance_Scheduling" EntityType="Self.VPL_Compliance_Scheduling" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_Compliance_Status" EntityType="Self.VPL_Compliance_Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_HR_MenuMaster" EntityType="Self.VPL_HR_MenuMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_HR_RoleDetail" EntityType="Self.VPL_HR_RoleDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_HR_RoleMaster" EntityType="Self.VPL_HR_RoleMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_HR_UserDetails" EntityType="Self.VPL_HR_UserDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_HR_Users" EntityType="Self.VPL_HR_Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VPL_User_App_Auth" EntityType="Self.VPL_User_App_Auth" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tmpVPL_Compliance_Master" EntityType="Self.tmpVPL_Compliance_Master" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tmpVPL_Compliance_Master].[CID] AS [CID], 
+    [tmpVPL_Compliance_Master].[DeptID] AS [DeptID], 
+    [tmpVPL_Compliance_Master].[CompanyID] AS [CompanyID], 
+    [tmpVPL_Compliance_Master].[UnitID] AS [UnitID], 
+    [tmpVPL_Compliance_Master].[Name] AS [Name], 
+    [tmpVPL_Compliance_Master].[Regulate_For] AS [Regulate_For], 
+    [tmpVPL_Compliance_Master].[Regulate_Ref] AS [Regulate_Ref], 
+    [tmpVPL_Compliance_Master].[Frequency] AS [Frequency], 
+    [tmpVPL_Compliance_Master].[Deadline] AS [Deadline], 
+    [tmpVPL_Compliance_Master].[Alertbefore] AS [Alertbefore], 
+    [tmpVPL_Compliance_Master].[CrBy] AS [CrBy], 
+    [tmpVPL_Compliance_Master].[CrDate] AS [CrDate], 
+    [tmpVPL_Compliance_Master].[CrIP] AS [CrIP], 
+    [tmpVPL_Compliance_Master].[Isactive] AS [Isactive]
+    FROM [dbo].[tmpVPL_Compliance_Master] AS [tmpVPL_Compliance_Master]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VPL_HR_SubMenuPages" EntityType="Self.VPL_HR_SubMenuPages" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VPL_HR_SubMenuPages].[MenuID] AS [MenuID], 
+    [VPL_HR_SubMenuPages].[SubPages] AS [SubPages], 
+    [VPL_HR_SubMenuPages].[Active] AS [Active], 
+    [VPL_HR_SubMenuPages].[Crby] AS [Crby], 
+    [VPL_HR_SubMenuPages].[CrDate] AS [CrDate]
+    FROM [dbo].[VPL_HR_SubMenuPages] AS [VPL_HR_SubMenuPages]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="_Compliance_Scheduling_detail" EntityType="Self._Compliance_Scheduling_detail" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [_Compliance_Scheduling_detail].[ID] AS [ID], 
+    [_Compliance_Scheduling_detail].[Deadlinea] AS [Deadlinea], 
+    [_Compliance_Scheduling_detail].[CID] AS [CID], 
+    [_Compliance_Scheduling_detail].[DeptID] AS [DeptID], 
+    [_Compliance_Scheduling_detail].[CompanyID] AS [CompanyID], 
+    [_Compliance_Scheduling_detail].[UnitID] AS [UnitID], 
+    [_Compliance_Scheduling_detail].[Name] AS [Name], 
+    [_Compliance_Scheduling_detail].[Regulate_For] AS [Regulate_For], 
+    [_Compliance_Scheduling_detail].[Regulate_Ref] AS [Regulate_Ref], 
+    [_Compliance_Scheduling_detail].[Frequency] AS [Frequency], 
+    [_Compliance_Scheduling_detail].[Deadline] AS [Deadline], 
+    [_Compliance_Scheduling_detail].[Alertbefore] AS [Alertbefore], 
+    [_Compliance_Scheduling_detail].[CrBy] AS [CrBy], 
+    [_Compliance_Scheduling_detail].[CrDate] AS [CrDate], 
+    [_Compliance_Scheduling_detail].[CrIP] AS [CrIP], 
+    [_Compliance_Scheduling_detail].[Isactive] AS [Isactive], 
+    [_Compliance_Scheduling_detail].[CompanyName] AS [CompanyName], 
+    [_Compliance_Scheduling_detail].[UnitName] AS [UnitName], 
+    [_Compliance_Scheduling_detail].[DeptName] AS [DeptName], 
+    [_Compliance_Scheduling_detail].[FullName] AS [FullName], 
+    [_Compliance_Scheduling_detail].[responsiblemep] AS [responsiblemep], 
+    [_Compliance_Scheduling_detail].[ComplianceDate] AS [ComplianceDate], 
+    [_Compliance_Scheduling_detail].[Flag] AS [Flag], 
+    [_Compliance_Scheduling_detail].[CFrequency] AS [CFrequency], 
+    [_Compliance_Scheduling_detail].[GDate] AS [GDate]
+    FROM [dbo].[_Compliance_Scheduling_detail] AS [_Compliance_Scheduling_detail]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Com_Company_Master" EntityType="Self.Com_Company_Master" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Com_Company_Master].[ID] AS [ID], 
+    [Com_Company_Master].[CompanyCode] AS [CompanyCode], 
+    [Com_Company_Master].[CompanyName] AS [CompanyName], 
+    [Com_Company_Master].[Address] AS [Address], 
+    [Com_Company_Master].[City] AS [City], 
+    [Com_Company_Master].[StateCode] AS [StateCode], 
+    [Com_Company_Master].[CountryCode] AS [CountryCode], 
+    [Com_Company_Master].[GSTNo] AS [GSTNo], 
+    [Com_Company_Master].[ContactNo] AS [ContactNo], 
+    [Com_Company_Master].[PFNo] AS [PFNo], 
+    [Com_Company_Master].[Logo] AS [Logo], 
+    [Com_Company_Master].[Active] AS [Active], 
+    [Com_Company_Master].[Crby] AS [Crby], 
+    [Com_Company_Master].[CrIP] AS [CrIP], 
+    [Com_Company_Master].[CrDate] AS [CrDate], 
+    [Com_Company_Master].[CityCode] AS [CityCode]
+    FROM [dbo].[Com_Company_Master] AS [Com_Company_Master]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Com_Dept_Master" EntityType="Self.Com_Dept_Master" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Com_Dept_Master].[ID] AS [ID], 
+    [Com_Dept_Master].[DeptID] AS [DeptID], 
+    [Com_Dept_Master].[DeptName] AS [DeptName], 
+    [Com_Dept_Master].[OldCode] AS [OldCode]
+    FROM [dbo].[Com_Dept_Master] AS [Com_Dept_Master]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Com_Emp_Legal_Sec" EntityType="Self.Com_Emp_Legal_Sec" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Com_Emp_Legal_Sec].[EmpID] AS [EmpID], 
+    [Com_Emp_Legal_Sec].[FullName] AS [FullName], 
+    [Com_Emp_Legal_Sec].[DeptName] AS [DeptName], 
+    [Com_Emp_Legal_Sec].[DeptID] AS [DeptID]
+    FROM [dbo].[Com_Emp_Legal_Sec] AS [Com_Emp_Legal_Sec]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Com_Unit_Master" EntityType="Self.Com_Unit_Master" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Com_Unit_Master].[ID] AS [ID], 
+    [Com_Unit_Master].[UnitCode] AS [UnitCode], 
+    [Com_Unit_Master].[UnitName] AS [UnitName], 
+    [Com_Unit_Master].[CompanyCode] AS [CompanyCode], 
+    [Com_Unit_Master].[CompanyName] AS [CompanyName]
+    FROM [dbo].[Com_Unit_Master] AS [Com_Unit_Master]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Compliance_Scheduling_detail" EntityType="Self.Compliance_Scheduling_detail" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Compliance_Scheduling_detail].[RowNumber] AS [RowNumber], 
+    [Compliance_Scheduling_detail].[ComplianceDate] AS [ComplianceDate], 
+    [Compliance_Scheduling_detail].[cmp1] AS [cmp1], 
+    [Compliance_Scheduling_detail].[ID] AS [ID], 
+    [Compliance_Scheduling_detail].[Deadlinea] AS [Deadlinea], 
+    [Compliance_Scheduling_detail].[CID] AS [CID], 
+    [Compliance_Scheduling_detail].[DeptID] AS [DeptID], 
+    [Compliance_Scheduling_detail].[CompanyID] AS [CompanyID], 
+    [Compliance_Scheduling_detail].[UnitID] AS [UnitID], 
+    [Compliance_Scheduling_detail].[Name] AS [Name], 
+    [Compliance_Scheduling_detail].[Regulate_For] AS [Regulate_For], 
+    [Compliance_Scheduling_detail].[Regulate_Ref] AS [Regulate_Ref], 
+    [Compliance_Scheduling_detail].[Frequency] AS [Frequency], 
+    [Compliance_Scheduling_detail].[Deadline] AS [Deadline], 
+    [Compliance_Scheduling_detail].[Alertbefore] AS [Alertbefore], 
+    [Compliance_Scheduling_detail].[CrBy] AS [CrBy], 
+    [Compliance_Scheduling_detail].[CrDate] AS [CrDate], 
+    [Compliance_Scheduling_detail].[CrIP] AS [CrIP], 
+    [Compliance_Scheduling_detail].[Isactive] AS [Isactive], 
+    [Compliance_Scheduling_detail].[CompanyName] AS [CompanyName], 
+    [Compliance_Scheduling_detail].[UnitName] AS [UnitName], 
+    [Compliance_Scheduling_detail].[DeptName] AS [DeptName], 
+    [Compliance_Scheduling_detail].[FullName] AS [FullName], 
+    [Compliance_Scheduling_detail].[responsiblemep] AS [responsiblemep], 
+    [Compliance_Scheduling_detail].[FrequencyName] AS [FrequencyName], 
+    [Compliance_Scheduling_detail].[Transid] AS [Transid], 
+    [Compliance_Scheduling_detail].[Flag] AS [Flag], 
+    [Compliance_Scheduling_detail].[CFrequency] AS [CFrequency], 
+    [Compliance_Scheduling_detail].[GDate] AS [GDate], 
+    [Compliance_Scheduling_detail].[color] AS [color]
+    FROM [dbo].[Compliance_Scheduling_detail] AS [Compliance_Scheduling_detail]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StaffDetails" EntityType="Self.StaffDetails" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StaffDetails].[ID] AS [ID], 
+    [StaffDetails].[FullName] AS [FullName]
+    FROM [dbo].[StaffDetails] AS [StaffDetails]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VPL_Compliance_AlertTo_Detail" EntityType="Self.VPL_Compliance_AlertTo_Detail" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VPL_Compliance_AlertTo_Detail].[ID] AS [ID], 
+    [VPL_Compliance_AlertTo_Detail].[TransID] AS [TransID], 
+    [VPL_Compliance_AlertTo_Detail].[CID] AS [CID], 
+    [VPL_Compliance_AlertTo_Detail].[StartDate] AS [StartDate], 
+    [VPL_Compliance_AlertTo_Detail].[EndDate] AS [EndDate], 
+    [VPL_Compliance_AlertTo_Detail].[EmpID] AS [EmpID], 
+    [VPL_Compliance_AlertTo_Detail].[Isactive] AS [Isactive], 
+    [VPL_Compliance_AlertTo_Detail].[FullName] AS [FullName], 
+    [VPL_Compliance_AlertTo_Detail].[DeptName] AS [DeptName]
+    FROM [dbo].[VPL_Compliance_AlertTo_Detail] AS [VPL_Compliance_AlertTo_Detail]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VPL_Compliance_InfoRequired_Detail" EntityType="Self.VPL_Compliance_InfoRequired_Detail" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VPL_Compliance_InfoRequired_Detail].[TransID] AS [TransID], 
+    [VPL_Compliance_InfoRequired_Detail].[CID] AS [CID], 
+    [VPL_Compliance_InfoRequired_Detail].[StartDate] AS [StartDate], 
+    [VPL_Compliance_InfoRequired_Detail].[EndDate] AS [EndDate], 
+    [VPL_Compliance_InfoRequired_Detail].[DeptID] AS [DeptID], 
+    [VPL_Compliance_InfoRequired_Detail].[EmpID] AS [EmpID], 
+    [VPL_Compliance_InfoRequired_Detail].[Isactive] AS [Isactive], 
+    [VPL_Compliance_InfoRequired_Detail].[FullName] AS [FullName], 
+    [VPL_Compliance_InfoRequired_Detail].[DeptName] AS [DeptName]
+    FROM [dbo].[VPL_Compliance_InfoRequired_Detail] AS [VPL_Compliance_InfoRequired_Detail]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VPL_Compliance_Master_Detail" EntityType="Self.VPL_Compliance_Master_Detail" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VPL_Compliance_Master_Detail].[ID] AS [ID], 
+    [VPL_Compliance_Master_Detail].[Deadlinea] AS [Deadlinea], 
+    [VPL_Compliance_Master_Detail].[CID] AS [CID], 
+    [VPL_Compliance_Master_Detail].[DeptID] AS [DeptID], 
+    [VPL_Compliance_Master_Detail].[CompanyID] AS [CompanyID], 
+    [VPL_Compliance_Master_Detail].[UnitID] AS [UnitID], 
+    [VPL_Compliance_Master_Detail].[Name] AS [Name], 
+    [VPL_Compliance_Master_Detail].[Regulate_For] AS [Regulate_For], 
+    [VPL_Compliance_Master_Detail].[Regulate_Ref] AS [Regulate_Ref], 
+    [VPL_Compliance_Master_Detail].[Frequency] AS [Frequency], 
+    [VPL_Compliance_Master_Detail].[Deadline] AS [Deadline], 
+    [VPL_Compliance_Master_Detail].[Alertbefore] AS [Alertbefore], 
+    [VPL_Compliance_Master_Detail].[CrBy] AS [CrBy], 
+    [VPL_Compliance_Master_Detail].[CrDate] AS [CrDate], 
+    [VPL_Compliance_Master_Detail].[CrIP] AS [CrIP], 
+    [VPL_Compliance_Master_Detail].[Isactive] AS [Isactive], 
+    [VPL_Compliance_Master_Detail].[CompanyName] AS [CompanyName], 
+    [VPL_Compliance_Master_Detail].[UnitName] AS [UnitName], 
+    [VPL_Compliance_Master_Detail].[DeptName] AS [DeptName], 
+    [VPL_Compliance_Master_Detail].[FullName] AS [FullName], 
+    [VPL_Compliance_Master_Detail].[responsiblemep] AS [responsiblemep], 
+    [VPL_Compliance_Master_Detail].[FrequencyName] AS [FrequencyName]
+    FROM [dbo].[VPL_Compliance_Master_Detail] AS [VPL_Compliance_Master_Detail]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VPL_Compliance_Schedule_Report" EntityType="Self.VPL_Compliance_Schedule_Report" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VPL_Compliance_Schedule_Report].[CID] AS [CID], 
+    [VPL_Compliance_Schedule_Report].[Transid] AS [Transid], 
+    [VPL_Compliance_Schedule_Report].[ComplianceDate] AS [ComplianceDate], 
+    [VPL_Compliance_Schedule_Report].[CStatus] AS [CStatus], 
+    [VPL_Compliance_Schedule_Report].[Descript] AS [Descript], 
+    [VPL_Compliance_Schedule_Report].[FullName] AS [FullName], 
+    [VPL_Compliance_Schedule_Report].[DeptName] AS [DeptName], 
+    [VPL_Compliance_Schedule_Report].[UnitName] AS [UnitName], 
+    [VPL_Compliance_Schedule_Report].[color] AS [color], 
+    [VPL_Compliance_Schedule_Report].[dt] AS [dt]
+    FROM [dbo].[VPL_Compliance_Schedule_Report] AS [VPL_Compliance_Schedule_Report]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VPL_Compliance_Schedule_Status" EntityType="Self.VPL_Compliance_Schedule_Status" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VPL_Compliance_Schedule_Status].[ID] AS [ID], 
+    [VPL_Compliance_Schedule_Status].[Udate] AS [Udate], 
+    [VPL_Compliance_Schedule_Status].[TID] AS [TID], 
+    [VPL_Compliance_Schedule_Status].[CID] AS [CID], 
+    [VPL_Compliance_Schedule_Status].[ScheduledID] AS [ScheduledID], 
+    [VPL_Compliance_Schedule_Status].[CStatus] AS [CStatus], 
+    [VPL_Compliance_Schedule_Status].[Descript] AS [Descript], 
+    [VPL_Compliance_Schedule_Status].[FilePath] AS [FilePath], 
+    [VPL_Compliance_Schedule_Status].[CrBy] AS [CrBy], 
+    [VPL_Compliance_Schedule_Status].[Crdate] AS [Crdate], 
+    [VPL_Compliance_Schedule_Status].[CRIP] AS [CRIP], 
+    [VPL_Compliance_Schedule_Status].[isactive] AS [isactive], 
+    [VPL_Compliance_Schedule_Status].[ComplianceDate] AS [ComplianceDate], 
+    [VPL_Compliance_Schedule_Status].[FullName] AS [FullName], 
+    [VPL_Compliance_Schedule_Status].[DeptName] AS [DeptName], 
+    [VPL_Compliance_Schedule_Status].[DesignName] AS [DesignName], 
+    [VPL_Compliance_Schedule_Status].[UnitName] AS [UnitName]
+    FROM [dbo].[VPL_Compliance_Schedule_Status] AS [VPL_Compliance_Schedule_Status]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VPL_Compliance_Schedule_Status_ALL" EntityType="Self.VPL_Compliance_Schedule_Status_ALL" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VPL_Compliance_Schedule_Status_ALL].[ID] AS [ID], 
+    [VPL_Compliance_Schedule_Status_ALL].[Udate] AS [Udate], 
+    [VPL_Compliance_Schedule_Status_ALL].[TID] AS [TID], 
+    [VPL_Compliance_Schedule_Status_ALL].[CID] AS [CID], 
+    [VPL_Compliance_Schedule_Status_ALL].[ScheduledID] AS [ScheduledID], 
+    [VPL_Compliance_Schedule_Status_ALL].[CStatus] AS [CStatus], 
+    [VPL_Compliance_Schedule_Status_ALL].[Descript] AS [Descript], 
+    [VPL_Compliance_Schedule_Status_ALL].[FilePath] AS [FilePath], 
+    [VPL_Compliance_Schedule_Status_ALL].[CrBy] AS [CrBy], 
+    [VPL_Compliance_Schedule_Status_ALL].[Crdate] AS [Crdate], 
+    [VPL_Compliance_Schedule_Status_ALL].[CRIP] AS [CRIP], 
+    [VPL_Compliance_Schedule_Status_ALL].[isactive] AS [isactive], 
+    [VPL_Compliance_Schedule_Status_ALL].[ComplianceDate] AS [ComplianceDate], 
+    [VPL_Compliance_Schedule_Status_ALL].[FullName] AS [FullName], 
+    [VPL_Compliance_Schedule_Status_ALL].[DeptName] AS [DeptName], 
+    [VPL_Compliance_Schedule_Status_ALL].[DesignName] AS [DesignName], 
+    [VPL_Compliance_Schedule_Status_ALL].[UnitName] AS [UnitName], 
+    [VPL_Compliance_Schedule_Status_ALL].[Name] AS [Name], 
+    [VPL_Compliance_Schedule_Status_ALL].[compid] AS [compid], 
+    [VPL_Compliance_Schedule_Status_ALL].[Transid] AS [Transid], 
+    [VPL_Compliance_Schedule_Status_ALL].[Flag] AS [Flag]
+    FROM [dbo].[VPL_Compliance_Schedule_Status_ALL] AS [VPL_Compliance_Schedule_Status_ALL]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VPLCompliance_dashboard" EntityType="Self.VPLCompliance_dashboard" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VPLCompliance_dashboard].[ID] AS [ID], 
+    [VPLCompliance_dashboard].[name] AS [name], 
+    [VPLCompliance_dashboard].[color] AS [color]
+    FROM [dbo].[VPLCompliance_dashboard] AS [VPLCompliance_dashboard]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VPLCompliance_dashboard_Details" EntityType="Self.VPLCompliance_dashboard_Details" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VPLCompliance_dashboard_Details].[ID] AS [ID], 
+    [VPLCompliance_dashboard_Details].[Deadlinea] AS [Deadlinea], 
+    [VPLCompliance_dashboard_Details].[CID] AS [CID], 
+    [VPLCompliance_dashboard_Details].[DeptID] AS [DeptID], 
+    [VPLCompliance_dashboard_Details].[CompanyID] AS [CompanyID], 
+    [VPLCompliance_dashboard_Details].[UnitID] AS [UnitID], 
+    [VPLCompliance_dashboard_Details].[Name] AS [Name], 
+    [VPLCompliance_dashboard_Details].[Regulate_For] AS [Regulate_For], 
+    [VPLCompliance_dashboard_Details].[Regulate_Ref] AS [Regulate_Ref], 
+    [VPLCompliance_dashboard_Details].[Frequency] AS [Frequency], 
+    [VPLCompliance_dashboard_Details].[Deadline] AS [Deadline], 
+    [VPLCompliance_dashboard_Details].[Alertbefore] AS [Alertbefore], 
+    [VPLCompliance_dashboard_Details].[CrBy] AS [CrBy], 
+    [VPLCompliance_dashboard_Details].[CrDate] AS [CrDate], 
+    [VPLCompliance_dashboard_Details].[CrIP] AS [CrIP], 
+    [VPLCompliance_dashboard_Details].[Isactive] AS [Isactive], 
+    [VPLCompliance_dashboard_Details].[CompanyName] AS [CompanyName], 
+    [VPLCompliance_dashboard_Details].[UnitName] AS [UnitName], 
+    [VPLCompliance_dashboard_Details].[DeptName] AS [DeptName], 
+    [VPLCompliance_dashboard_Details].[FullName] AS [FullName], 
+    [VPLCompliance_dashboard_Details].[responsiblemep] AS [responsiblemep], 
+    [VPLCompliance_dashboard_Details].[FrequencyName] AS [FrequencyName], 
+    [VPLCompliance_dashboard_Details].[color] AS [color]
+    FROM [dbo].[VPLCompliance_dashboard_Details] AS [VPLCompliance_dashboard_Details]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__VPL_Complia__CID__173876EA" Association="Self.FK__VPL_Complia__CID__173876EA">
+      <End Role="VPL_Compliance_Master" EntitySet="VPL_Compliance_Master" />
+      <End Role="VPL_Compliance_Responsibility" EntitySet="VPL_Compliance_Responsibility" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VPL_Complia__CID__1A14E395" Association="Self.FK__VPL_Complia__CID__1A14E395">
+      <End Role="VPL_Compliance_Master" EntitySet="VPL_Compliance_Master" />
+      <End Role="VPL_Compliance_InfoRequired" EntitySet="VPL_Compliance_InfoRequired" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VPL_Complia__CID__1CF15040" Association="Self.FK__VPL_Complia__CID__1CF15040">
+      <End Role="VPL_Compliance_Master" EntitySet="VPL_Compliance_Master" />
+      <End Role="VPL_Compliance_AlertTo" EntitySet="VPL_Compliance_AlertTo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VPL_Complia__CID__440B1D61" Association="Self.FK__VPL_Complia__CID__440B1D61">
+      <End Role="VPL_Compliance_Master" EntitySet="VPL_Compliance_Master" />
+      <End Role="VPL_Compliance_Scheduling" EntitySet="VPL_Compliance_Scheduling" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

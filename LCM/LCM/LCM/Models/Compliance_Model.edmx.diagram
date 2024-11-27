@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="595fbdeaea5f403eb175cb1cc52030f3" Name="Diagram1">
+        <EntityTypeShape EntityType="VPLComplianceModel.alert_detail" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.DD_Freq" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.Employee" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.MM_Freq" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.sysdiagram" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_AlertTo" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_Frequency" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_Frequency_Details" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_InfoRequired" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_Master" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_Responsibility" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_Scheduling" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_Status" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_HR_MenuMaster" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_HR_RoleDetail" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_HR_RoleMaster" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_HR_UserDetails" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_HR_Users" Width="1.5" PointX="11.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_User_App_Auth" Width="1.5" PointX="11.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.tmpVPL_Compliance_Master" Width="1.5" PointX="7.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_HR_SubMenuPages" Width="1.5" PointX="9.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.C_Compliance_Scheduling_detail" Width="1.5" PointX="11.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.Com_Company_Master" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.Com_Dept_Master" Width="1.5" PointX="13.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.Com_Emp_Legal_Sec" Width="1.5" PointX="13.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.Com_Unit_Master" Width="1.5" PointX="13.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.Compliance_Scheduling_detail" Width="1.5" PointX="13.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.StaffDetail" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_AlertTo_Detail" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_InfoRequired_Detail" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_Master_Detail" Width="1.5" PointX="15.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_Schedule_Report" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_Schedule_Status" Width="1.5" PointX="15.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPL_Compliance_Schedule_Status_ALL" Width="1.5" PointX="15.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPLCompliance_dashboard" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VPLComplianceModel.VPLCompliance_dashboard_Details" Width="1.5" PointX="17.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="VPLComplianceModel.FK__VPL_Complia__CID__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="VPLComplianceModel.FK__VPL_Complia__CID__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="VPLComplianceModel.FK__VPL_Complia__CID__173876EA" ManuallyRouted="false" />
+        <AssociationConnector Association="VPLComplianceModel.FK__VPL_Complia__CID__440B1D61" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

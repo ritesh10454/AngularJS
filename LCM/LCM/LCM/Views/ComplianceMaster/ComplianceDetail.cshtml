@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "ComplianceDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>ComplianceDetail</h2>*@
+
+
+<div class="pcoded-content" ng-app="myApp" ng-controller="myCtrl" ng-init="Get_VPL_complianceDashboard_Detail_with_color();">
+    <div class="pcoded-inner-content">
+        @Html.Hidden("color_")
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-header">
+                    <div class="page-header-title">
+                        <h4>Compliance Details</h4>
+                    </div>
+                    <div class="page-header-breadcrumb">
+                        <ul class="breadcrumb-title">
+                            <li class="breadcrumb-item">
+                                <a href="#">
+                                    <i class="icofont icofont-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0);">Compliance Details</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="page-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="/Dashboard/Dashboard" class="btn btn-primary">Back to Main</a>
+                        </div>
+                        <div class="card-block" style="overflow:auto;">
+                            <div class="table-responsive">
+                                <div class="dt-responsive table-responsive">
+                                    <table id="user_table" class="table table-bordered table-striped" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10%;">Sr No.</th>
+                                                <th>Name</th>
+                                                <th>Deptt</th>
+                                                <th>Unit</th>
+                                                <th>Company</th>
+                                                <th>Regulate For</th>
+                                                <th>Regulate Ref.</th>
+                                                <th>Frequency</th>
+                                                <th>Last Date</th>
+                                                <th>Alert Before</th>
+                                                <th>Responsibility</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="com in MyOrders">
+                                                <td>
+                                                    {{com.ID}}
+                                                </td>
+                                                <td>{{com.Name}}</td>
+                                                <td>{{com.DeptName}}</td>
+                                                <td>{{com.UnitName}}</td>
+                                                <td>{{com.CompanyName}}</td>
+                                                <td>{{com.Regulate_For}}</td>
+                                                <td>{{com.Regulate_Ref}}</td>
+                                                <td>{{com.FrequencyName}}</td>
+                                                <td>{{com.Deadlinea}}</td>
+                                                <td>{{com.Alertbefore}}</td>
+                                                <td>{{com.responsiblemep}} - {{com.FullName}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function GetParam(name) {
+        const results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (!results) {
+            return 0;
+        }
+        return results[1] || 0;
+    }
+</script>
+

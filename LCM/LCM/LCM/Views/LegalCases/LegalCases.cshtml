@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "LegalCases";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>LegalCases</h2>*@
+
+<div class="pcoded-content" ng-app="myApp" ng-controller="myCtrl" ng-init="Vw_DashboardUndatedCase_Details_With_TextUp();">
+    <div class="pcoded-inner-content">
+        @Html.Hidden("textup_")
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-header">
+                    <div class="page-header-title">
+                        @*<h4>Legal Cases Details</h4>*@
+                    </div>
+                    <div class="page-header-breadcrumb">
+                        <ul class="breadcrumb-title">
+                            <li class="breadcrumb-item">
+                                <a href="#">
+                                    <i class="icofont icofont-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0);">Legal Cases Details</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="page-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="/Dashboard/Dashboard" class="btn btn-primary">Back to Main</a>
+                        </div>
+                        <div class="card-block" style="overflow:auto;">
+                            <div class="table-responsive">
+                                <div class="dt-responsive table-responsive">
+                                    <table id="user_table" class="table table-bordered table-striped" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10%;">Sr No.</th>
+                                                <th>Petitioner</th>
+                                                <th>Respondent</th>
+                                                <th>Case No</th>
+                                                <th>Court</th>
+                                                <th>Nautre of Case</th>
+                                                <th>Amount</th>
+                                                <th>Last Date</th>
+                                                <th>Next Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="com in Legalcases">
+                                                <td>{{com.sr_no}}</td>
+                                                <td>{{com.Petitioner}}</td>
+                                                <td>{{com.Respondent}}</td>
+                                                <td>{{com.Case_no}}</td>
+                                                <td>{{com.Court}}</td>
+                                                <td>{{com.Nature_of_Case}}</td>
+                                                <td>{{com.Amount}}</td>
+                                                <td>{{com.Last_Date}}</td>
+                                                <td>{{com.Next_Date}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function GetParam(name) {
+        const results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (!results) {
+            return 0;
+        }
+        return results[1] || 0;
+    }
+</script>

@@ -1,0 +1,241 @@
+﻿
+@{
+    ViewBag.Title = "PrintCase";
+    Layout = null;
+}
+
+@*<h2>PrintCase</h2>*@
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/cssjqryUi")
+@Styles.Render("~/Content/PrintOut")
+@Scripts.Render("~/bundles/modernizr")
+
+
+<div class="pcoded-content" ng-app="myApp" ng-controller="myCtrl" ng-init="GetPurposeMasterlist();GetJudgeMasterList();GetStageofCasemasterlIst();GetCourtCityList();case_Responsibility();GetCase_Hearing_HistorylIst();GetCase_Transfer_Courts_Logs_List();GetCaseHeaderlIst();GetCase_Hearing_HistorylIst1();GetCase_Hearing_HistorylIst2();GetCase_Hearing_Orderlist();">
+    <div class="pcoded-inner-content" id="dvContents">
+        <table style="width: 100%;" id="tbl1"  ng-repeat="com in CaseHeaderl">
+            <tr>
+                <td style="text-align:center;"><a id="back">Back</a><a ng-click="PrintDIV();">Print</a></td>
+            </tr>
+            <tr>
+                <th>
+                    <h4>{{com.JudgeName}}</h4>
+                </th>
+            </tr>
+            <tr>
+                <th>Case Detail</th>
+            </tr>
+            <tr>
+                <td>
+                    <table border="1" style="border-collapse: collapse">
+                        <tbody>
+                            <tr>
+                                <td>Case Type:</td>
+                                <td>{{com.CaseTypeName}}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Filing Number:</td>
+                                <td>{{com.FilingNumber}}</td>
+                                <td>Filing Date: {{com.FilingDate}}</td>
+                            </tr>
+                            <tr>
+                                <td>Registration Number</td>
+                                <td>{{com.RegistrationNumber}}</td>
+                                <td>Registration Date: {{com.RegistrationDate}}</td>
+                            </tr>
+                            <tr>
+                                <td>CNR Number</td>
+                                <td>{{com.CNRNumber}}</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <th>Case Staus</th>
+            </tr>
+            <tr>
+                <td>
+                    <table border="1">
+                        <tbody ng-repeat="com in caseHistory">
+                            <tr>
+                                <th scope="row" style="text-align:left;">First Hearing Date</th>
+                                <td>:{{com.RegistrationDate}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="text-align:left;">Next Hearing Date</th>
+                                <td>:{{com.HearingDate}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="text-align:left;">Stage of Case</th>
+                                <td>:{{com.StageofCaseName}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="text-align:left;">Court Number and Judge</th>
+                                <td>:{{com.CourtNumber}}-{{com.JudgeName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <th>Petitioner and Advocate</th>
+            </tr>
+            <tr>
+                <td>
+                    <table border="1">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    1){{com.Petitioner_NAME}}<br />
+                                    Advocate- {{com.Petitioner_Advocate_name}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <th>Respondent and Advocate</th>
+            </tr>
+            <tr>
+                <td>
+                    <table border="1">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    1){{com.Respondent_name}}<br />
+                                    Advocate- {{com.Respondent_Advocate_name}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <th>Acts</th>
+            </tr>
+            <tr>
+                <td>
+                    <table border="1">
+                        <tbody>
+                            <tr>
+                                <th>Under Act(s)</th>
+                                <th>Under Section(s)</th>
+                            </tr>
+                            <tr>
+                                <td>{{com.UnderActName}}</td>
+                                <td>{{com.UnderSectionName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <th>History of Case</th>
+            </tr>
+            <tr>
+                <td>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Registration Number</th>
+                                <th>Judge</th>
+                                <th>Business On Date</th>
+                                <th>Business Purpose</th>
+                                <th>Hearing Date</th>
+                                <th>Purpose of hearing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="com in caseHistory">
+                                <td>{{com.RegistrationNumber}}</td>
+                                <td>{{com.JudgeName}}</td>
+                                <td>{{com.BusinesDate}}</td>
+                                <td>{{com.BP}}</td>
+                                <td>{{com.HearingDate}}</td>
+                                <td>{{com.HP}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <th>Orders</th>
+            </tr>
+            <tr>
+                <td>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Order Number</th>
+                                <th>Order Date</th>
+                                <th>Order Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="com in caseOrderlist">
+                                <td>{{com.ID}}</td>
+                                <td>{{com.BusinesDate}}</td>
+                                <td><p>{{com.OrderDetail}}</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <th>Case Transfer Details Between The Courts</th>
+            </tr>
+            <tr>
+                <td>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Regn. Number</th>
+                                <th>Transfer Date </th>
+                                <th>From Court Number and Judge</th>
+                                <th>To Court Number and Judge</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="com in caseCourtLog">
+                                <td>
+                                    {{com.RegistrationNumber}}
+                                </td>
+                                <td>
+                                    {{com.BusinesDate}}
+                                </td>
+                                <td><p>{{com.CourtNo}}-{{com.JudgeName}}</p></td>
+                                <td><p>{{com.CourtNumber}}-{{com.Judge_name}}</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@*@Scripts.Render("~/mashable/js")*@
+@Scripts.Render("~/bundles/jqueryui")
+@Scripts.Render("~/angular/js")
+
+<script type="text/javascript">
+    function hidediv() {
+        $("#divgy").hide();
+        $("#signinmodal").hide();
+        document.getElementById("btnSave").setAttribute("value", "Submit");
+        document.getElementById("btnSave").className = "btn btn-primary";
+    }
+    function GetParam(name) {
+        const results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (!results) {
+            return 0;
+        }
+        return results[1] || 0;
+    }
+</script>
+

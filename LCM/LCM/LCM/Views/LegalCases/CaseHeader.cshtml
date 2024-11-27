@@ -1,0 +1,334 @@
+﻿
+@{
+    ViewBag.Title = "CaseHeader";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    span.fooicon.fooicon-sort-asc {
+        display: none;
+    }
+
+    span.fooicon.fooicon-sort-desc {
+        display: none;
+    }
+
+    span.fooicon.fooicon-sort {
+        display: none;
+    }
+
+    label.form-control-label {
+        font-weight: 600;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
+</style>
+
+<div class="pcoded-content" ng-app="myApp" ng-controller="myCtrl" ng-init="GetCaseTypelIst();GetPetitioner_Cum_RespondentlIst_P();GetPetitioner_Cum_RespondentlIst_A();GetJudgeMasterList();GetUnderActmasterlIst();GetUnderSectionmasterlIst();GetStageofCasemasterlIst();GetCourtCityList();GetCaseHeaderlIst();">
+    <div class="pcoded-inner-content">
+        @Html.Hidden("CaseID")
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-header">
+                    <div class="page-header-title">
+                        @*<h4>Case Details</h4>*@
+                    </div>
+                    <div class="page-header-breadcrumb">
+                        <ul class="breadcrumb-title">
+                            <li class="breadcrumb-item">
+                                <a href="#">
+                                    <i class="icofont icofont-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0);">Case Details</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="page-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <a ng-click="showdiv();" style="color:white;" class="btn btn-sm btn-primary waves-effect waves-light f-left"><i class="icofont icofont-plus"></i>New Case</a>
+                            <toaster-container toaster-options="{'close-button':true, 'time-out':{ 'toast-success': 2000, 'toast-error': 0 } }">
+                            </toaster-container>
+                        </div>
+                        <div class="card-block" style="overflow:auto;">
+                            <div class="table-responsive">
+                                <div class="dt-responsive table-responsive">
+                                    <table id="user_table" class="table table-striped table-bordered nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:10%;">Sr. No.</th>
+                                                <th style="text-align:center; width:15%;">Edit</th>
+                                                <th style="text-align: center; width: 15%;">Delete</th>
+                                                <th style="text-align: center; width: 15%;">Details</th>
+                                                <th>Case Type</th>
+                                                <th>Filing Number</th>
+                                                <th>Filing Date</th>
+                                                <th>RegistrationNumber</th>
+                                                <th>Registration Date</th>
+                                                <th>CNR Number</th>
+                                                <th>Petitioner</th>
+                                                <th>Petitioner Advocate</th>
+                                                <th>Respondent</th>
+                                                <th>Respondent Advocate</th>
+                                                <th>Judge</th>
+                                                <th>Under Act(s)</th>
+                                                <th>Under Section(s)</th>
+                                                <th>Stage of Case</th>
+                                                <th>Court City</th>
+                                                <th>Case Amount</th>
+                                                <th>Summary</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="com in CaseHeaderl">
+                                                <td>{{com.TransID}}</td>
+                                                <td><a class="btn btn-primary btn-icon" title="Edit" ng-click="UpdateCase(com)" href="javascript:void(0);"><i class="icofont icofont-ui-edit"></i></a></td>
+                                                <td><a class="btn btn-danger btn-icon" title="Delete" ng-click="deleteCase(com)" href="javascript:void(0);"><i class="icofont icofont-ui-delete"></i></a></td>
+                                                <td><a class="btn btn-primary btn-icon" title="Details" href="/Cases/CaseDetailFlow?CaseID={{com.TransID}}"><i class="icofont icofont-ui-calculator"></i></a></td>
+                                                <td>{{com.CaseType}}</td>
+                                                <td>{{com.FilingNumber}}</td>
+                                                <td>{{com.FilingDate}}</td>
+                                                <td>{{com.RegistrationNumber}}</td>
+                                                <td>{{com.RegistrationDate}}</td>
+                                                <td>{{com.CNRNumber}}</td>
+                                                <td>{{com.Petitioner}}</td>
+                                                <td>{{com.Petitioner_Advocate}}</td>
+                                                <td>{{com.Respondent_name}}</td>
+                                                <td>{{com.Respondent_Advocate_name}}</td>
+                                                <td>{{com.JudgeName}}</td>
+                                                <td>{{com.UnderActName}}</td>
+                                                <td>{{com.UnderSectionName}}</td>
+                                                <td>{{com.StageofCase}}</td>
+                                                <td>{{com.City}}</td>
+                                                <td>{{com.caseamount}}</td>
+                                                <td>{{com.Casesummary}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="styleSelector">
+            </div>
+            <div id="divgy" style="position: absolute; padding-left: 0%; padding-top: 10%; height: 200%; margin-left: 0%; z-index: 9999; display:none; background-color: #23282e7a; width: 100%; margin-top: -70%;">
+            </div>
+
+            <div class="modal fade modal-flex show" id="signinmodal" tabindex="-1" style="display: block; padding-left: 17px; overflow-x: hidden; overflow-y: auto; display:none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body model-container">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add Case Details</h5>
+                                <a class="close" data-dismiss="modal" aria-label="Close" onclick="hidediv();"><span aria-hidden="true">&times;</span></a>
+                            </div>
+                            <form novalidate name="form" class="css-form_Dist">
+                                <div class="modal-body p-b-0">
+                                    <div class="overflow-container">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Select Case Type
+                                                    </label>
+                                                    <select required ng-model="ddlcasetype" class="form-control"
+                                                            ng-options="type.CaseId as type.CaseTypeName for type in CaseTypelIst">
+                                                        <option value="">Select Case Type</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Filing Number
+                                                    </label>
+                                                    <input type="text" class="form-control" id="txtFilingNumber" required ng-model="fillingnum" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Filling Date
+                                                    </label>
+                                                    <input type="text" class="form-control" id="txtFilingDate" required readonly datepicker ng-model="fillingdate" placeholder="dd/MM/yyyy" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Registration Number
+                                                    </label>
+                                                    <input type="text" class="form-control" id="txtRegistrationNumber" required ng-model="regnum" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Registration Date
+                                                    </label>
+                                                    <input type="text" class="form-control" id="txtRegistrationDate" readonly datepicker required ng-model="regdt" placeholder="dd/MM/yyyy" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        CNR Number
+                                                    </label>
+                                                    <input type="text" class="form-control" id="txtCNRNumber" maxlength="500" ng-model="cnrnum" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Petitioner
+                                                    </label>
+                                                    <select required ng-model="ddlPetitioner" class="form-control"
+                                                            ng-options="pet.Petitioner_Cum_RespondentID as pet.Fullname for pet in petitioner_P">
+                                                        <option value="">Select Petitioner</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Petitioner Advocate
+                                                    </label>
+                                                    <select required ng-model="ddlPetitioner_Advocate" class="form-control"
+                                                            ng-options="petA.Petitioner_Cum_RespondentID as petA.Fullname for petA in petitioner_A">
+                                                        <option value="">Select Petitioner Advocate</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Respondent
+                                                    </label>
+                                                    <select required ng-model="ddlRespondent" class="form-control"
+                                                            ng-options="petP.Petitioner_Cum_RespondentID as petP.Fullname for petP in petitioner_P">
+                                                        <option value="">Select Respondent</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Respondent Advocate
+                                                    </label>
+                                                    <select required ng-model="ddlRespondent_Advocate" class="form-control"
+                                                            ng-options="petResA.Petitioner_Cum_RespondentID as petResA.Fullname for petResA in petitioner_A">
+                                                        <option value="">Select Respondent Advocate</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Judge
+                                                    </label>
+                                                    <select required ng-model="ddlJudge" class="form-control"
+                                                            ng-options="jm.JudgeId as jm.JudgeName for jm in JudgeMasterList">
+                                                        <option value="">Select Judge</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        UnderAct(s)
+                                                    </label>
+                                                    <select required ng-model="ddlUnderAct" class="form-control"
+                                                            ng-options="uact.UnderActID as uact.UnderActName for uact in UnderActmasterlIst">
+                                                        <option value="">Select UnderAct(s)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Under Section(s)
+                                                    </label>
+                                                    <select required ng-model="ddlUnderSection" class="form-control"
+                                                            ng-options="usec.UnderSectionID as usec.UnderSectionName for usec in UnderSectionmasterlIst">
+                                                        <option value="">Select Under Section(s)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        StageofCase
+                                                    </label>
+                                                    <select required ng-model="ddlStageofCase" class="form-control"
+                                                            ng-options="socl.StageofCaseID as socl.StageofCaseName for socl in StageofCasemasterlIst">
+                                                        <option value="">Select StageofCase</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Court City
+                                                    </label>
+                                                    <select required ng-model="ddlcourtcity" class="form-control"
+                                                            ng-options="ccity.CityID as ccity.City for ccity in CourtCityList">
+                                                        <option value="">Select Court City</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Case Amount
+                                                    </label>
+                                                    <input type="text" id="txtcaseamount" inputmode="numeric" class="form-control" ng-model="caseamt" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        Brief Facts/ Summary of the Case
+                                                    </label>
+                                                    <textarea id="txtsummary" name="txtsummary" class="form-control" rows="2" required ng-model="summ"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="button" id="btnSave" ng-disabled="form.$invalid" ng-click="InsertCase()" class="btn btn-primary" value="Submit" />
+                                    <input type="button" class="btn btn-default" onclick="hidediv();" value="Cancel" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+        function hidediv() {
+            $("#divgy").hide();
+            $("#signinmodal").hide();
+            document.getElementById("btnSave").setAttribute("value", "Submit");
+            document.getElementById("btnSave").className = "btn btn-primary";
+        }
+        function GetParam(name) {
+            const results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (!results) {
+                return 0;
+            }
+            return results[1] || 0;
+        }
+    </script>
+
+

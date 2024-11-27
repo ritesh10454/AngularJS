@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LegalCaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'VPL_Legal_Cases.dbo.Vw_DashboardUndatedCase' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Vw_DashboardUndatedCase">
+          <Key>
+            <PropertyRef Name="TextUp" />
+          </Key>
+          <Property Name="TotalUndated" Type="int" />
+          <Property Name="TextUp" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'VPL_Legal_Cases.dbo.Vw_DashboardUndatedCase_Details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Vw_DashboardUndatedCase_Details">
+          <Key>
+            <PropertyRef Name="Nature_of_Case" />
+            <PropertyRef Name="TextUp" />
+          </Key>
+          <Property Name="sr_no" Type="bigint" />
+          <Property Name="Petitioner" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Respondent" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Case_no" Type="nvarchar" MaxLength="500" />
+          <Property Name="Court" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Nature_of_Case" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Amount" Type="nvarchar" MaxLength="30" />
+          <Property Name="Last_Date" Type="varchar" MaxLength="30" />
+          <Property Name="Next_Date" Type="varchar" MaxLength="30" />
+          <Property Name="Status" Type="nvarchar" MaxLength="1000" />
+          <Property Name="TextUp" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="LegalCaseModelStoreContainer">
+          <EntitySet Name="Vw_DashboardUndatedCase" EntityType="Self.Vw_DashboardUndatedCase" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vw_DashboardUndatedCase].[TotalUndated] AS [TotalUndated], 
+    [Vw_DashboardUndatedCase].[TextUp] AS [TextUp]
+    FROM [dbo].[Vw_DashboardUndatedCase] AS [Vw_DashboardUndatedCase]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Vw_DashboardUndatedCase_Details" EntityType="Self.Vw_DashboardUndatedCase_Details" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vw_DashboardUndatedCase_Details].[sr_no] AS [sr_no], 
+    [Vw_DashboardUndatedCase_Details].[Petitioner] AS [Petitioner], 
+    [Vw_DashboardUndatedCase_Details].[Respondent] AS [Respondent], 
+    [Vw_DashboardUndatedCase_Details].[Case_no] AS [Case_no], 
+    [Vw_DashboardUndatedCase_Details].[Court] AS [Court], 
+    [Vw_DashboardUndatedCase_Details].[Nature_of_Case] AS [Nature_of_Case], 
+    [Vw_DashboardUndatedCase_Details].[Amount] AS [Amount], 
+    [Vw_DashboardUndatedCase_Details].[Last_Date] AS [Last_Date], 
+    [Vw_DashboardUndatedCase_Details].[Next_Date] AS [Next_Date], 
+    [Vw_DashboardUndatedCase_Details].[Status] AS [Status], 
+    [Vw_DashboardUndatedCase_Details].[TextUp] AS [TextUp]
+    FROM [dbo].[Vw_DashboardUndatedCase_Details] AS [Vw_DashboardUndatedCase_Details]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LegalCaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Vw_DashboardUndatedCase">
+          <Key>
+            <PropertyRef Name="TextUp" />
+          </Key>
+          <Property Name="TotalUndated" Type="Int32" />
+          <Property Name="TextUp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="LegalCaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Vw_DashboardUndatedCase" EntityType="Self.Vw_DashboardUndatedCase" />
+          <EntitySet Name="Vw_DashboardUndatedCase_Details" EntityType="LegalCaseModel.Vw_DashboardUndatedCase_Details" />
+        </EntityContainer>
+        <EntityType Name="Vw_DashboardUndatedCase_Details">
+          <Key>
+            <PropertyRef Name="Nature_of_Case" />
+            <PropertyRef Name="TextUp" />
+          </Key>
+          <Property Name="sr_no" Type="Int64" />
+          <Property Name="Petitioner" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Respondent" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Case_no" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Court" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Nature_of_Case" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Last_Date" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Next_Date" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="TextUp" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LegalCaseModelStoreContainer" CdmEntityContainer="LegalCaseEntities">
+          <EntitySetMapping Name="Vw_DashboardUndatedCase">
+            <EntityTypeMapping TypeName="LegalCaseModel.Vw_DashboardUndatedCase">
+              <MappingFragment StoreEntitySet="Vw_DashboardUndatedCase">
+                <ScalarProperty Name="TotalUndated" ColumnName="TotalUndated" />
+                <ScalarProperty Name="TextUp" ColumnName="TextUp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vw_DashboardUndatedCase_Details">
+            <EntityTypeMapping TypeName="LegalCaseModel.Vw_DashboardUndatedCase_Details">
+              <MappingFragment StoreEntitySet="Vw_DashboardUndatedCase_Details">
+                <ScalarProperty Name="TextUp" ColumnName="TextUp" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Next_Date" ColumnName="Next_Date" />
+                <ScalarProperty Name="Last_Date" ColumnName="Last_Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Nature_of_Case" ColumnName="Nature_of_Case" />
+                <ScalarProperty Name="Court" ColumnName="Court" />
+                <ScalarProperty Name="Case_no" ColumnName="Case_no" />
+                <ScalarProperty Name="Respondent" ColumnName="Respondent" />
+                <ScalarProperty Name="Petitioner" ColumnName="Petitioner" />
+                <ScalarProperty Name="sr_no" ColumnName="sr_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

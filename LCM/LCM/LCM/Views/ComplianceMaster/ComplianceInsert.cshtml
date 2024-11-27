@@ -1,0 +1,338 @@
+﻿
+@{
+    ViewBag.Title = "ComplianceInsert";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Insert New Compliance</h2>*@
+
+
+<div class="pcoded-content" ng-app="myApp" ng-controller="myCtrl" ng-init="Get_AllMonth();Get_AllDays();Get_VPL_Compliance_Master_Detail_withfrequency();Get_AllFrequency();Get_AllCompany();Get_AllDeptt();GET_ALL_EMP();">
+    <div class="pcoded-inner-content">
+        @Html.Hidden("CID_")
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-header">
+                    <div class="page-header-title">
+                        <h4>Compliance</h4>
+                    </div>
+                    <div class="page-header-breadcrumb">
+                        <ul class="breadcrumb-title">
+                            <li class="breadcrumb-item">
+                                <a href="/Default.aspx">
+                                    <i class="icofont icofont-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0);">Compliance List</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="page-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <a ng-click="showdiv();" style="color:white;" class="btn btn-sm btn-primary waves-effect waves-light f-left"><i class="icofont icofont-plus"></i>New Compliance</a>
+                        </div>
+                        <div class="card-block" style="overflow:auto;">
+                            <div class="table-responsive">
+                                <div class="dt-responsive table-responsive">
+                                    <table id="compliance_ins" class="table table-striped table-bordered nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:10%;">Sr. No.</th>
+                                                <th style="text-align:center; width:15%;">Edit</th>
+                                                <th style="text-align: center; width: 15%;">Delete</th>
+                                                <th style="text-align: center; width: 15%;">Details</th>
+                                                <th>Name</th>
+                                                <th>Deptt</th>
+                                                <th>Unit</th>
+                                                <th>Company</th>
+                                                <th>Regulatoty Authority</th>
+                                                <th>Regulation Ref.</th>
+                                                <th>Frequency</th>
+                                                <th>Previous Submission Date</th>
+                                                <th>Next Due Date</th>
+                                                <th>Alert Before</th>
+                                                <th>Responsibility</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="com in Compiance_with_freq">
+                                                <td>{{com.complinace_Master_WithFreq.ID}}</td>
+                                                <td><a class="btn btn-primary btn-icon" title="Edit" ng-click="UpdateCompliance(com)" href="javascript:void(0);"><i class="icofont icofont-ui-edit"></i></a></td>
+                                                <td><a class="btn btn-danger btn-icon" title="Delete" ng-click="delete_Compliance(com)" href="javascript:void(0);"><i class="icofont icofont-ui-delete"></i></a></td>
+                                                <td><a class="btn btn-warning" title="Details" href="/ComplianceMaster/ComplianeSelectedDetail?CID={{com.complinace_Master_WithFreq.CID}}"><i class="icofont icofont-ui-folder"></i>Details</a></td>
+                                                <td>{{com.complinace_Master_WithFreq.Name}}</td>
+                                                <td>{{com.complinace_Master_WithFreq.DeptName}}</td>
+                                                <td>{{com.complinace_Master_WithFreq.UnitName}}</td>
+                                                <td>{{com.complinace_Master_WithFreq.CompanyName}}</td>
+                                                <td>{{com.complinace_Master_WithFreq.Regulate_For}}</td>
+                                                <td>{{com.complinace_Master_WithFreq.Regulate_Ref}}</td>
+                                                <td>{{com.complinace_Master_WithFreq.FrequencyName}}</td>
+                                                <td>{{com.complinace_Master_WithFreq.Deadlinea}}</td>
+                                                <td>{{com.complinace_Master_WithFreq.Deadlinea}}</td>
+                                                <td>{{com.complinace_Master_WithFreq.Alertbefore}}</td>
+                                                <td>{{com.complinace_Master_WithFreq.responsiblemep}} - {{com.complinace_Master_WithFreq.FullName}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="styleSelector">
+        </div>
+        <div id="divgy" style="position: absolute; padding-left: 0%; padding-top: 10%; height: 200%; margin-left: 0%; z-index: 9999; display:none; background-color: #23282e7a; width: 100%; margin-top: -70%;">
+        </div>
+
+        <div class="modal fade modal-flex show" id="signinmodal" tabindex="-1" style="display: block; padding-left: 17px; overflow-x: hidden; overflow-y: auto; display:none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body model-container">
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title">Add Compliance Details</h5>
+                            <a class="close" data-dismiss="modal" aria-label="Close" onclick="hidediv();"><span aria-hidden="true">&times;</span></a>
+                        </div>
+                        <form novalidate name="form" class="css-form_Dist">
+                            <div class="modal-body p-b-0">
+                                <div class="overflow-container">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Select Company
+                                                </label>
+                                                <select ng-model="ddlcompany" class="form-control" required ng-change="Get_UnitById()"
+                                                        ng-options="type.CompanyCode as type.CompanyName for type in company">
+                                                    <option value="">Select Company</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Select Unit
+                                                </label>
+                                                <select ng-model="ddlunit" class="form-control"
+                                                        ng-options="un.UnitCode as un.UnitName for un in unitbyid">
+                                                    <option value="">Select Unit</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Select Dept
+                                                </label>
+                                                <select ng-model="ddldept" class="form-control" required
+                                                        ng-options="dep.DeptID as dep.DeptName for dep in dept">
+                                                    <option value="">Select Department</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Name of Compliance
+                                                </label>
+                                                <input type="text" class="form-control" id="txtname" required ng-model="com_name" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Regulatory Authority
+                                                </label>
+                                                <input type="text" class="form-control" id="txtregulationfor" required ng-model="ngregulfor" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Regulation Reference
+                                                </label>
+                                                <input type="text" class="form-control" id="txtregulationrefer" required ng-model="ngregulrefer" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Frequency
+                                                </label>
+                                                <select ng-model="ddlfrequency" class="form-control"
+                                                        ng-options="dep.ID as dep.Name for dep in frequency" required>
+                                                    <option value="">Select</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="row">
+
+                                                <div class="col-sm-6" ng-show="ddlfrequency == '1' || ddlfrequency == '2' ||ddlfrequency == '3' ||ddlfrequency == '4' ">
+                                                    <div>
+                                                        <label class="form-control-label">
+                                                            Frequency Day
+                                                        </label>
+                                                        <select ng-model="ddlday" class="form-control" ng-options="day.id as day.DD for day in AllDays"
+                                                                ng-required="ddlfrequency == '1' || ddlfrequency == '2' ||ddlfrequency == '3' ||ddlfrequency == '4' ">
+                                                            <option value="">Select Day</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" ng-show=" ddlfrequency == '2' ||ddlfrequency == '3' ||ddlfrequency == '4' ">
+                                                    <div>
+                                                        <label class="form-control-label">
+                                                            Frequency Month
+                                                        </label>
+                                                        <select ng-model="ddlmonth" class="form-control" ng-options="dep.id as dep.MM for dep in AllMM"
+                                                                ng-required=" ddlfrequency == '2' ||ddlfrequency == '3' ||ddlfrequency == '4' ">
+                                                            <option value="">Select Month</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6" ng-show=" ddlfrequency == '2' ||ddlfrequency == '3'  ">
+                                                    <div>
+                                                        <label class="form-control-label">
+                                                            Frequency Day2
+                                                        </label>
+                                                        <select ng-model="ddlday2" class="form-control" ng-options="dep.id as dep.DD for dep in AllDay"
+                                                                ng-required=" ddlfrequency == '2' ||ddlfrequency == '3'  ">
+                                                            <option value="">Select Day</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" ng-show=" ddlfrequency == '2' ||ddlfrequency == '3'  ">
+                                                    <div>
+                                                        <label class="form-control-label">
+                                                            Frequency Month2
+                                                        </label>
+                                                        <select ng-model="ddlmonth2" class="form-control" ng-options="dep.id as dep.MM for dep in AllMM"
+                                                                ng-required=" ddlfrequency == '2' ||ddlfrequency == '3'  ">
+                                                            <option value="">Select Month</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6" ng-show=" ddlfrequency == '2'">
+                                                    <div>
+                                                        <label class="form-control-label">
+                                                            Frequency Day3
+                                                        </label>
+                                                        <select ng-model="ddlday3" class="form-control" ng-required=" ddlfrequency == '2'" ng-options="dep.id as dep.DD for dep in AllDay">
+                                                            <option value="">Select Day</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" ng-show=" ddlfrequency == '2'">
+                                                    <div>
+                                                        <label class="form-control-label">
+                                                            Frequency Month3
+                                                        </label>
+                                                        <select ng-model="ddlmonth3" class="form-control" ng-required=" ddlfrequency == '2'" ng-options="dep.id as dep.MM for dep in AllMM">
+                                                            <option value="">Select Month</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6" ng-show=" ddlfrequency == '2'">
+                                                    <div>
+                                                        <label class="form-control-label">
+                                                            Frequency Day4
+                                                        </label>
+                                                        <select ng-model="ddlday4" class="form-control" ng-required=" ddlfrequency == '2'" ng-options="dep.id as dep.DD for dep in AllDay">
+                                                            <option value="">Select Day</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6" ng-show=" ddlfrequency == '2'">
+                                                    <div>
+                                                        <label class="form-control-label">
+                                                            Frequency Month4
+                                                        </label>
+                                                        <select ng-model="ddlmonth4" class="form-control" ng-required=" ddlfrequency == '2'" ng-options="dep.id as dep.MM for dep in AllMM">
+                                                            <option value="">Select Month</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6" ng-show=" ddlfrequency == '5'">
+                                                    <div>
+                                                        <label class="form-control-label">
+                                                            Fixed Date
+                                                        </label>
+                                                        <input type="date" class="form-control" ng-required=" ddlfrequency == '5'" id="fixeddate" ng-model="fixeddate" />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Previous Completed Date
+                                                </label>
+                                                <input type="date" class="form-control" id="txtlastdate" ng-model="lastdate" ng-required="ddlfrequency == '1' || ddlfrequency == '2' ||ddlfrequency == '3' ||ddlfrequency == '4' " />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Alert Before(in days)
+                                                </label>
+                                                <input type="number" class="form-control" required id="txtalertbefore" ng-model="alertbefore" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div>
+                                                <label class="form-control-label">
+                                                    Responsible Person
+                                                </label>
+                                                <select ng-model="dEMpresponsible" class="form-control" required
+                                                        ng-options="empd.EmpID as empd.FullName for empd in empsec">
+                                                    <option value="">Select</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" id="btnSave" ng-disabled="form.$invalid" ng-click="InsertCompliance()" class="btn btn-primary" value="Submit" />
+                                <input type="button" class="btn btn-default" onclick="hidediv();" value="Cancel" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function hidediv() {
+        $("#divgy").hide();
+        $("#signinmodal").hide();
+        document.getElementById("btnSave").setAttribute("value", "Submit");
+        document.getElementById("btnSave").className = "btn btn-primary";
+    }
+    function GetParam(name) {
+        const results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (!results) {
+            return 0;
+        }
+        return results[1] || 0;
+    }
+</script>
+

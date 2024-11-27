@@ -1,0 +1,340 @@
+﻿
+@{
+    ViewBag.Title = "ComplianeSelectedDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    function showdiv() {
+       $("#divgy").show();
+       $("#signinmodal").show();
+    }
+    function hidediv() {
+      $("#divgy").hide();
+      $("#signinmodal").hide();
+
+    }
+    function showdivi() {
+        $("#divgy").show();
+        $("#infor").show();
+    }
+    function hidedivi() {
+        $("#divgy").hide();
+        $("#infor").hide();
+
+    }
+   function GetParam(name){
+        const results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if(!results){
+            return 0;
+        }
+        return results[1] || 0;
+    }
+</script>
+
+<style>
+    li:hover {
+        background-color: #bce4f7;
+    }
+</style>
+<div class="pcoded-content" ng-app="myApp" ng-controller="myCtrl" ng-init="
+     VPL_Compliance_InfoRequired();Get_VPL_Compliance_Master_Detail_BYID();
+     Get_VPL_Compliance_Scheduling_Detail_BYCID(); VPL_Compliance_AlertTo_Detail();
+     VPLCompliance_All_Staff_Detail();">
+    <div class="pcoded-inner-content">
+        @Html.Hidden("CID_")
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <div class="page-header">
+                    <div class="page-header-title">
+                        @*<h4>Compliance Detail</h4>*@
+
+                    </div>
+                    <div class="page-header-breadcrumb">
+                        <ul class="breadcrumb-title">
+                            <li class="breadcrumb-item">
+                                <a href="/Default.aspx">
+                                    <i class="icofont icofont-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0);">Compliance Detail</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="page-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Compliance Detail</h5>
+                        </div>
+                        <div class="card-block" style="overflow: auto;">
+                            <div class="table-responsive">
+                                <div class="dt-responsive table-responsive">
+                                    <table id="user-tbl" class="table table-striped table-bordered nowrap" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10%;">Sr No.</th>
+                                                <th>Name</th>
+                                                <th>Deptt</th>
+                                                <th>Unit</th>
+                                                <th>Company</th>
+                                                <th>Regulate For</th>
+                                                <th>Regulate Ref.</th>
+                                                <th>Frequency</th>
+                                                <th>Last Date</th>
+                                                <th>Alert Before</th>
+                                                <th>Responsibility</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="com in cominfo">
+                                                <td>
+                                                    {{com.ID}}
+                                                </td>
+                                                <td>{{com.Name}}</td>
+                                                <td>{{com.DeptName}}</td>
+                                                <td>{{com.UnitName}}</td>
+                                                <td>{{com.CompanyName}}</td>
+                                                <td>{{com.Regulate_For}}</td>
+                                                <td>{{com.Regulate_Ref}}</td>
+                                                <td>{{com.FrequencyName}}</td>
+                                                <td>{{com.Deadlinea}}</td>
+                                                <td>{{com.Alertbefore}}</td>
+                                                <td>{{com.responsiblemep}} - {{com.FullName}}</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Scheduling Details</h5>
+                        </div>
+                        <div class="card-block" style="overflow: auto;">
+                            <div class="table-responsive">
+                                <div class="dt-responsive table-responsive">
+                                    <table id="sch_detail" class="table table-striped table-bordered nowrap"  style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                @*<th style="width: 10%;">Sr No.</th>*@
+                                                <th>Update Status</th>
+                                                <th>Scheduling ID</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Description</th>
+                                                <th>EName</th>
+                                                <th>Status Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="com in comschinfo">
+                                                @*<td>
+                                                        {{com.ID}}
+                                                    </td>*@
+                                                <td>
+                                                    <div ng-if="com.CStatus != 100.00">
+                                                        <!-- If block -->
+                                                        <a href='/ComplianceMaster/ComplianceDetail_View?SID={{com.Transid}}&CID={{com.CID}}' class="btn btn-primary">Update</a>
+                                                    </div>
+
+                                                </td>
+                                                <td style='background-color:{{com.color}}'>{{com.Transid}}</td>
+                                                <td style='background-color:{{com.color}}'>{{com.ComplianceDate}}</td>
+                                                <td style='background-color:{{com.color}}'>{{com.CStatus}}%</td>
+                                                <td style='background-color:{{com.color}}'>{{com.Descript}}</td>
+                                                <td style='background-color:{{com.color}}'>{{com.FullName}}</td>
+                                                <td style='background-color:{{com.color}}'>{{com.dt}}</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-6" style="padding-bottom: 14px;">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Information Required From</h5>
+                                    <a onclick="showdivi();" style="color:white; float:right;" class="btn btn-sm btn-primary waves-effect waves-light f-left"><i class="icofont icofont-plus"></i>Add Employee</a>
+
+
+                                </div>
+                                <div class="card-block" style="overflow: auto;">
+                                    <div class="table-responsive">
+                                        <div class="dt-responsive table-responsive">
+                                            <table id="tblEmpInfo" class="table table-striped table-bordered nowrap"  style="width:100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align: center; width: 15%;">Disabled</th>
+                                                        <th style="width: 10%;">Sr No.</th>
+                                                        <th>Department</th>
+                                                        <th>Employee</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="info in empinfo">
+                                                        <td>
+                                                            <a class="btn btn-danger btn-icon" title="Delete" ng-click="del_Compliance_Info_required(info)" href="javascript:void(0);"><i class="icofont icofont-ui-delete"></i></a>
+                                                        </td>
+                                                        <td>{{info.TransID}}</td>
+                                                        <td><p>{{info.DeptName}}</p></td>
+                                                        <td><p>{{info.EmpID}}-{{info.FullName}}</p></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6" style="padding-bottom: 14px;">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Alerts to </h5>
+                                    <a onclick="showdiv();" style="color:white; float:right;" class="btn btn-sm btn-primary waves-effect waves-light f-left"><i class="icofont icofont-plus"></i>Add Employee</a>
+
+
+                                </div>
+                                <div class="card-block" style="overflow: auto;">
+                                    <div class="table-responsive">
+                                        <div class="dt-responsive table-responsive">
+                                            <table id="tblAddEmployee" class="table table-striped table-bordered nowrap"  style="width:100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align: center; width: 15%;">Disabled</th>
+                                                        <th style="width: 10%;">Sr No.</th>
+                                                        <th>Department</th>
+                                                        <th>Employee</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="alert in alertinfo">
+                                                        <td>
+                                                            <a class="btn btn-danger btn-icon" title="Delete" ng-click="del_Compliance_Alert_required(alert)" href="javascript:void(0);"><i class="icofont icofont-ui-delete"></i></a>
+                                                        </td>
+                                                        <td>{{alert.ID}}</td>
+                                                        <td><p>{{alert.DeptName}}</p></td>
+                                                        <td><p>{{alert.EmpID}}-{{alert.FullName}}</p></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="styleSelector">
+        </div>
+    </div>
+    <div id="divgy">
+    </div>
+    <div class="modal fade modal-flex show" id="signinmodal" tabindex="-1" style="display: block; padding-left: 17px; overflow-x: hidden; overflow-y: auto; display:none;">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body model-container">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Alert To: Add Employee</h5>
+                        <a class="close" data-dismiss="modal" aria-label="Close" onclick="hidediv();"><span aria-hidden="true">&times;</span></a>
+                    </div>
+                    <form novalidate name="form" class="css-form_Dist">
+                        <div class="modal-body p-b-0">
+                            <div class="overflow-container">
+                                <div class="row">
+                                    <div class="col-sm-12" style="padding-bottom: 14px;">
+                                        <div>
+                                            <label class="form-control-label">
+                                                Responsible Person
+                                            </label>
+
+                                            <input type="text" name="country" id="empid" ng-model="empname" class="form-control" ng-keyup="complete(empname)" />
+                                            <ul class="list-group" style="cursor: pointer;">
+                                                <li class="list-group-item" ng-repeat="empdata in filteremp" ng-click="fillTextbox(empdata)">{{empdata}}</li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" id="btnSave" ng-disabled="form.$invalid" ng-click="Insert_Compliance_Alert_required()" class="btn btn-primary" value="Submit" />
+                            <input type="button" class="btn btn-default" onclick="hidediv();" value="Cancel" />
+                        </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="modal fade modal-flex show" id="infor" tabindex="-1" style="display: block; padding-left: 17px; overflow-x: hidden; overflow-y: auto; display:none;">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body model-container">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Information Required: Add Employee</h5>
+                        <a class="close" data-dismiss="modal" aria-label="Close" onclick="hidedivi();"><span aria-hidden="true">&times;</span></a>
+                    </div>
+                    <form novalidate name="form" class="css-form_Dist">
+                        <div class="modal-body p-b-0">
+                            <div class="overflow-container">
+                                <div class="row">
+                                    <div class="col-sm-12" style="padding-bottom: 14px;">
+                                        <div>
+                                            <label class="form-control-label">
+                                                Select Employee
+                                            </label>
+
+                                            <input type="text" name="country" id="empid1" ng-model="empnameInfo" class="form-control" ng-keyup="complete(empnameInfo)" />
+                                            <ul class="list-group" style="cursor: pointer;">
+                                                <li class="list-group-item" ng-repeat="empdata in filteremp" ng-click="fillTextboxinfo(empdata)">{{empdata}}</li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" id="btnSave" ng-disabled="form.$invalid" ng-click="Insert_Compliance_Info_required()" class="btn btn-primary" value="Submit" />
+                            <input type="button" class="btn btn-default" onclick="hidedivi();" value="Cancel" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

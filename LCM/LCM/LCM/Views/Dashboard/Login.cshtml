@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null; // "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Login</h2>*@
+<style>
+    .col-md-9 h1 {
+        margin-bottom: 30px;
+        font-size: 42px !important;
+    }
+
+    .login-layout-full::before {
+        background-image: url(/Content/Assets/images/icon.jpeg);
+        background-position: center top;
+        background-size: cover;
+        content: "";
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+    }
+
+    h1 {
+        line-height: 0.8;
+    }
+</style>
+<link href="~/Content/Assets/main.css" rel="stylesheet" />
+<link href="~/Content/Assets/theme.css" rel="stylesheet" />
+<link href="~/Content/Assets/buttons.css" rel="stylesheet" />
+<link href="~/Content/Assets/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/Assets/simple-line-icons.css" rel="stylesheet" />
+@*@Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/cssjqryUi")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/mashable/js")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/angular/js")*@
+
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/angular/js")
+
+@*<link href="~/angular-1.8.0/angular.js" rel="stylesheet" />
+    <link href="~/AngularJSCode/MastersCode.js" rel="stylesheet" />
+
+    <link href="~/mash-able/bower_components/bootstrap/css/bootstrap.min.css" rel="stylesheet" />*@
+
+
+<link href="~/Content/Assets/main.media.css" rel="stylesheet" />
+
+<div class="pcoded-content" ng-app="myApp" ng-controller="myCtrl" ng-init="LoadLoginPage()">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <div class="page-header">
+                    <div class="page-header-title">
+                        <h4>Login</h4>
+                    </div>
+                    @*<div class="page-header-breadcrumb">
+                            <ul class="breadcrumb-title">
+                                <li class="breadcrumb-item">
+                                    <a href="#">
+                                        <i class="icofont icofont-home"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript:void(0);">Units List</a>
+                                </li>
+                            </ul>
+                        </div>*@
+                </div>
+
+                <div class="page-body login-layout-full login">
+                    <div id="mob" runat="server" class="col-md-9" style="    text-align: center; color: white; margin-top: 50px;">
+                        <h1>"We are The Oswal team </h1>
+                        <h1>This is our time </h1>
+                        <h1>Give us your Challenges</h1>
+                        <h1>Give us your excuses </h1>
+                        <h1>Give us your limits </h1>
+                        <h1>We will find Success</h1>
+                        <h1>We will not be denied</h1>
+                        <h1>It's time to ignite"</h1>
+                    </div>
+                    <div class="loginColumns ">
+                        <div style="text-align: center; margin-bottom:50px;">
+                            <div class="brand">
+                                <img class="brand-img" src="~/Content/Assets/images/VPLLOGO.png" alt="Vardhman Polytex Limited Ludhiana-Punjab" id="logo" style="opacity: 1;    width: 178px" />
+                                <img class="brand-img" src="~/Content/Assets/images/123.png" alt="Vardhman Amrante Polytex Limited Ludhiana-Punjab" id="Img1" runat="server" style="width:auto;height:120px;opacity: 1;" />
+                            </div>
+                        </div>
+                        <h3>Welcome to The ESS Portal </h3>
+                        <div class="top15">
+                            <div class="form-group">
+                                <input type="text" name="txtusername" runat="server" placeholder="Employee Code" TextMode="Number" class="form-control" MaxLength="10" required ng-model="login.txtusername" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="txtpassword" placeholder="Password" TextMode="Password" class="form-control" required ng-model="login.txtpassword" />
+                            </div>
+                            <p class="text-muted text-center">
+                                <small>
+                                    <span id="lblresult"></span>
+                                </small>
+                            </p>
+                            <a id="btlogin" class="btn aqua block full-width bottom15" ng-click="Login();">Login</a>
+                            <a id="btforget" runat="server" class="btn yellow block full-width bottom15" ng-click="forget();">Forget Password</a>
+                            <a id="Button1" runat="server" class="btn orange block full-width bottom125" ng-click="btnSuggestion();">Suggestion Portal</a>
+                        </div>
+
+                        <p class=" copyR"> <small>VPL &copy; ESS PORTAL</small> </p>
+                    </div>
+
+                    @*<div class="card">
+                            <div class="card-block" style="overflow: auto;">
+
+                            </div>
+                        </div>*@
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="styleSelector">
+        </div>
+    </div>
+
+</div>

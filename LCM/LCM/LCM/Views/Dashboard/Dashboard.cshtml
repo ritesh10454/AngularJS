@@ -1,0 +1,227 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Dashboard</h2>*@
+
+<style>
+    a:visited {
+        color: black;
+    }
+
+    a:link {
+        color: white;
+    }
+</style>
+
+<style>
+    .Three0days {
+        background-color: #03A9F4;
+    }
+
+    .Nine0days {
+        background-color: #CDDC39;
+    }
+
+    .Sevendays {
+        background-color: #a172f5;
+    }
+
+    .DelayTill {
+        background-color: #F44336;
+    }
+
+    .text-muted {
+        color: #fff !important;
+    }
+
+    .card h5 {
+        color: #fff !important;
+    }
+
+    .widget-statstic-card .st-icon {
+        color: #fff;
+        font-size: 23px;
+        padding: 20px 40px 40px 20px;
+        border-radius: 50%;
+        position: absolute;
+        bottom: -30px;
+        right: -30px;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .widget-statstic-card:hover {
+        border-radius: 3px;
+        filter: brightness(110%) saturate(170%);
+    }
+
+    .fc-day-grid-event .fc-content {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        color: white !important;
+    }
+
+    a.fc-day-grid-event.fc-h-event.fc-event.fc-start.fc-end {
+        cursor: pointer;
+    }
+
+    .card .heading {
+        color: #4a6076 !important;
+    }
+
+</style>
+
+
+<style>
+    #tbl1 {
+        width: 9in;
+        /* to centre page on screen*/
+        margin-left: auto;
+        margin-right: auto;
+        font-family: sans-serif;
+    }
+
+        #tbl1 dd, #tbl1 dt {
+            line-height: 2.428571;
+            font-family: sans-serif;
+        }
+
+        #tbl1 dt {
+            font-weight: 700;
+        }
+
+        #tbl1 ul li ul li > #tbl1 dt {
+            padding: 4px;
+            background-color: #cac0c0;
+            padding-left: 10px;
+            margin: 10px 0px 10px 0px;
+        }
+
+        #tbl1 ul li ul li > #tbl1 ul {
+            list-style-type: lower-alpha;
+        }
+
+        #tbl1 ul {
+            list-style-type: decimal;
+        }
+
+            #tbl1 ul li > #tbl1 ul {
+                list-style-type: lower-roman;
+            }
+
+            #tbl1 ul li ul li ul li > #tbl1 dt {
+                background: none;
+                padding-left: 0px;
+            }
+
+        #tbl1 tr.tdtr td {
+            padding-left: 10px;
+        }
+
+        #tbl1 .tdtr th {
+            text-align: left;
+            padding: 5px;
+            padding-left: 10px;
+        }
+
+        #tbl1 dt, #tbl1 dd {
+            line-height: 22px;
+        }
+
+        #tbl1 ul {
+            line-height: 20px;
+        }
+
+        #tbl1 table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #tbl1 tr th {
+            line-height: 31px;
+            text-align: center !important;
+        }
+
+        #tbl1 td {
+            padding: 3px;
+        }
+</style>
+
+
+<div class="pcoded-content" ng-app="myApp" ng-controller="myCtrl" ng-init="Get_VPL_complianceDashboard();Get_DashboardUndatedCase();">
+    <div class="main-body">
+        <div class="page-wrapper">
+            <div class="page-header">
+                <div class="page-header-title">
+                    <h4>Dashboard</h4>
+                </div>
+            </div>
+            <div class="page-body">
+                <div class="card" id="compliances">
+                    <div class="card-header">
+                        <h5 class="heading">Compliance</h5>
+                    </div>
+                    <div class="card-block" style="overflow: auto;">
+                        <div class="row">
+                            <div class="col-md-6 col-xl-3" ng-repeat="com in dashbord">
+                                <div class="card  widget-statstic-card borderless-card" ng-style="{'background-color': getDivColor({{com.color}}),'color': 'white'}">
+                                    <a href='/ComplianceMaster/ComplianceDetail?color={{com.color}}'>
+                                        <div class="card-header">
+                                            <div class="card-header-left">
+                                                <h5>
+                                                    {{com.name}}
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div class="card-block">
+                                            <div class="text-left">
+                                                <h3 class="d-inline-block">{{com.ID}}</h3>
+                                                @Html.Hidden("color_", "{{com.color}}")
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" id="LegalCases">
+                    <div class="card-header">
+                        <h5  class="heading">Legal Cases</h5>
+                    </div>
+                    <div class="card-block" style="overflow: auto;">
+                        <div class="row">
+                            <div class="col-md-6 col-xl-3" ng-repeat="com1 in Legal_dashboard">
+                                <div class="card  widget-statstic-card borderless-card" ng-style="{'background-color': getCaseColor('{{com1.TextUp}}'),'color': 'white'}">
+                                    <a href='/LegalCases/LegalCases?textup={{com1.TextUp}}'>
+                                        <div class="card-header">
+                                            <div class="card-header-left">
+                                                <h5>
+                                                    {{com1.TextUp}}
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div class="card-block">
+                                            <div class="text-left">
+                                                <h3 class="d-inline-block">{{com1.TotalUndated}}</h3>
+                                                @Html.Hidden("color_", "{{com1.TextUp}}")
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

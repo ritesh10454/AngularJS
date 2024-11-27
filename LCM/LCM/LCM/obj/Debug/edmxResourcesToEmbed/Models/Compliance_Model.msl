@@ -1,0 +1,877 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VPLComplianceModelStoreContainer" CdmEntityContainer="VPLComplianceEntities">
+    <EntitySetMapping Name="alert_detail">
+      <EntityTypeMapping TypeName="VPLComplianceModel.alert_detail">
+        <MappingFragment StoreEntitySet="alert_detail">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DD_Freq">
+      <EntityTypeMapping TypeName="VPLComplianceModel.DD_Freq">
+        <MappingFragment StoreEntitySet="DD_Freq">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="DD" ColumnName="DD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="VPLComplianceModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Emp_Id" ColumnName="Emp_Id" />
+          <ScalarProperty Name="Emp_Name" ColumnName="Emp_Name" />
+          <ScalarProperty Name="Emp_City" ColumnName="Emp_City" />
+          <ScalarProperty Name="Emp_Age" ColumnName="Emp_Age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MM_Freq">
+      <EntityTypeMapping TypeName="VPLComplianceModel.MM_Freq">
+        <MappingFragment StoreEntitySet="MM_Freq">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="MM" ColumnName="MM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="VPLComplianceModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_AlertTo">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_AlertTo">
+        <MappingFragment StoreEntitySet="VPL_Compliance_AlertTo">
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_Frequency">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_Frequency">
+        <MappingFragment StoreEntitySet="VPL_Compliance_Frequency">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="Crby" ColumnName="Crby" />
+          <ScalarProperty Name="Crdate" ColumnName="Crdate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_Frequency_Details">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_Frequency_Details">
+        <MappingFragment StoreEntitySet="VPL_Compliance_Frequency_Details">
+          <ScalarProperty Name="FDID" ColumnName="FDID" />
+          <ScalarProperty Name="ComplianceID" ColumnName="ComplianceID" />
+          <ScalarProperty Name="FrequencyID" ColumnName="FrequencyID" />
+          <ScalarProperty Name="DD" ColumnName="DD" />
+          <ScalarProperty Name="MM" ColumnName="MM" />
+          <ScalarProperty Name="YY" ColumnName="YY" />
+          <ScalarProperty Name="fixeddate" ColumnName="fixeddate" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="isupdate" ColumnName="isupdate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_InfoRequired">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_InfoRequired">
+        <MappingFragment StoreEntitySet="VPL_Compliance_InfoRequired">
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_Master">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_Master">
+        <MappingFragment StoreEntitySet="VPL_Compliance_Master">
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Regulate_For" ColumnName="Regulate_For" />
+          <ScalarProperty Name="Regulate_Ref" ColumnName="Regulate_Ref" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="Alertbefore" ColumnName="Alertbefore" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_Responsibility">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_Responsibility">
+        <MappingFragment StoreEntitySet="VPL_Compliance_Responsibility">
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_Scheduling">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_Scheduling">
+        <MappingFragment StoreEntitySet="VPL_Compliance_Scheduling">
+          <ScalarProperty Name="Transid" ColumnName="Transid" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="UpdateFrom" ColumnName="UpdateFrom" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="ComplianceDate" ColumnName="ComplianceDate" />
+          <ScalarProperty Name="GDate" ColumnName="GDate" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="Crby" ColumnName="Crby" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="FDID_SD" ColumnName="FDID_SD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_Status">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_Status">
+        <MappingFragment StoreEntitySet="VPL_Compliance_Status">
+          <ScalarProperty Name="TID" ColumnName="TID" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="ScheduledID" ColumnName="ScheduledID" />
+          <ScalarProperty Name="CStatus" ColumnName="CStatus" />
+          <ScalarProperty Name="Descript" ColumnName="Descript" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="Crdate" ColumnName="Crdate" />
+          <ScalarProperty Name="CRIP" ColumnName="CRIP" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_HR_MenuMaster">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_HR_MenuMaster">
+        <MappingFragment StoreEntitySet="VPL_HR_MenuMaster">
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="MenuDesc" ColumnName="MenuDesc" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="PageIndex" ColumnName="PageIndex" />
+          <ScalarProperty Name="Selectable" ColumnName="Selectable" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Crby" ColumnName="Crby" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="ProcedureName" ColumnName="ProcedureName" />
+          <ScalarProperty Name="ParameterType" ColumnName="ParameterType" />
+          <ScalarProperty Name="HeaderText" ColumnName="HeaderText" />
+          <ScalarProperty Name="Order_No" ColumnName="Order_No" />
+          <ScalarProperty Name="CSActiveTag" ColumnName="CSActiveTag" />
+          <ScalarProperty Name="FormName" ColumnName="FormName" />
+          <ScalarProperty Name="SubFormName" ColumnName="SubFormName" />
+          <ScalarProperty Name="MenuOpenTag" ColumnName="MenuOpenTag" />
+          <ScalarProperty Name="ReportArea" ColumnName="ReportArea" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_HR_RoleDetail">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_HR_RoleDetail">
+        <MappingFragment StoreEntitySet="VPL_HR_RoleDetail">
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Crby" ColumnName="Crby" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_HR_RoleMaster">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_HR_RoleMaster">
+        <MappingFragment StoreEntitySet="VPL_HR_RoleMaster">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_HR_UserDetails">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_HR_UserDetails">
+        <MappingFragment StoreEntitySet="VPL_HR_UserDetails">
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_HR_Users">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_HR_Users">
+        <MappingFragment StoreEntitySet="VPL_HR_Users">
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPswd" ColumnName="UserPswd" />
+          <ScalarProperty Name="UserEmailID" ColumnName="UserEmailID" />
+          <ScalarProperty Name="UserMobile" ColumnName="UserMobile" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+          <ScalarProperty Name="SuperUser" ColumnName="SuperUser" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="UserTheme" ColumnName="UserTheme" />
+          <ScalarProperty Name="Crby" ColumnName="Crby" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+          <ScalarProperty Name="DesktopActive" ColumnName="DesktopActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_User_App_Auth">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_User_App_Auth">
+        <MappingFragment StoreEntitySet="VPL_User_App_Auth">
+          <ScalarProperty Name="User_App_Authid" ColumnName="User_App_Authid" />
+          <ScalarProperty Name="AppID" ColumnName="AppID" />
+          <ScalarProperty Name="EMPID" ColumnName="EMPID" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Crby" ColumnName="Crby" />
+          <ScalarProperty Name="Crdate" ColumnName="Crdate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tmpVPL_Compliance_Master">
+      <EntityTypeMapping TypeName="VPLComplianceModel.tmpVPL_Compliance_Master">
+        <MappingFragment StoreEntitySet="tmpVPL_Compliance_Master">
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Regulate_For" ColumnName="Regulate_For" />
+          <ScalarProperty Name="Regulate_Ref" ColumnName="Regulate_Ref" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="Alertbefore" ColumnName="Alertbefore" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_HR_SubMenuPages">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_HR_SubMenuPages">
+        <MappingFragment StoreEntitySet="VPL_HR_SubMenuPages">
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="SubPages" ColumnName="SubPages" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Crby" ColumnName="Crby" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_Compliance_Scheduling_detail">
+      <EntityTypeMapping TypeName="VPLComplianceModel.C_Compliance_Scheduling_detail">
+        <MappingFragment StoreEntitySet="_Compliance_Scheduling_detail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Deadlinea" ColumnName="Deadlinea" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Regulate_For" ColumnName="Regulate_For" />
+          <ScalarProperty Name="Regulate_Ref" ColumnName="Regulate_Ref" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="Alertbefore" ColumnName="Alertbefore" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="responsiblemep" ColumnName="responsiblemep" />
+          <ScalarProperty Name="ComplianceDate" ColumnName="ComplianceDate" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="CFrequency" ColumnName="CFrequency" />
+          <ScalarProperty Name="GDate" ColumnName="GDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Com_Company_Master">
+      <EntityTypeMapping TypeName="VPLComplianceModel.Com_Company_Master">
+        <MappingFragment StoreEntitySet="Com_Company_Master">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="GSTNo" ColumnName="GSTNo" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="PFNo" ColumnName="PFNo" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Crby" ColumnName="Crby" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Com_Dept_Master">
+      <EntityTypeMapping TypeName="VPLComplianceModel.Com_Dept_Master">
+        <MappingFragment StoreEntitySet="Com_Dept_Master">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="OldCode" ColumnName="OldCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Com_Emp_Legal_Sec">
+      <EntityTypeMapping TypeName="VPLComplianceModel.Com_Emp_Legal_Sec">
+        <MappingFragment StoreEntitySet="Com_Emp_Legal_Sec">
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Com_Unit_Master">
+      <EntityTypeMapping TypeName="VPLComplianceModel.Com_Unit_Master">
+        <MappingFragment StoreEntitySet="Com_Unit_Master">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Compliance_Scheduling_detail">
+      <EntityTypeMapping TypeName="VPLComplianceModel.Compliance_Scheduling_detail">
+        <MappingFragment StoreEntitySet="Compliance_Scheduling_detail">
+          <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+          <ScalarProperty Name="ComplianceDate" ColumnName="ComplianceDate" />
+          <ScalarProperty Name="cmp1" ColumnName="cmp1" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Deadlinea" ColumnName="Deadlinea" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Regulate_For" ColumnName="Regulate_For" />
+          <ScalarProperty Name="Regulate_Ref" ColumnName="Regulate_Ref" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="Alertbefore" ColumnName="Alertbefore" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="responsiblemep" ColumnName="responsiblemep" />
+          <ScalarProperty Name="FrequencyName" ColumnName="FrequencyName" />
+          <ScalarProperty Name="Transid" ColumnName="Transid" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="CFrequency" ColumnName="CFrequency" />
+          <ScalarProperty Name="GDate" ColumnName="GDate" />
+          <ScalarProperty Name="color" ColumnName="color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StaffDetails">
+      <EntityTypeMapping TypeName="VPLComplianceModel.StaffDetail">
+        <MappingFragment StoreEntitySet="StaffDetails">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_AlertTo_Detail">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_AlertTo_Detail">
+        <MappingFragment StoreEntitySet="VPL_Compliance_AlertTo_Detail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_InfoRequired_Detail">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_InfoRequired_Detail">
+        <MappingFragment StoreEntitySet="VPL_Compliance_InfoRequired_Detail">
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_Master_Detail">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_Master_Detail">
+        <MappingFragment StoreEntitySet="VPL_Compliance_Master_Detail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Deadlinea" ColumnName="Deadlinea" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Regulate_For" ColumnName="Regulate_For" />
+          <ScalarProperty Name="Regulate_Ref" ColumnName="Regulate_Ref" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="Alertbefore" ColumnName="Alertbefore" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="responsiblemep" ColumnName="responsiblemep" />
+          <ScalarProperty Name="FrequencyName" ColumnName="FrequencyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_Schedule_Report">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_Schedule_Report">
+        <MappingFragment StoreEntitySet="VPL_Compliance_Schedule_Report">
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="Transid" ColumnName="Transid" />
+          <ScalarProperty Name="ComplianceDate" ColumnName="ComplianceDate" />
+          <ScalarProperty Name="CStatus" ColumnName="CStatus" />
+          <ScalarProperty Name="Descript" ColumnName="Descript" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="dt" ColumnName="dt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_Schedule_Status">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_Schedule_Status">
+        <MappingFragment StoreEntitySet="VPL_Compliance_Schedule_Status">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Udate" ColumnName="Udate" />
+          <ScalarProperty Name="TID" ColumnName="TID" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="ScheduledID" ColumnName="ScheduledID" />
+          <ScalarProperty Name="CStatus" ColumnName="CStatus" />
+          <ScalarProperty Name="Descript" ColumnName="Descript" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="Crdate" ColumnName="Crdate" />
+          <ScalarProperty Name="CRIP" ColumnName="CRIP" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="ComplianceDate" ColumnName="ComplianceDate" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="DesignName" ColumnName="DesignName" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPL_Compliance_Schedule_Status_ALL">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_Schedule_Status_ALL">
+        <MappingFragment StoreEntitySet="VPL_Compliance_Schedule_Status_ALL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Udate" ColumnName="Udate" />
+          <ScalarProperty Name="TID" ColumnName="TID" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="ScheduledID" ColumnName="ScheduledID" />
+          <ScalarProperty Name="CStatus" ColumnName="CStatus" />
+          <ScalarProperty Name="Descript" ColumnName="Descript" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="Crdate" ColumnName="Crdate" />
+          <ScalarProperty Name="CRIP" ColumnName="CRIP" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="ComplianceDate" ColumnName="ComplianceDate" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="DesignName" ColumnName="DesignName" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="compid" ColumnName="compid" />
+          <ScalarProperty Name="Transid" ColumnName="Transid" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPLCompliance_dashboard">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPLCompliance_dashboard">
+        <MappingFragment StoreEntitySet="VPLCompliance_dashboard">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="color" ColumnName="color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPLCompliance_dashboard_Details">
+      <EntityTypeMapping TypeName="VPLComplianceModel.VPLCompliance_dashboard_Details">
+        <MappingFragment StoreEntitySet="VPLCompliance_dashboard_Details">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Deadlinea" ColumnName="Deadlinea" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Regulate_For" ColumnName="Regulate_For" />
+          <ScalarProperty Name="Regulate_Ref" ColumnName="Regulate_Ref" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="Alertbefore" ColumnName="Alertbefore" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="responsiblemep" ColumnName="responsiblemep" />
+          <ScalarProperty Name="FrequencyName" ColumnName="FrequencyName" />
+          <ScalarProperty Name="color" ColumnName="color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CCr_Role_menuExclude" FunctionName="VPLComplianceModel.Store.CCr_Role_menuExclude">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.CCr_Role_menuExclude_Result">
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="MenuDesc" ColumnName="MenuDesc" />
+          <ScalarProperty Name="PDesc" ColumnName="PDesc" />
+          <ScalarProperty Name="PageIndex" ColumnName="PageIndex" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CCR_UserRoleExclude" FunctionName="VPLComplianceModel.Store.CCR_UserRoleExclude">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.CCR_UserRoleExclude_Result">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_UserComm_ByRole" FunctionName="VPLComplianceModel.Store.Get_UserComm_ByRole">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.Get_UserComm_ByRole_Result">
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="CommType" ColumnName="CommType" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="CommValue" ColumnName="CommValue" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="VPLComplianceModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="VPLComplianceModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="VPLComplianceModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="VPLComplianceModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="VPLComplianceModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="VPLComplianceModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="VPLComplianceModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="VPL_Compliance_Detail" FunctionName="VPLComplianceModel.Store.VPL_Compliance_Detail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.VPL_Compliance_Detail_Result">
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Regulate_For" ColumnName="Regulate_For" />
+          <ScalarProperty Name="Regulate_Ref" ColumnName="Regulate_Ref" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+          <ScalarProperty Name="Alertbefore" ColumnName="Alertbefore" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DeptID1" ColumnName="DeptID1" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="OldCode" ColumnName="OldCode" />
+          <ScalarProperty Name="ID1" ColumnName="ID1" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="GSTNo" ColumnName="GSTNo" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="PFNo" ColumnName="PFNo" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Crby1" ColumnName="Crby1" />
+          <ScalarProperty Name="CrIP1" ColumnName="CrIP1" />
+          <ScalarProperty Name="CrDate1" ColumnName="CrDate1" />
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+          <ScalarProperty Name="ID2" ColumnName="ID2" />
+          <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="CompanyCode1" ColumnName="CompanyCode1" />
+          <ScalarProperty Name="CompanyName1" ColumnName="CompanyName1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VPL_Compliance_Scheduling_Generate" FunctionName="VPLComplianceModel.Store.VPL_Compliance_Scheduling_Generate" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_DisplayMenu" FunctionName="VPLComplianceModel.Store.VPL_HR_DisplayMenu">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.VPL_HR_DisplayMenu_Result">
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="MenuDesc" ColumnName="MenuDesc" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="PageIndex" ColumnName="PageIndex" />
+          <ScalarProperty Name="Selectable" ColumnName="Selectable" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Crby" ColumnName="Crby" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="ProcedureName" ColumnName="ProcedureName" />
+          <ScalarProperty Name="ParameterType" ColumnName="ParameterType" />
+          <ScalarProperty Name="HeaderText" ColumnName="HeaderText" />
+          <ScalarProperty Name="Order_No" ColumnName="Order_No" />
+          <ScalarProperty Name="CSActiveTag" ColumnName="CSActiveTag" />
+          <ScalarProperty Name="FormName" ColumnName="FormName" />
+          <ScalarProperty Name="SubFormName" ColumnName="SubFormName" />
+          <ScalarProperty Name="MenuOpenTag" ColumnName="MenuOpenTag" />
+          <ScalarProperty Name="ReportArea" ColumnName="ReportArea" />
+          <ScalarProperty Name="ParentDesc" ColumnName="ParentDesc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VPL_HR_DisplayParentMenu" FunctionName="VPLComplianceModel.Store.VPL_HR_DisplayParentMenu">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.VPL_HR_DisplayParentMenu_Result">
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="MenuDesc" ColumnName="MenuDesc" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="PageIndex" ColumnName="PageIndex" />
+          <ScalarProperty Name="Selectable" ColumnName="Selectable" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Crby" ColumnName="Crby" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="CrIP" ColumnName="CrIP" />
+          <ScalarProperty Name="ProcedureName" ColumnName="ProcedureName" />
+          <ScalarProperty Name="ParameterType" ColumnName="ParameterType" />
+          <ScalarProperty Name="HeaderText" ColumnName="HeaderText" />
+          <ScalarProperty Name="Order_No" ColumnName="Order_No" />
+          <ScalarProperty Name="CSActiveTag" ColumnName="CSActiveTag" />
+          <ScalarProperty Name="FormName" ColumnName="FormName" />
+          <ScalarProperty Name="SubFormName" ColumnName="SubFormName" />
+          <ScalarProperty Name="MenuOpenTag" ColumnName="MenuOpenTag" />
+          <ScalarProperty Name="ReportArea" ColumnName="ReportArea" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VPL_HR_FillMenu" FunctionName="VPLComplianceModel.Store.VPL_HR_FillMenu" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_FillMenu1" FunctionName="VPLComplianceModel.Store.VPL_HR_FillMenu1" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_FillMenu1_Temp" FunctionName="VPLComplianceModel.Store.VPL_HR_FillMenu1_Temp" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_FillMenu2" FunctionName="VPLComplianceModel.Store.VPL_HR_FillMenu2" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_MenuMaster_AssignedList" FunctionName="VPLComplianceModel.Store.VPL_HR_MenuMaster_AssignedList" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_MenuMaster_delete" FunctionName="VPLComplianceModel.Store.VPL_HR_MenuMaster_delete" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_MenuMaster_Insert" FunctionName="VPLComplianceModel.Store.VPL_HR_MenuMaster_Insert" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_MenuMaster_PendingList" FunctionName="VPLComplianceModel.Store.VPL_HR_MenuMaster_PendingList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.VPL_HR_MenuMaster_PendingList_Result">
+          <ScalarProperty Name="ParentsID" ColumnName="ParentsID" />
+          <ScalarProperty Name="ParentsDesc" ColumnName="ParentsDesc" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="MenuDesc" ColumnName="MenuDesc" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VPL_HR_MenuMaster_Update" FunctionName="VPLComplianceModel.Store.VPL_HR_MenuMaster_Update" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_ParentMenu" FunctionName="VPLComplianceModel.Store.VPL_HR_ParentMenu">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.VPL_HR_ParentMenu_Result">
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VPL_HR_ParentMenuMaster_Insert" FunctionName="VPLComplianceModel.Store.VPL_HR_ParentMenuMaster_Insert" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_ParentMenuMaster_Update" FunctionName="VPLComplianceModel.Store.VPL_HR_ParentMenuMaster_Update" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_RoleDetail_Delete" FunctionName="VPLComplianceModel.Store.VPL_HR_RoleDetail_Delete" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_RoleDetail_Insert" FunctionName="VPLComplianceModel.Store.VPL_HR_RoleDetail_Insert" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_RoleMaster_AssignApp" FunctionName="VPLComplianceModel.Store.VPL_HR_RoleMaster_AssignApp" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_RoleMaster_AssignRoles" FunctionName="VPLComplianceModel.Store.VPL_HR_RoleMaster_AssignRoles">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.VPL_HR_RoleMaster_AssignRoles_Result">
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+          <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VPL_HR_RoleMaster_Delete" FunctionName="VPLComplianceModel.Store.VPL_HR_RoleMaster_Delete" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_RoleMaster_DisplayList" FunctionName="VPLComplianceModel.Store.VPL_HR_RoleMaster_DisplayList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.VPL_HR_RoleMaster_DisplayList_Result">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VPL_HR_RoleMaster_Insert" FunctionName="VPLComplianceModel.Store.VPL_HR_RoleMaster_Insert" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_RoleMaster_PendingApp" FunctionName="VPLComplianceModel.Store.VPL_HR_RoleMaster_PendingApp" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_RoleMaster_PendingRole" FunctionName="VPLComplianceModel.Store.VPL_HR_RoleMaster_PendingRole">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.VPL_HR_RoleMaster_PendingRole_Result">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CrBy" ColumnName="CrBy" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VPL_HR_RoleMaster_Update" FunctionName="VPLComplianceModel.Store.VPL_HR_RoleMaster_Update" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_User_Delete" FunctionName="VPLComplianceModel.Store.VPL_HR_User_Delete" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_UserApp_Delete" FunctionName="VPLComplianceModel.Store.VPL_HR_UserApp_Delete" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_UserAppAuth_Insert" FunctionName="VPLComplianceModel.Store.VPL_HR_UserAppAuth_Insert" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_UserDetails_Delete" FunctionName="VPLComplianceModel.Store.VPL_HR_UserDetails_Delete" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_UserDetails_Insert" FunctionName="VPLComplianceModel.Store.VPL_HR_UserDetails_Insert" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_Users_displayList" FunctionName="VPLComplianceModel.Store.VPL_HR_Users_displayList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.VPL_HR_Users_displayList_Result">
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPswd" ColumnName="UserPswd" />
+          <ScalarProperty Name="UserEmailID" ColumnName="UserEmailID" />
+          <ScalarProperty Name="UserMobile" ColumnName="UserMobile" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+          <ScalarProperty Name="SuperUser" ColumnName="SuperUser" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="UserTheme" ColumnName="UserTheme" />
+          <ScalarProperty Name="Crby" ColumnName="Crby" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+          <ScalarProperty Name="DesktopActive" ColumnName="DesktopActive" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UsrImage" ColumnName="UsrImage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VPL_HR_Users_displayList_new" FunctionName="VPLComplianceModel.Store.VPL_HR_Users_displayList_new" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_Users_INsert" FunctionName="VPLComplianceModel.Store.VPL_HR_Users_INsert" />
+    <FunctionImportMapping FunctionImportName="VPL_HR_Users_Update" FunctionName="VPLComplianceModel.Store.VPL_HR_Users_Update" />
+    <FunctionImportMapping FunctionImportName="VPL_PM_ParentMenu" FunctionName="VPLComplianceModel.Store.VPL_PM_ParentMenu" />
+    <FunctionImportMapping FunctionImportName="VPL_PM_Users_displayList" FunctionName="VPLComplianceModel.Store.VPL_PM_Users_displayList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="VPLComplianceModel.VPL_PM_Users_displayList_Result">
+          <ScalarProperty Name="TransID" ColumnName="TransID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPswd" ColumnName="UserPswd" />
+          <ScalarProperty Name="UserEmailID" ColumnName="UserEmailID" />
+          <ScalarProperty Name="UserMobile" ColumnName="UserMobile" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+          <ScalarProperty Name="SuperUser" ColumnName="SuperUser" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="UserTheme" ColumnName="UserTheme" />
+          <ScalarProperty Name="Crby" ColumnName="Crby" />
+          <ScalarProperty Name="CrDate" ColumnName="CrDate" />
+          <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+          <ScalarProperty Name="DesktopActive" ColumnName="DesktopActive" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UsrImage" ColumnName="UsrImage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VPL_PM_Users_INsert" FunctionName="VPLComplianceModel.Store.VPL_PM_Users_INsert" />
+    <FunctionImportMapping FunctionImportName="VPL_PM_Users_Update" FunctionName="VPLComplianceModel.Store.VPL_PM_Users_Update" />
+  </EntityContainerMapping>
+</Mapping>

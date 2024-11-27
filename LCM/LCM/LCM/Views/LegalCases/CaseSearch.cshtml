@@ -1,0 +1,212 @@
+﻿
+@{
+    ViewBag.Title = "CaseSearch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>CaseSearch</h2>*@
+
+<style>
+    span.fooicon.fooicon-sort-asc {
+        display: none;
+    }
+
+    span.fooicon.fooicon-sort-desc {
+        display: none;
+    }
+
+    span.fooicon.fooicon-sort {
+        display: none;
+    }
+
+    label.form-control-label {
+        font-weight: 600;
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
+
+    [ng-cloak] {
+        display: none !important;
+    }
+</style>
+<div class="pcoded-content" ng-app="myApp" ng-controller="myCtrl" ng-init="LoadGetCaseSearchTable();" ng-cloak>
+    <div class="pcoded-inner-content">
+        @Html.Hidden("CityID_")
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-header">
+                    <div class="page-header-title">
+                        <h4>Case Search</h4>
+                    </div>
+                    <div class="page-header-breadcrumb">
+                        <ul class="breadcrumb-title">
+                            <li class="breadcrumb-item">
+                                <a href="#">
+                                    <i class="icofont icofont-home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0);">Case Search</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="page-body">
+                    <div class="card">
+                        <div class="card-header">
+                            <toaster-container toaster-options="{'close-button':true, 'time-out':{ 'toast-success': 2000, 'toast-error': 0 } }">
+                            </toaster-container>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div>
+                                        <label class="form-control-label">
+                                            From Date
+                                        </label>
+                                        <input type="date" id="txtfromdate" class="form-control" ng-model="data.txtfromdate" placeholder="dd-MM-yyyy" ng-change="BindCaseSearchGrid();" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div>
+                                        <label class="form-control-label">
+                                            To Date
+                                        </label>
+                                        <input type="date" id="txttodate" class="form-control" ng-model="data.txttodate"  placeholder="dd-MM-yyyy" ng-change="BindCaseSearchGrid();" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div>
+                                        <label class="form-control-label">
+                                            Case Type
+                                        </label>
+                                        <select ng-model="data.ddlcasetype" class="form-control"
+                                                ng-options="typ.CaseId as typ.CaseTypeName for typ in caseTypeListNew" ng-change="BindCaseSearchGrid();">
+                                            <option value="">All</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div>
+                                        <label class="form-control-label">
+                                            Petitioner
+                                        </label>
+                                        <select ng-model="data.ddlPetitioner" class="form-control"
+                                                ng-options="typ.Petitioner_Cum_RespondentID as typ.Fullname for typ in Petitioner_Cum_RespondentlIst" ng-change="BindCaseSearchGrid();">
+                                            <option value="">All</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-block" style="overflow: auto;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="user_table" class="table table-bordered table-striped" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10%;">Sr No.</th>
+                                                <th style="text-align: center; width: 15%;">Details</th>
+                                                <th>Case Type</th>
+                                                <th>Filing Number</th>
+                                                <th>Filing Date</th>
+                                                <th>RegistrationNumber</th>
+                                                <th>Registration Date</th>
+                                                <th>CNR Number</th>
+                                                <th>Petitioner</th>
+                                                <th>Petitioner Advocate</th>
+                                                <th>Respondent</th>
+                                                <th>Respondent Advocate</th>
+                                                <th>Judge</th>
+                                                <th>Under Act(s)</th>
+                                                <th>Under Section(s)</th>
+                                                <th>Stage of Case</th>
+                                                <th>Court City</th>
+                                                <th>Case Amount</th>
+                                                <th>Summary</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr id="repdata" ng-repeat="com in caseSearchlist">
+                                                <td>{{com.ID}}</td>
+                                                <td><a class="btn btn-primary btn-icon" title="Details" href="/Cases/CaseDetailFlow?CaseID={{com.TransID}}"><i class="icofont icofont-ui-calculator"></i></a></td>
+                                                <td>{{com.CaseTypeName}}</td>
+                                                <td>{{com.FilingNumber}}</td>
+                                                <td>{{com.FilingDate}}</td>
+                                                <td>{{com.RegistrationNumber}}</td>
+                                                <td>{{com.RegistrationDate}}</td>
+                                                <td>{{com.CNRNumber}}</td>
+                                                <td>{{com.Petitioner_NAME}}</td>
+                                                <td>{{com.Petitioner_Advocate_name}}</td>
+                                                <td>{{com.Respondent_name}}</td>
+                                                <td>{{com.Respondent_Advocate_name}}</td>
+                                                <td>{{com.JudgeName}}</td>
+                                                <td>{{com.UnderActName}}</td>
+                                                <td>{{com.UnderSectionName}}</td>
+                                                <td>{{com.StageofCaseName}}</td>
+                                                <td>{{com.City}}</td>
+                                                <td>{{com.caseamount}}</td>
+                                                <td>{{com.Casesummary}}</td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="styleSelector">
+            </div>
+            <div id="divgy" style="position: absolute; padding-left: 0%; padding-top: 10%; height: 200%; margin-left: 0%; z-index: 9999; display:none; background-color: #23282e7a; width: 100%; margin-top: -70%;">
+            </div>
+
+            <div class="modal fade modal-flex show" id="signinmodal" tabindex="-1" style="display: block; padding-left: 17px; overflow-x: hidden; overflow-y: auto; display:none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body model-container">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title">Court City</h5>
+                                <a class="close" data-dismiss="modal" aria-label="Close" onclick="hidediv();"><span aria-hidden="true">&times;</span></a>
+                            </div>
+                            <form novalidate name="form" class="css-form_Dist">
+                                <div class="modal-body p-b-0">
+                                    <div class="overflow-container">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div>
+                                                    <label class="form-control-label">
+                                                        City
+                                                    </label>
+                                                    <input type="text" class="form-control" id="txtCity" required ng-model="City" maxlength="500" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="button" id="btnSave" ng-disabled="form.$invalid" ng-click="InsertCourtCity()" class="btn btn-primary" value="Submit" />
+                                    <input type="button" class="btn btn-default" onclick="hidediv();" value="Cancel" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function hidediv() {
+        $("#divgy").hide();
+        $("#signinmodal").hide();
+        document.getElementById("btnSave").setAttribute("value", "Submit");
+        document.getElementById("btnSave").className = "btn btn-primary";
+    }
+    function GetParam(name) {
+        const results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (!results) {
+            return 0;
+        }
+        return results[1] || 0;
+    }
+</script>

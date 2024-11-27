@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LegalCaseModelStoreContainer" CdmEntityContainer="LegalCaseEntities">
+    <EntitySetMapping Name="Vw_DashboardUndatedCase">
+      <EntityTypeMapping TypeName="LegalCaseModel.Vw_DashboardUndatedCase">
+        <MappingFragment StoreEntitySet="Vw_DashboardUndatedCase">
+          <ScalarProperty Name="TotalUndated" ColumnName="TotalUndated" />
+          <ScalarProperty Name="TextUp" ColumnName="TextUp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vw_DashboardUndatedCase_Details">
+      <EntityTypeMapping TypeName="LegalCaseModel.Vw_DashboardUndatedCase_Details">
+        <MappingFragment StoreEntitySet="Vw_DashboardUndatedCase_Details">
+          <ScalarProperty Name="TextUp" ColumnName="TextUp" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Next_Date" ColumnName="Next_Date" />
+          <ScalarProperty Name="Last_Date" ColumnName="Last_Date" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Nature_of_Case" ColumnName="Nature_of_Case" />
+          <ScalarProperty Name="Court" ColumnName="Court" />
+          <ScalarProperty Name="Case_no" ColumnName="Case_no" />
+          <ScalarProperty Name="Respondent" ColumnName="Respondent" />
+          <ScalarProperty Name="Petitioner" ColumnName="Petitioner" />
+          <ScalarProperty Name="sr_no" ColumnName="sr_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

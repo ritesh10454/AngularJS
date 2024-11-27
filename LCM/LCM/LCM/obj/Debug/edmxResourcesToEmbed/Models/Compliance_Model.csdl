@@ -1,0 +1,1127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VPLComplianceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="alert_detail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DD_Freq">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DD" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Emp_Id" />
+    </Key>
+    <Property Name="Emp_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Emp_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Emp_City" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Emp_Age" Type="Int32" />
+  </EntityType>
+  <EntityType Name="MM_Freq">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MM" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_AlertTo">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="Decimal" Precision="30" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="EmpID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="Isactive" Type="Int32" />
+    <NavigationProperty Name="VPL_Compliance_Master" Relationship="Self.FK__VPL_Complia__CID__1CF15040" FromRole="VPL_Compliance_AlertTo" ToRole="VPL_Compliance_Master" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Frequency">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="Frequency" Type="Int32" />
+    <Property Name="isactive" Type="Int32" />
+    <Property Name="Crby" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="Crdate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Frequency_Details">
+    <Key>
+      <PropertyRef Name="FDID" />
+    </Key>
+    <Property Name="FDID" Type="Decimal" Precision="30" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ComplianceID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="FrequencyID" Type="Int32" />
+    <Property Name="DD" Type="Int32" />
+    <Property Name="MM" Type="Int32" />
+    <Property Name="YY" Type="Int32" />
+    <Property Name="fixeddate" Type="DateTime" Precision="3" />
+    <Property Name="isactive" Type="Int32" />
+    <Property Name="CrBy" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrIP" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="isupdate" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_InfoRequired">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="Decimal" Precision="30" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="DeptID" Type="Int32" />
+    <Property Name="EmpID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="Isactive" Type="Int32" />
+    <NavigationProperty Name="VPL_Compliance_Master" Relationship="Self.FK__VPL_Complia__CID__1A14E395" FromRole="VPL_Compliance_InfoRequired" ToRole="VPL_Compliance_Master" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Master">
+    <Key>
+      <PropertyRef Name="CID" />
+    </Key>
+    <Property Name="CID" Type="Decimal" Precision="30" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeptID" Type="Int32" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="UnitID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Regulate_For" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Regulate_Ref" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Frequency" Type="Int32" />
+    <Property Name="Deadline" Type="DateTime" Precision="3" />
+    <Property Name="Alertbefore" Type="Int32" />
+    <Property Name="CrBy" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrIP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Isactive" Type="Int32" />
+    <NavigationProperty Name="VPL_Compliance_AlertTo" Relationship="Self.FK__VPL_Complia__CID__1CF15040" FromRole="VPL_Compliance_Master" ToRole="VPL_Compliance_AlertTo" />
+    <NavigationProperty Name="VPL_Compliance_InfoRequired" Relationship="Self.FK__VPL_Complia__CID__1A14E395" FromRole="VPL_Compliance_Master" ToRole="VPL_Compliance_InfoRequired" />
+    <NavigationProperty Name="VPL_Compliance_Responsibility" Relationship="Self.FK__VPL_Complia__CID__173876EA" FromRole="VPL_Compliance_Master" ToRole="VPL_Compliance_Responsibility" />
+    <NavigationProperty Name="VPL_Compliance_Scheduling" Relationship="Self.FK__VPL_Complia__CID__440B1D61" FromRole="VPL_Compliance_Master" ToRole="VPL_Compliance_Scheduling" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Responsibility">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="Decimal" Precision="30" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="EmpID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="Isactive" Type="Int32" />
+    <NavigationProperty Name="VPL_Compliance_Master" Relationship="Self.FK__VPL_Complia__CID__173876EA" FromRole="VPL_Compliance_Responsibility" ToRole="VPL_Compliance_Master" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Scheduling">
+    <Key>
+      <PropertyRef Name="Transid" />
+    </Key>
+    <Property Name="Transid" Type="Decimal" Precision="30" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="UpdateFrom" Type="DateTime" Precision="3" />
+    <Property Name="Frequency" Type="Int32" />
+    <Property Name="ComplianceDate" Type="DateTime" Precision="3" />
+    <Property Name="GDate" Type="DateTime" Precision="3" />
+    <Property Name="Flag" Type="Int32" />
+    <Property Name="Crby" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="CrIP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="isactive" Type="Int32" />
+    <Property Name="FDID_SD" Type="Decimal" Precision="30" Scale="0" />
+    <NavigationProperty Name="VPL_Compliance_Master" Relationship="Self.FK__VPL_Complia__CID__440B1D61" FromRole="VPL_Compliance_Scheduling" ToRole="VPL_Compliance_Master" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Status">
+    <Key>
+      <PropertyRef Name="TID" />
+    </Key>
+    <Property Name="TID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CID" Type="Int32" />
+    <Property Name="ScheduledID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="CStatus" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Descript" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CrBy" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="Crdate" Type="DateTime" Precision="3" />
+    <Property Name="CRIP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="isactive" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VPL_HR_MenuMaster">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="ParentID" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MenuID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="PageIndex" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Selectable" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Crby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CrDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CrIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ProcedureName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ParameterType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="HeaderText" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Order_No" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="CSActiveTag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="FormName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SubFormName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MenuOpenTag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="ReportArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VPL_HR_RoleDetail">
+    <Key>
+      <PropertyRef Name="TransID" />
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="TransID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="MenuID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Crby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CrDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="VPL_HR_RoleMaster">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleDesc" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CrBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CrDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="VPL_HR_UserDetails">
+    <Key>
+      <PropertyRef Name="TransID" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="TransID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RoleID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CrBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CrDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RoleType" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VPL_HR_Users">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserPswd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserEmailID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="UserMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="UserImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SuperUser" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="UserTheme" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Crby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="UnitCode" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="DesktopActive" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VPL_User_App_Auth">
+    <Key>
+      <PropertyRef Name="User_App_Authid" />
+    </Key>
+    <Property Name="User_App_Authid" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AppID" Type="Int32" />
+    <Property Name="EMPID" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Active" Type="Int32" />
+    <Property Name="Crby" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Crdate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tmpVPL_Compliance_Master">
+    <Key>
+      <PropertyRef Name="CID" />
+    </Key>
+    <Property Name="CID" Type="Decimal" Precision="30" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeptID" Type="Int32" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="UnitID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Regulate_For" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Regulate_Ref" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Frequency" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Deadline" Type="DateTime" Precision="3" />
+    <Property Name="Alertbefore" Type="Int32" />
+    <Property Name="CrBy" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrIP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Isactive" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VPL_HR_SubMenuPages">
+    <Key>
+      <PropertyRef Name="MenuID" />
+      <PropertyRef Name="SubPages" />
+      <PropertyRef Name="Crby" />
+    </Key>
+    <Property Name="MenuID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="SubPages" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Crby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="C_Compliance_Scheduling_detail">
+    <Key>
+      <PropertyRef Name="CID" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="UnitName" />
+      <PropertyRef Name="DeptName" />
+      <PropertyRef Name="FullName" />
+      <PropertyRef Name="responsiblemep" />
+    </Key>
+    <Property Name="ID" Type="Int64" />
+    <Property Name="Deadlinea" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CID" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="DeptID" Type="Int32" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="UnitID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Regulate_For" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Regulate_Ref" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Frequency" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Deadline" Type="DateTime" Precision="3" />
+    <Property Name="Alertbefore" Type="Int32" />
+    <Property Name="CrBy" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrIP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Isactive" Type="Int32" />
+    <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UnitName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DeptName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="responsiblemep" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="ComplianceDate" Type="DateTime" Precision="3" />
+    <Property Name="Flag" Type="Int32" />
+    <Property Name="CFrequency" Type="Int32" />
+    <Property Name="GDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Com_Company_Master">
+    <Key>
+      <PropertyRef Name="CompanyCode" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="StateCode" />
+      <PropertyRef Name="CountryCode" />
+      <PropertyRef Name="Crby" />
+    </Key>
+    <Property Name="ID" Type="Int64" />
+    <Property Name="CompanyCode" Type="Decimal" Precision="8" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="StateCode" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="CountryCode" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="GSTNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PFNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Crby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CrIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CityCode" Type="Decimal" Precision="3" Scale="0" />
+  </EntityType>
+  <EntityType Name="Com_Dept_Master">
+    <Key>
+      <PropertyRef Name="DeptID" />
+      <PropertyRef Name="DeptName" />
+    </Key>
+    <Property Name="ID" Type="Int64" />
+    <Property Name="DeptID" Type="Decimal" Precision="8" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeptName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OldCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Com_Emp_Legal_Sec">
+    <Key>
+      <PropertyRef Name="EmpID" />
+      <PropertyRef Name="FullName" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="EmpID" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DeptName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="DeptID" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Com_Unit_Master">
+    <Key>
+      <PropertyRef Name="UnitCode" />
+      <PropertyRef Name="UnitName" />
+      <PropertyRef Name="CompanyCode" />
+      <PropertyRef Name="CompanyName" />
+    </Key>
+    <Property Name="ID" Type="Int64" />
+    <Property Name="UnitCode" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="UnitName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CompanyCode" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Compliance_Scheduling_detail">
+    <Key>
+      <PropertyRef Name="RowNumber" />
+      <PropertyRef Name="CID" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="UnitName" />
+      <PropertyRef Name="DeptName" />
+      <PropertyRef Name="FullName" />
+      <PropertyRef Name="responsiblemep" />
+      <PropertyRef Name="Transid" />
+      <PropertyRef Name="color" />
+    </Key>
+    <Property Name="RowNumber" Type="Int64" Nullable="false" />
+    <Property Name="ComplianceDate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cmp1" Type="DateTime" Precision="3" />
+    <Property Name="ID" Type="Int64" />
+    <Property Name="Deadlinea" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CID" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="DeptID" Type="Int32" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="UnitID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Regulate_For" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Regulate_Ref" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Frequency" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Deadline" Type="DateTime" Precision="3" />
+    <Property Name="Alertbefore" Type="Int32" />
+    <Property Name="CrBy" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrIP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Isactive" Type="Int32" />
+    <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UnitName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DeptName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="responsiblemep" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="FrequencyName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="Transid" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="Flag" Type="Int32" />
+    <Property Name="CFrequency" Type="Int32" />
+    <Property Name="GDate" Type="DateTime" Precision="3" />
+    <Property Name="color" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StaffDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_AlertTo_Detail">
+    <Key>
+      <PropertyRef Name="TransID" />
+      <PropertyRef Name="FullName" />
+    </Key>
+    <Property Name="ID" Type="Int64" />
+    <Property Name="TransID" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="CID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="EmpID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="Isactive" Type="Int32" />
+    <Property Name="FullName" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DeptName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_InfoRequired_Detail">
+    <Key>
+      <PropertyRef Name="TransID" />
+      <PropertyRef Name="FullName" />
+    </Key>
+    <Property Name="TransID" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="CID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="DeptID" Type="Int32" />
+    <Property Name="EmpID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="Isactive" Type="Int32" />
+    <Property Name="FullName" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DeptName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Master_Detail">
+    <Key>
+      <PropertyRef Name="CID" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="DeptName" />
+      <PropertyRef Name="FullName" />
+      <PropertyRef Name="responsiblemep" />
+    </Key>
+    <Property Name="ID" Type="Int64" />
+    <Property Name="Deadlinea" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CID" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="DeptID" Type="Int32" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="UnitID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Regulate_For" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Regulate_Ref" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Frequency" Type="Int32" />
+    <Property Name="Deadline" Type="DateTime" Precision="3" />
+    <Property Name="Alertbefore" Type="Int32" />
+    <Property Name="CrBy" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrIP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Isactive" Type="Int32" />
+    <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UnitName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DeptName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="responsiblemep" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="FrequencyName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Schedule_Report">
+    <Key>
+      <PropertyRef Name="CID" />
+      <PropertyRef Name="Transid" />
+      <PropertyRef Name="CStatus" />
+      <PropertyRef Name="color" />
+    </Key>
+    <Property Name="CID" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="Transid" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="ComplianceDate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CStatus" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Descript" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
+    <Property Name="DeptName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="UnitName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="color" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dt" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Schedule_Status">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="TID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" />
+    <Property Name="Udate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="TID" Type="Int32" Nullable="false" />
+    <Property Name="CID" Type="Int32" />
+    <Property Name="ScheduledID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="CStatus" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Descript" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CrBy" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="Crdate" Type="DateTime" Precision="3" />
+    <Property Name="CRIP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="isactive" Type="Int32" />
+    <Property Name="ComplianceDate" Type="DateTime" Precision="3" />
+    <Property Name="FullName" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
+    <Property Name="DeptName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="DesignName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="UnitName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VPL_Compliance_Schedule_Status_ALL">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="compid" />
+      <PropertyRef Name="Transid" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" />
+    <Property Name="Udate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="TID" Type="Int32" />
+    <Property Name="CID" Type="Int32" />
+    <Property Name="ScheduledID" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="CStatus" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Descript" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CrBy" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="Crdate" Type="DateTime" Precision="3" />
+    <Property Name="CRIP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="isactive" Type="Int32" />
+    <Property Name="ComplianceDate" Type="DateTime" Precision="3" />
+    <Property Name="FullName" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
+    <Property Name="DeptName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="DesignName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="UnitName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="compid" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="Transid" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="Flag" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VPLCompliance_dashboard">
+    <Key>
+      <PropertyRef Name="name" />
+      <PropertyRef Name="color" />
+    </Key>
+    <Property Name="ID" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="31" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="color" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VPLCompliance_dashboard_Details">
+    <Key>
+      <PropertyRef Name="CID" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="DeptName" />
+      <PropertyRef Name="FullName" />
+      <PropertyRef Name="responsiblemep" />
+      <PropertyRef Name="color" />
+    </Key>
+    <Property Name="ID" Type="Int64" />
+    <Property Name="Deadlinea" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CID" Type="Decimal" Precision="30" Scale="0" Nullable="false" />
+    <Property Name="DeptID" Type="Int32" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="UnitID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Regulate_For" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Regulate_Ref" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Frequency" Type="Int32" />
+    <Property Name="Deadline" Type="DateTime" Precision="3" />
+    <Property Name="Alertbefore" Type="Int32" />
+    <Property Name="CrBy" Type="Decimal" Precision="30" Scale="0" />
+    <Property Name="CrDate" Type="DateTime" Precision="3" />
+    <Property Name="CrIP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Isactive" Type="Int32" />
+    <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UnitName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DeptName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="responsiblemep" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="FrequencyName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="color" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__VPL_Complia__CID__1CF15040">
+    <End Role="VPL_Compliance_Master" Type="Self.VPL_Compliance_Master" Multiplicity="0..1" />
+    <End Role="VPL_Compliance_AlertTo" Type="Self.VPL_Compliance_AlertTo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VPL_Compliance_Master">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="VPL_Compliance_AlertTo">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VPL_Complia__CID__1A14E395">
+    <End Role="VPL_Compliance_Master" Type="Self.VPL_Compliance_Master" Multiplicity="0..1" />
+    <End Role="VPL_Compliance_InfoRequired" Type="Self.VPL_Compliance_InfoRequired" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VPL_Compliance_Master">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="VPL_Compliance_InfoRequired">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VPL_Complia__CID__173876EA">
+    <End Role="VPL_Compliance_Master" Type="Self.VPL_Compliance_Master" Multiplicity="0..1" />
+    <End Role="VPL_Compliance_Responsibility" Type="Self.VPL_Compliance_Responsibility" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VPL_Compliance_Master">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="VPL_Compliance_Responsibility">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VPL_Complia__CID__440B1D61">
+    <End Role="VPL_Compliance_Master" Type="Self.VPL_Compliance_Master" Multiplicity="0..1" />
+    <End Role="VPL_Compliance_Scheduling" Type="Self.VPL_Compliance_Scheduling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VPL_Compliance_Master">
+        <PropertyRef Name="CID" />
+      </Principal>
+      <Dependent Role="VPL_Compliance_Scheduling">
+        <PropertyRef Name="CID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VPLComplianceEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="alert_detail" EntityType="Self.alert_detail" />
+    <EntitySet Name="DD_Freq" EntityType="Self.DD_Freq" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="MM_Freq" EntityType="Self.MM_Freq" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="VPL_Compliance_AlertTo" EntityType="Self.VPL_Compliance_AlertTo" />
+    <EntitySet Name="VPL_Compliance_Frequency" EntityType="Self.VPL_Compliance_Frequency" />
+    <EntitySet Name="VPL_Compliance_Frequency_Details" EntityType="Self.VPL_Compliance_Frequency_Details" />
+    <EntitySet Name="VPL_Compliance_InfoRequired" EntityType="Self.VPL_Compliance_InfoRequired" />
+    <EntitySet Name="VPL_Compliance_Master" EntityType="Self.VPL_Compliance_Master" />
+    <EntitySet Name="VPL_Compliance_Responsibility" EntityType="Self.VPL_Compliance_Responsibility" />
+    <EntitySet Name="VPL_Compliance_Scheduling" EntityType="Self.VPL_Compliance_Scheduling" />
+    <EntitySet Name="VPL_Compliance_Status" EntityType="Self.VPL_Compliance_Status" />
+    <EntitySet Name="VPL_HR_MenuMaster" EntityType="Self.VPL_HR_MenuMaster" />
+    <EntitySet Name="VPL_HR_RoleDetail" EntityType="Self.VPL_HR_RoleDetail" />
+    <EntitySet Name="VPL_HR_RoleMaster" EntityType="Self.VPL_HR_RoleMaster" />
+    <EntitySet Name="VPL_HR_UserDetails" EntityType="Self.VPL_HR_UserDetails" />
+    <EntitySet Name="VPL_HR_Users" EntityType="Self.VPL_HR_Users" />
+    <EntitySet Name="VPL_User_App_Auth" EntityType="Self.VPL_User_App_Auth" />
+    <EntitySet Name="tmpVPL_Compliance_Master" EntityType="Self.tmpVPL_Compliance_Master" />
+    <EntitySet Name="VPL_HR_SubMenuPages" EntityType="Self.VPL_HR_SubMenuPages" />
+    <EntitySet Name="C_Compliance_Scheduling_detail" EntityType="Self.C_Compliance_Scheduling_detail" />
+    <EntitySet Name="Com_Company_Master" EntityType="Self.Com_Company_Master" />
+    <EntitySet Name="Com_Dept_Master" EntityType="Self.Com_Dept_Master" />
+    <EntitySet Name="Com_Emp_Legal_Sec" EntityType="Self.Com_Emp_Legal_Sec" />
+    <EntitySet Name="Com_Unit_Master" EntityType="Self.Com_Unit_Master" />
+    <EntitySet Name="Compliance_Scheduling_detail" EntityType="Self.Compliance_Scheduling_detail" />
+    <EntitySet Name="StaffDetails" EntityType="Self.StaffDetail" />
+    <EntitySet Name="VPL_Compliance_AlertTo_Detail" EntityType="Self.VPL_Compliance_AlertTo_Detail" />
+    <EntitySet Name="VPL_Compliance_InfoRequired_Detail" EntityType="Self.VPL_Compliance_InfoRequired_Detail" />
+    <EntitySet Name="VPL_Compliance_Master_Detail" EntityType="Self.VPL_Compliance_Master_Detail" />
+    <EntitySet Name="VPL_Compliance_Schedule_Report" EntityType="Self.VPL_Compliance_Schedule_Report" />
+    <EntitySet Name="VPL_Compliance_Schedule_Status" EntityType="Self.VPL_Compliance_Schedule_Status" />
+    <EntitySet Name="VPL_Compliance_Schedule_Status_ALL" EntityType="Self.VPL_Compliance_Schedule_Status_ALL" />
+    <EntitySet Name="VPLCompliance_dashboard" EntityType="Self.VPLCompliance_dashboard" />
+    <EntitySet Name="VPLCompliance_dashboard_Details" EntityType="Self.VPLCompliance_dashboard_Details" />
+    <AssociationSet Name="FK__VPL_Complia__CID__1CF15040" Association="Self.FK__VPL_Complia__CID__1CF15040">
+      <End Role="VPL_Compliance_Master" EntitySet="VPL_Compliance_Master" />
+      <End Role="VPL_Compliance_AlertTo" EntitySet="VPL_Compliance_AlertTo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VPL_Complia__CID__1A14E395" Association="Self.FK__VPL_Complia__CID__1A14E395">
+      <End Role="VPL_Compliance_Master" EntitySet="VPL_Compliance_Master" />
+      <End Role="VPL_Compliance_InfoRequired" EntitySet="VPL_Compliance_InfoRequired" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VPL_Complia__CID__173876EA" Association="Self.FK__VPL_Complia__CID__173876EA">
+      <End Role="VPL_Compliance_Master" EntitySet="VPL_Compliance_Master" />
+      <End Role="VPL_Compliance_Responsibility" EntitySet="VPL_Compliance_Responsibility" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VPL_Complia__CID__440B1D61" Association="Self.FK__VPL_Complia__CID__440B1D61">
+      <End Role="VPL_Compliance_Master" EntitySet="VPL_Compliance_Master" />
+      <End Role="VPL_Compliance_Scheduling" EntitySet="VPL_Compliance_Scheduling" />
+    </AssociationSet>
+    <FunctionImport Name="CCr_Role_menuExclude" ReturnType="Collection(VPLComplianceModel.CCr_Role_menuExclude_Result)">
+      <Parameter Name="Roleid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CCR_UserRoleExclude" ReturnType="Collection(VPLComplianceModel.CCR_UserRoleExclude_Result)">
+      <Parameter Name="Userid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_UserComm_ByRole" ReturnType="Collection(VPLComplianceModel.Get_UserComm_ByRole_Result)">
+      <Parameter Name="RoleId" Mode="In" Type="Int32" />
+      <Parameter Name="CommID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(VPLComplianceModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(VPLComplianceModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="VPL_Compliance_Detail" ReturnType="Collection(VPLComplianceModel.VPL_Compliance_Detail_Result)">
+      <Parameter Name="CID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_Compliance_Scheduling_Generate" />
+    <FunctionImport Name="VPL_HR_DisplayMenu" ReturnType="Collection(VPLComplianceModel.VPL_HR_DisplayMenu_Result)">
+      <Parameter Name="MenuID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_DisplayParentMenu" ReturnType="Collection(VPLComplianceModel.VPL_HR_DisplayParentMenu_Result)">
+      <Parameter Name="MenuID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_FillMenu">
+      <Parameter Name="UserID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_FillMenu1">
+      <Parameter Name="UserID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_FillMenu1_Temp">
+      <Parameter Name="UserID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_FillMenu2">
+      <Parameter Name="UserID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_MenuMaster_AssignedList">
+      <Parameter Name="RoleID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_MenuMaster_delete">
+      <Parameter Name="MenuID" Mode="In" Type="Decimal" />
+      <Parameter Name="CrBy" Mode="In" Type="String" />
+      <Parameter Name="CrIP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_MenuMaster_Insert">
+      <Parameter Name="ParentID" Mode="In" Type="Decimal" />
+      <Parameter Name="MenuDesc" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="PageIndex" Mode="In" Type="String" />
+      <Parameter Name="Selectable" Mode="In" Type="String" />
+      <Parameter Name="CrBy" Mode="In" Type="String" />
+      <Parameter Name="CrIP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_MenuMaster_PendingList" ReturnType="Collection(VPLComplianceModel.VPL_HR_MenuMaster_PendingList_Result)">
+      <Parameter Name="RoleID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_MenuMaster_Update">
+      <Parameter Name="MenuID" Mode="In" Type="Decimal" />
+      <Parameter Name="ParentID" Mode="In" Type="Decimal" />
+      <Parameter Name="MenuDesc" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="PageIndex" Mode="In" Type="String" />
+      <Parameter Name="Selectable" Mode="In" Type="String" />
+      <Parameter Name="CrBy" Mode="In" Type="String" />
+      <Parameter Name="CrIP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_ParentMenu" ReturnType="Collection(VPLComplianceModel.VPL_HR_ParentMenu_Result)" />
+    <FunctionImport Name="VPL_HR_ParentMenuMaster_Insert">
+      <Parameter Name="MenuDesc" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="Selectable" Mode="In" Type="String" />
+      <Parameter Name="CrBy" Mode="In" Type="String" />
+      <Parameter Name="CrIP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_ParentMenuMaster_Update">
+      <Parameter Name="MenuID" Mode="In" Type="Decimal" />
+      <Parameter Name="MenuDesc" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="String" />
+      <Parameter Name="Selectable" Mode="In" Type="String" />
+      <Parameter Name="CrBy" Mode="In" Type="String" />
+      <Parameter Name="CrIP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_RoleDetail_Delete">
+      <Parameter Name="TransID" Mode="In" Type="Decimal" />
+      <Parameter Name="Crby" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_RoleDetail_Insert">
+      <Parameter Name="RoleID" Mode="In" Type="Decimal" />
+      <Parameter Name="MenuID" Mode="In" Type="Decimal" />
+      <Parameter Name="Active" Mode="In" Type="String" />
+      <Parameter Name="Crby" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_RoleMaster_AssignApp">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_RoleMaster_AssignRoles" ReturnType="Collection(VPLComplianceModel.VPL_HR_RoleMaster_AssignRoles_Result)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_RoleMaster_Delete">
+      <Parameter Name="RoleID" Mode="In" Type="Decimal" />
+      <Parameter Name="CrBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_RoleMaster_DisplayList" ReturnType="Collection(VPLComplianceModel.VPL_HR_RoleMaster_DisplayList_Result)">
+      <Parameter Name="SearchName" Mode="In" Type="String" />
+      <Parameter Name="RoleID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_RoleMaster_Insert">
+      <Parameter Name="RoleDesc" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="String" />
+      <Parameter Name="CrBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_RoleMaster_PendingApp">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_RoleMaster_PendingRole" ReturnType="Collection(VPLComplianceModel.VPL_HR_RoleMaster_PendingRole_Result)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_RoleMaster_Update">
+      <Parameter Name="RoleID" Mode="In" Type="Decimal" />
+      <Parameter Name="RoleDesc" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="String" />
+      <Parameter Name="CrBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_User_Delete">
+      <Parameter Name="TransID" Mode="In" Type="Decimal" />
+      <Parameter Name="CrBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_UserApp_Delete">
+      <Parameter Name="TransID" Mode="In" Type="Decimal" />
+      <Parameter Name="CrBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_UserAppAuth_Insert">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="RoleID" Mode="In" Type="Decimal" />
+      <Parameter Name="CrBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_UserDetails_Delete">
+      <Parameter Name="TransID" Mode="In" Type="Decimal" />
+      <Parameter Name="CrBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_UserDetails_Insert">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="RoleID" Mode="In" Type="Decimal" />
+      <Parameter Name="CrBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_Users_displayList" ReturnType="Collection(VPLComplianceModel.VPL_HR_Users_displayList_Result)">
+      <Parameter Name="SearchName" Mode="In" Type="String" />
+      <Parameter Name="TransID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_Users_displayList_new">
+      <Parameter Name="SearchName" Mode="In" Type="String" />
+      <Parameter Name="TransID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_Users_INsert">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="UserPswd" Mode="In" Type="String" />
+      <Parameter Name="UserEmailID" Mode="In" Type="String" />
+      <Parameter Name="UserMobile" Mode="In" Type="String" />
+      <Parameter Name="DOB" Mode="In" Type="DateTime" />
+      <Parameter Name="UserImage" Mode="In" Type="String" />
+      <Parameter Name="Crby" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_HR_Users_Update">
+      <Parameter Name="TransID" Mode="In" Type="Decimal" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="UserEMailID" Mode="In" Type="String" />
+      <Parameter Name="UserMobile" Mode="In" Type="String" />
+      <Parameter Name="DOb" Mode="In" Type="DateTime" />
+      <Parameter Name="UserImage" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="String" />
+      <Parameter Name="Crby" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_PM_ParentMenu" />
+    <FunctionImport Name="VPL_PM_Users_displayList" ReturnType="Collection(VPLComplianceModel.VPL_PM_Users_displayList_Result)">
+      <Parameter Name="SearchName" Mode="In" Type="String" />
+      <Parameter Name="TransID" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_PM_Users_INsert">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="UserPswd" Mode="In" Type="String" />
+      <Parameter Name="UserEmailID" Mode="In" Type="String" />
+      <Parameter Name="UserMobile" Mode="In" Type="String" />
+      <Parameter Name="DOB" Mode="In" Type="DateTime" />
+      <Parameter Name="UserImage" Mode="In" Type="String" />
+      <Parameter Name="Crby" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="VPL_PM_Users_Update">
+      <Parameter Name="TransID" Mode="In" Type="Decimal" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="UserEMailID" Mode="In" Type="String" />
+      <Parameter Name="UserMobile" Mode="In" Type="String" />
+      <Parameter Name="DOb" Mode="In" Type="DateTime" />
+      <Parameter Name="UserImage" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="String" />
+      <Parameter Name="Crby" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="CCr_Role_menuExclude_Result">
+    <Property Type="Decimal" Name="MenuID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="ParentID" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="MenuDesc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PDesc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PageIndex" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="CCR_UserRoleExclude_Result">
+    <Property Type="Decimal" Name="RoleID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="RoleDesc" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="Active" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="CrBy" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="CrDate" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_UserComm_ByRole_Result">
+    <Property Type="Decimal" Name="EmpID" Nullable="false" Precision="8" Scale="0" />
+    <Property Type="Int32" Name="CommType" Nullable="false" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="CommValue" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Active" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="CrBy" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="CrDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="CrIP" Nullable="true" MaxLength="20" />
+    <Property Type="Decimal" Name="ID" Nullable="false" Precision="18" Scale="0" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="VPL_Compliance_Detail_Result">
+    <Property Type="Decimal" Name="CID" Nullable="false" Precision="30" Scale="0" />
+    <Property Type="Int32" Name="DeptID" Nullable="true" />
+    <Property Type="Int32" Name="CompanyID" Nullable="true" />
+    <Property Type="Int32" Name="UnitID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" />
+    <Property Type="String" Name="Regulate_For" Nullable="true" />
+    <Property Type="String" Name="Regulate_Ref" Nullable="true" />
+    <Property Type="Int32" Name="Frequency" Nullable="true" />
+    <Property Type="DateTime" Name="Deadline" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Alertbefore" Nullable="true" />
+    <Property Type="Decimal" Name="CrBy" Nullable="true" Precision="30" Scale="0" />
+    <Property Type="DateTime" Name="CrDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CrIP" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Isactive" Nullable="true" />
+    <Property Type="Int64" Name="ID" Nullable="true" />
+    <Property Type="Decimal" Name="DeptID1" Nullable="false" Precision="8" Scale="0" />
+    <Property Type="String" Name="DeptName" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="OldCode" Nullable="true" MaxLength="10" />
+    <Property Type="Int64" Name="ID1" Nullable="true" />
+    <Property Type="Decimal" Name="CompanyCode" Nullable="false" Precision="8" Scale="0" />
+    <Property Type="String" Name="CompanyName" Nullable="false" />
+    <Property Type="String" Name="Address" Nullable="true" />
+    <Property Type="String" Name="City" Nullable="true" MaxLength="80" />
+    <Property Type="Decimal" Name="StateCode" Nullable="false" Precision="2" Scale="0" />
+    <Property Type="Decimal" Name="CountryCode" Nullable="false" Precision="3" Scale="0" />
+    <Property Type="String" Name="GSTNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="PFNo" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="Logo" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="Active" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="Crby1" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="CrIP1" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="CrDate1" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="CityCode" Nullable="true" Precision="3" Scale="0" />
+    <Property Type="Int64" Name="ID2" Nullable="true" />
+    <Property Type="Decimal" Name="UnitCode" Nullable="false" Precision="8" Scale="0" />
+    <Property Type="String" Name="UnitName" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="CompanyCode1" Nullable="false" Precision="8" Scale="0" />
+    <Property Type="String" Name="CompanyName1" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="VPL_HR_DisplayMenu_Result">
+    <Property Type="Decimal" Name="ParentID" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MenuID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="MenuDesc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="STATUS" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="PageIndex" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Selectable" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="ImageUrl" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Crby" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="CrDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="CrIP" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ProcedureName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ParameterType" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="HeaderText" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="Order_No" Nullable="true" Precision="30" Scale="0" />
+    <Property Type="String" Name="CSActiveTag" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="FormName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SubFormName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MenuOpenTag" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="ReportArea" Nullable="true" />
+    <Property Type="String" Name="ParentDesc" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="VPL_HR_DisplayParentMenu_Result">
+    <Property Type="Decimal" Name="ParentID" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="MenuID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="MenuDesc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="STATUS" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="PageIndex" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Selectable" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="ImageUrl" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Crby" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="CrDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="CrIP" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="ProcedureName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ParameterType" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="HeaderText" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="Order_No" Nullable="true" Precision="30" Scale="0" />
+    <Property Type="String" Name="CSActiveTag" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="FormName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SubFormName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MenuOpenTag" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="ReportArea" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="VPL_HR_MenuMaster_PendingList_Result">
+    <Property Type="Decimal" Name="ParentsID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="ParentsDesc" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="MenuID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="MenuDesc" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="VPL_HR_ParentMenu_Result">
+    <Property Type="Decimal" Name="code" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="VPL_HR_RoleMaster_AssignRoles_Result">
+    <Property Type="Decimal" Name="TransID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="UserID" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="RoleID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="Active" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="CrBy" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="CrDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="RoleType" Nullable="true" />
+    <Property Type="String" Name="RoleDesc" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="VPL_HR_RoleMaster_DisplayList_Result">
+    <Property Type="Decimal" Name="RoleID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="RoleDesc" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="Active" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="CrBy" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="CrDate" Nullable="true" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="VPL_HR_RoleMaster_PendingRole_Result">
+    <Property Type="Decimal" Name="RoleID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="RoleDesc" Nullable="false" MaxLength="80" />
+    <Property Type="String" Name="Active" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="CrBy" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="CrDate" Nullable="true" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="8" />
+  </ComplexType>
+  <ComplexType Name="VPL_HR_Users_displayList_Result">
+    <Property Type="Decimal" Name="TransID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="UserID" Nullable="false" Precision="30" Scale="0" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UserPswd" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UserEmailID" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="UserMobile" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DOB" Nullable="true" />
+    <Property Type="String" Name="UserImage" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SuperUser" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="Active" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="UserTheme" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Crby" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="CrDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UnitCode" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="DesktopActive" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="UsrImage" Nullable="true" MaxLength="121" />
+  </ComplexType>
+  <ComplexType Name="VPL_PM_Users_displayList_Result">
+    <Property Type="Decimal" Name="TransID" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="UserID" Nullable="false" Precision="30" Scale="0" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UserPswd" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="UserEmailID" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="UserMobile" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DOB" Nullable="true" />
+    <Property Type="String" Name="UserImage" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SuperUser" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="Active" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="UserTheme" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Crby" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="CrDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UnitCode" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="DesktopActive" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="UsrImage" Nullable="true" MaxLength="121" />
+  </ComplexType>
+</Schema>

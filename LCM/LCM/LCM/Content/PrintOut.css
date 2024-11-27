@@ -1,0 +1,72 @@
+﻿body {
+    width: 9in;
+    /* to centre page on screen*/
+    margin-left: auto;
+    margin-right: auto;
+    font-family: sans-serif;
+}
+
+dd, dt {
+    line-height: 2.428571;
+    font-family: sans-serif;
+}
+
+dt {
+    font-weight: 700;
+}
+
+ul li ul li > dt {
+    padding: 4px;
+    background-color: #cac0c0;
+    padding-left: 10px;
+    margin: 10px 0px 10px 0px;
+}
+
+ul li ul li > ul {
+    list-style-type: lower-alpha;
+}
+
+ul {
+    list-style-type: decimal;
+}
+
+    ul li > ul {
+        list-style-type: lower-roman;
+    }
+
+    ul li ul li ul li > dt {
+        background: none;
+        padding-left: 0px;
+    }
+
+tr.tdtr td {
+    padding-left: 10px;
+}
+
+.tdtr th {
+    text-align: left;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+dt, dd {
+    line-height: 22px;
+}
+
+ul {
+    line-height: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#tbl1 tr th {
+    line-height: 31px;
+    text-align: center !important;
+}
+
+td {
+    padding: 3px;
+}
